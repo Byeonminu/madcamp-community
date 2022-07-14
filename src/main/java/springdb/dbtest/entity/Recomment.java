@@ -19,16 +19,16 @@ public class Recomment {
     private Long id;
 
     @Column(nullable = false)
-    private Long user_id;
+    private Long userid;
 
     @Column(nullable = false)
-    private Long comment_id;
+    private Long commentid;
 
     @Column(columnDefinition = "TEXT")
     private String recomment;
 
     @Column(columnDefinition = "int(11) default 0")
-    private Long recom_like_cnt;
+    private Long recomlikecnt;
 
 
 }

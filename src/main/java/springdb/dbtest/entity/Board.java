@@ -2,6 +2,7 @@ package springdb.dbtest.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Table(name = "board")
 public class Board {
 
@@ -21,7 +23,7 @@ public class Board {
     private Long id;
 
     @Column()
-    private Long user_id;
+    private Long userid;
 
     @Column()
     private Long type;
@@ -33,20 +35,20 @@ public class Board {
     private String description;
 
     @Column(columnDefinition = "int(11) default 0")
-    private int comment_cnt;
+    private int commentcnt;
 
     @Column(columnDefinition = "int(11) default 0")
-    private int like_cnt;
+    private int likecnt;
 
     @Column(columnDefinition = "int(11) default 0")
-    private int report_cnt;
+    private int reportcnt;
 
     @Column
     @CreatedDate
-    private LocalDateTime created_date;
+    private LocalDateTime createdate;
 
     @Column
-    private LocalDateTime update_date;
+    private LocalDateTime updatedate;
 
 
 }

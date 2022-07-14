@@ -19,16 +19,16 @@ public class Comment {
     private Long id;
 
     @Column()
-    private Long user_id;
+    private Long userid;
 
     @Column()
-    private Long board_id;
+    private Long boardid;
 
     @Column(columnDefinition = "TEXT")
     private String comment;
 
     @Column(columnDefinition = "int(11) default 0")
-    private int com_like_cnt;
+    private int comlikecnt;
 
 
 
