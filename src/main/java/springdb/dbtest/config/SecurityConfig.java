@@ -1,4 +1,4 @@
 package springdb.dbtest.config;
 
-public class SecurityConfig{
+public class SecurityConfig  {
 }

@@ -4,8 +4,10 @@ package springdb.dbtest.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springdb.dbtest.entity.Jongmin;
 import springdb.dbtest.repository.MemberRepository;
 import springdb.dbtest.entity.User;
+import springdb.dbtest.repository.TestRepository;
 
 import java.util.List;
 
@@ -16,7 +18,8 @@ public class MemberController {
 
     @Autowired
     private final MemberRepository memberRepository;
-
+    @Autowired
+    private final TestRepository testRepository;
     /**
      * 멤버 조회
      * @return
@@ -34,6 +37,18 @@ public class MemberController {
      * 회원가입
      * @return
      */
+    @GetMapping("test")
+    public Jongmin insertUser(){
+        final Jongmin jongmin = Jongmin.builder()
+                .id(0L)
+                .name("jongmin")
+                .build();
+        return testRepository.save(jongmin);
+    }
+    @GetMapping("test2")
+    public List<Jongmin> User(){
+        return testRepository.findAll();
+    }
 //    @PostMapping("member")
 //    public Memo signUp() {
 ////        final Memo member = Memo.builder()
