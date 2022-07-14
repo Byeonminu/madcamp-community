@@ -1,8 +1,11 @@
-package springdb.dbtest;
+package springdb.dbtest.controller;
 
 //import lombok.RequiredArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springdb.dbtest.repository.MemberRepository;
+import springdb.dbtest.entity.Memo;
 
 import java.util.List;
 
@@ -11,6 +14,7 @@ import java.util.List;
 @RequestMapping("/v1") // version1의 API
 public class MemberController {
 
+    @Autowired
     private final MemberRepository memberRepository;
 
     /**
@@ -19,6 +23,10 @@ public class MemberController {
      */
     @GetMapping("member")
     public List<Memo> findAllMember() {
+        List<Memo> z =  memberRepository.findAll();
+        for(int i =0;i<memberRepository.findAll().size();i++){
+            System.out.println("esgasegseg :" +z.get(i));
+        }
         return memberRepository.findAll();
     }
 

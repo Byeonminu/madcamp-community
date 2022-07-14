@@ -1,4 +1,4 @@
-package springdb.dbtest;
+package springdb.dbtest.entity;
 
 import lombok.*;
 
