@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springdb.dbtest.repository.MemberRepository;
-import springdb.dbtest.entity.Memo;
+import springdb.dbtest.entity.User;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class MemberController {
      * @return
      */
     @GetMapping("member")
-    public List<Memo> findAllMember() {
-        List<Memo> z =  memberRepository.findAll();
+    public List<User> findAllMember() {
+        List<User> z =  memberRepository.findAll();
         for(int i =0;i<memberRepository.findAll().size();i++){
             System.out.println("esgasegseg :" +z.get(i));
         }
@@ -34,12 +34,12 @@ public class MemberController {
      * 회원가입
      * @return
      */
-    @PostMapping("member")
-    public Memo signUp() {
-        final Memo member = Memo.builder()
-                .id(123L)
-                .memoTextselet("포스트 성공22!")
-                .build();
-        return memberRepository.save(member);
-    }
+//    @PostMapping("member")
+//    public Memo signUp() {
+////        final Memo member = Memo.builder()
+////                .id(123L)
+////                .memoTextselet("포스트 성공22!")
+////                .build();
+////        return memberRepository.save(member);
+//    }
 }
