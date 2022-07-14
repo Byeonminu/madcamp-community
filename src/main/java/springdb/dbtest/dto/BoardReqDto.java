@@ -1,58 +1,30 @@
-package springdb.dbtest.entity;
+package springdb.dbtest.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
-import springdb.dbtest.dto.BoardRespDto;
+import springdb.dbtest.entity.Board;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
-@Entity
-@Builder
-@AllArgsConstructor
-@ToString
+@Data
 @NoArgsConstructor
-@Table(name = "board")
-public class Board {
+@AllArgsConstructor
+public class BoardReqDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column()
     private Long user_id;
-
-    @Column()
     private Long type;
-
-    @Column(length = 30, nullable = false)
     private String title;
-
-    @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
-
-    @Column(columnDefinition = "int(11) default 0")
     private int comment_cnt;
-
-    @Column(columnDefinition = "int(11) default 0")
     private int like_cnt;
-
-    @Column(columnDefinition = "int(11) default 0")
     private int report_cnt;
-
-    @Column
-    @CreatedDate
     private LocalDateTime create_date;
-
-    @Column
     private LocalDateTime update_date;
 
-    public BoardRespDto toDto(){
-        return BoardRespDto.builder()
+    public Board toEntity(){
+        return Board.builder()
                 .id(id)
                 .user_id(user_id)
                 .type(type)
@@ -64,7 +36,7 @@ public class Board {
                 .create_date(create_date)
                 .update_date(update_date)
                 .build();
-    }
 
+    }
 
 }
