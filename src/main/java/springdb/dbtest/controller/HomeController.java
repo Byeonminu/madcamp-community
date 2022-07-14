@@ -3,7 +3,7 @@ package springdb.dbtest.controller;
 //import lombok.RequiredArgsConstructor;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.engine.jdbc.Size;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
-import springdb.dbtest.repository.BoardRepository;
 import springdb.dbtest.service.BoardService;
 
 import java.time.LocalDateTime;
@@ -38,15 +37,17 @@ public class HomeController {
         return null;
     }
     // 정보게시판
-//    @GetMapping("info")
-//    public List<Board> getInfoBoard() {
-//        return boardService.findTop3ByTypeOrderByCreatedateDesc(2L);
-//    }
+    @GetMapping("info")
+    public List<Board> getInfoBoard() {
+
+        return null;
+    }
     // 14기 게시판
     @GetMapping("generation-14")
     public List<Board> getGeneration14Board() {
-
-        return null;
+        List<Board> tt = boardService.getGeneration14Board();
+        System.out.println(tt);
+        return tt;
     }
     @GetMapping("insertinfo")
     public BoardRespDto insertInfo(@RequestParam("user_id") Long userId,

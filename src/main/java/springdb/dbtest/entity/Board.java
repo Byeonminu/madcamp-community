@@ -24,7 +24,7 @@ public class Board {
     private Long id;
 
     @Column()
-    private Long user_id;
+    private Long userid;
 
     @Column()
     private Long type;
@@ -36,33 +36,33 @@ public class Board {
     private String description;
 
     @Column(columnDefinition = "int(11) default 0")
-    private int comment_cnt;
+    private int commentcnt;
 
     @Column(columnDefinition = "int(11) default 0")
-    private int like_cnt;
+    private int likecnt;
 
     @Column(columnDefinition = "int(11) default 0")
-    private int report_cnt;
+    private int reportcnt;
 
     @Column
     @CreatedDate
-    private LocalDateTime create_date;
+    private LocalDateTime createdate;
 
     @Column
-    private LocalDateTime update_date;
+    private LocalDateTime updatedate;
 
     public BoardRespDto toDto(){
         return BoardRespDto.builder()
                 .id(id)
-                .user_id(user_id)
+                .userid(userid)
                 .type(type)
                 .title(title)
                 .description(description)
-                .comment_cnt(comment_cnt)
-                .like_cnt(like_cnt)
-                .report_cnt(report_cnt)
-                .create_date(create_date)
-                .update_date(update_date)
+                .commentcnt(commentcnt)
+                .likecnt(likecnt)
+                .reportcnt(reportcnt)
+                .createdate(createdate)
+                .updatedate(updatedate)
                 .build();
     }
 

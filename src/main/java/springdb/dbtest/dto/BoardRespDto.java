@@ -15,15 +15,15 @@ package springdb.dbtest.dto;
 public class BoardRespDto {
 
     private Long id;
-    private Long user_id;
+    private Long userid;
     private Long type;
     private String title;
     private String description;
-    private int comment_cnt;
-    private int like_cnt;
-    private int report_cnt;
-    private LocalDateTime create_date;
-    private LocalDateTime update_date;
+    private int commentcnt;
+    private int likecnt;
+    private int reportcnt;
+    private LocalDateTime createdate;
+    private LocalDateTime updatedate;
 
 
 }

@@ -48,10 +48,10 @@ public class MemberController {
     }
 //    @PostMapping("member")
 //    public Memo signUp() {
-////        final Memo member = Memo.builder()
-////                .id(123L)
-////                .memoTextselet("포스트 성공22!")
-////                .build();
-////        return memberRepository.save(member);
+//        final Memo member = Memo.builder()
+//                .id(123L)
+//                .memoTextselet("포스트 성공22!")
+//                .build();
+//        return memberRepository.save(member);
 //    }
 }

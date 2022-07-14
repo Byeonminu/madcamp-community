@@ -19,10 +19,10 @@ public class Report_recomment {
     private Long id;
 
     @Column(nullable = false)
-    private Long user_id;
+    private Long userid;
 
     @Column(nullable = false)
-    private Long recomment_id;
+    private Long recommentid;
 
     @Column(length = 50, nullable = false)
     private String comment;

@@ -1,5 +1,9 @@
 package springdb.dbtest.service;
 
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.engine.jdbc.Size;
 import org.springframework.stereotype.Service;
@@ -10,18 +14,24 @@ import springdb.dbtest.repository.BoardRepository;
 
 import java.util.List;
 
-@RequiredArgsConstructor // final 객체를 Constructor Injection 해줌. (Autowired 역할)
+@RequiredArgsConstructor
 @Service("boardService")
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
+
     private final BoardRepository boardRepository;
+
     @Override
+    public List<Board> getGeneration14Board() {
+        return boardRepository.findTop3ByOrderByLikecntDesc();
+    }
+
     public BoardRespDto insertBoardInfo(BoardReqDto boardReqDto) {
         Board board = boardReqDto.toEntity();
 
         return boardRepository.save(board).toDto();
     }
 
-//    @Override
+    //    @Override
 //    public List<Board> findTop3ByTypeOrderByCreatedateDesc(Long type) {
 //
 //        return boardRepository.findTop3ByTypeOrderByCreatedateDesc(type);

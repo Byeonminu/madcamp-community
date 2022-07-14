@@ -13,28 +13,28 @@ import java.time.LocalDateTime;
 public class BoardReqDto {
 
     private Long id;
-    private Long user_id;
+    private Long userid;
     private Long type;
     private String title;
     private String description;
-    private int comment_cnt;
-    private int like_cnt;
-    private int report_cnt;
-    private LocalDateTime create_date;
-    private LocalDateTime update_date;
+    private int commentcnt;
+    private int likecnt;
+    private int reportcnt;
+    private LocalDateTime createdate;
+    private LocalDateTime updatedate;
 
     public Board toEntity(){
         return Board.builder()
                 .id(id)
-                .user_id(user_id)
+                .userid(userid)
                 .type(type)
                 .title(title)
                 .description(description)
-                .comment_cnt(comment_cnt)
-                .like_cnt(like_cnt)
-                .report_cnt(report_cnt)
-                .create_date(create_date)
-                .update_date(update_date)
+                .commentcnt(commentcnt)
+                .likecnt(likecnt)
+                .reportcnt(reportcnt)
+                .createdate(createdate)
+                .updatedate(updatedate)
                 .build();
 
     }
