@@ -3,6 +3,7 @@ package springdb.dbtest.controller;
 //import lombok.RequiredArgsConstructor;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.engine.jdbc.Size;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,11 +38,10 @@ public class HomeController {
         return null;
     }
     // 정보게시판
-    @GetMapping("info")
-    public List<Board> getInfoBoard() {
-
-        return null;
-    }
+//    @GetMapping("info")
+//    public List<Board> getInfoBoard() {
+//        return boardService.findTop3ByTypeOrderByCreatedateDesc(2L);
+//    }
     // 14기 게시판
     @GetMapping("generation-14")
     public List<Board> getGeneration14Board() {
