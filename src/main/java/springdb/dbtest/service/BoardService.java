@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface BoardService {
 
-    public List<Board> getGeneration14Board();
+    //Best 3 board
+    public List<Board> getBest3board();
 
     // 보드 객체 추가
     public BoardRespDto insertBoardInfo(BoardReqDto boardReqDto);
@@ -18,5 +19,6 @@ public interface BoardService {
     //공지사항 3개 받아오기 ( 최신순 )
     public List<Board> findTop3ByTypeOrderByCreatedateDesc(Long type);
 
+    public List<Board> getGeneration14(Long type);
 
 }
