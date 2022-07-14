@@ -26,10 +26,7 @@ public class MemberController {
      */
     @GetMapping("member")
     public List<User> findAllMember() {
-        List<User> z =  memberRepository.findAll();
-        for(int i =0;i<memberRepository.findAll().size();i++){
-            System.out.println("esgasegseg :" +z.get(i));
-        }
+
         return memberRepository.findAll();
     }
 
@@ -46,8 +43,8 @@ public class MemberController {
         return testRepository.save(jongmin);
     }
     @GetMapping("test2")
-    public List<Jongmin> User(){
-        return testRepository.findAll();
+    public String User(){
+        return testRepository.findAll().get(0).toString();
     }
 //    @PostMapping("member")
 //    public Memo signUp() {
