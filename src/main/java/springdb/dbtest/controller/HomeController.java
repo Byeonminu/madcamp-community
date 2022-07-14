@@ -28,7 +28,7 @@ public class HomeController {
     @GetMapping("notification")
     public List<Board> getNotificationBoard() {
 
-        return null;
+        return boardService.findTop3ByTypeOrderByCreatedateDesc(1L);
     }
     // best 게시판
     @GetMapping("best")
@@ -40,7 +40,7 @@ public class HomeController {
     @GetMapping("info")
     public List<Board> getInfoBoard() {
 
-        return null;
+        return boardService.findTop5ByTypeOrderByCreatedateDesc(2L);
     }
     // 14기 게시판
     @GetMapping("generation-14")

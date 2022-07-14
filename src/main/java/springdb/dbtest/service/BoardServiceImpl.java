@@ -31,9 +31,14 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.save(board).toDto();
     }
 
-    //    @Override
-//    public List<Board> findTop3ByTypeOrderByCreatedateDesc(Long type) {
-//
-//        return boardRepository.findTop3ByTypeOrderByCreatedateDesc(type);
-//    }
+    @Override
+    public List<Board> findTop5ByTypeOrderByCreatedateDesc(Long type) {
+
+        return boardRepository.findTop5ByTypeOrderByCreatedateDesc(type);
+    }
+
+    @Override
+    public List<Board> findTop3ByTypeOrderByCreatedateDesc(Long type) {
+        return boardRepository.findTop3ByTypeOrderByCreatedateDesc(type);
+    }
 }
