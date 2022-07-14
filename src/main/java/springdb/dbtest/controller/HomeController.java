@@ -33,8 +33,9 @@ public class HomeController {
     // best 게시판
     @GetMapping("best")
     public List<Board> getBestBoard() {
-
-        return null;
+        List<Board> tt = boardService.getBest3board();
+        System.out.println(tt);
+        return tt;
     }
     // 정보게시판
     @GetMapping("info")
@@ -45,7 +46,7 @@ public class HomeController {
     // 14기 게시판
     @GetMapping("generation-14")
     public List<Board> getGeneration14Board() {
-        List<Board> tt = boardService.getGeneration14Board();
+        List<Board> tt = boardService.getGeneration14(3L);
         System.out.println(tt);
         return tt;
     }

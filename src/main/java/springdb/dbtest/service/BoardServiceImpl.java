@@ -21,7 +21,7 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
 
     @Override
-    public List<Board> getGeneration14Board() {
+    public List<Board> getBest3board() {
         return boardRepository.findTop3ByOrderByLikecntDesc();
     }
 
@@ -30,6 +30,13 @@ public class BoardServiceImpl implements BoardService {
 
         return boardRepository.save(board).toDto();
     }
+
+    @Override
+    public List<Board> getGeneration14(Long type) {
+        return boardRepository.findTop5ByTypeOrderByCreatedateDesc(type);
+    }
+
+
 
     //    @Override
 //    public List<Board> findTop3ByTypeOrderByCreatedateDesc(Long type) {

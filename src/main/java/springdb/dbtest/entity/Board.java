@@ -1,9 +1,6 @@
 package springdb.dbtest.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import springdb.dbtest.dto.BoardRespDto;
 
@@ -14,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Builder
 @AllArgsConstructor
-@ToString
+@Data
 @NoArgsConstructor
 @Table(name = "board")
 public class Board {
