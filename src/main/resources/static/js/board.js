@@ -1,31 +1,39 @@
 const boardParent = document.querySelector('.main_list');
 const roleUser = document.querySelector('.head_role_user');
 const roleCreaater = document.querySelector('.head_role_Creator');
-let boardItem = ``;
 
-boardLoad();
+
+
+var pagenum = 1;
+var type = 2;
+var totalCount = 0;
+boardLoad(type,pagenum);
+
 
 // 관리자페이지
 setUser("USER");
 
 // 게시글 10개 가져오기 ///////////////////////////////////////
-function boardLoad() {
+function boardLoad(type,pagenum) {
     $.ajax({
+
         type: "get",
         // type 동적으로 처리하기
-        url: `/board?type=2&pagenum=1`,
+        url: `/board?type=${type}&pagenum=${pagenum}`,
         dataType: "text",
         success: function (data) {
-            alert("2"+data);
             let boardListObj = JSON.parse(data);
+            let boardItem = ``;
             boardItem += getBoards(boardListObj.boardList);
-            boardItem+=getNumber(boardListObj.cnt);
+            totalCount = boardListObj.count;
             boardParent.innerHTML = boardItem;
         },
         error: function () {
             alert('board 비동기 처리오류');
         }
+
     });
+
 }
 function getBoards(boardList) {
     let boardHtml = ``;
@@ -98,3 +106,19 @@ function setUser(role) {
     }
 }
 
+setTimeout(() => {
+    const numList = document.querySelector('.main_num_list');
+    numList.innerHTML = getNumber(totalCount);
+    const numbers = document.querySelectorAll('.numbtn');
+    alert(numbers.length);
+    for(let i=0; i<numbers.length; i++){
+        numbers[i].onclick = () => {
+            for(let j=0; j<numbers.length; j++){
+                numbers[j].id ='';
+            }
+            numbers[i].id='clicknum';
+            boardLoad(type,numbers[i].textContent);
+        }
+
+    }
+}, 1000);
