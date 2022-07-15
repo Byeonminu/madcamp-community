@@ -19,8 +19,9 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
 
-//    @Override
-//    public List<Comment> getcomment(Long boardid) {
-//        return commentRepository.findAllComments();
-//    }
+
+    @Override
+    public List<Comment> findAllWithRecommentUsingFetchJoin(Long commentid) {
+        return commentRepository.findAllWithRecommentUsingFetchJoin(commentid);
+    }
 }

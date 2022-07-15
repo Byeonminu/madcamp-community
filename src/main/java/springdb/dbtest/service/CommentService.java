@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface CommentService {
 
-    //댓글 가져오기
-//    List<Comment> getcomment(Long boardid);
+
+    public List<Comment> findAllWithRecommentUsingFetchJoin(Long commentid);
 
 }

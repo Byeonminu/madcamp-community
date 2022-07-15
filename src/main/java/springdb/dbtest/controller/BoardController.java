@@ -24,26 +24,24 @@ public class BoardController {
     private final BoardService boardService;
     private final CommentService commentService;
 
-    // 공지사함
+    // type에 따라 게시글 10개 가져오기
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Board> getNotificationBoard(@RequestParam(value = "type") Long type,
                                             @RequestParam(value = "pagenum") int pagenumber) {
         return boardService.get10latestboard(type, pagenumber);
     }
 
+    //이거는 controller에서 view의 속성으로 넣어줘야함
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public List<Board> getoneboard(@PathVariable("id") Long boardid) {
+    public List<Board> getoneboardwithcomment(@PathVariable("id") Long boardid) {
         return boardService.findAllWithCommentUsingFetchJoin(boardid);
     }
 
-
-    //그 글에 맞는 댓글 가져오기
-//    @RequestMapping(value = "/test", method = RequestMethod.GET)
-//    public List<Board> getcomment(@PathVariable) {
-//        return boardService.findAllWithCommentUsingFetchJoin();
-//    }
-
-
+    //요청을 하면 comment id와 매칭되는 recomment를 가져옴
+    @RequestMapping(value = "/info/recomment/{id}", method = RequestMethod.GET)
+    public List<Comment> getrecomment(@PathVariable("id") Long commentid) {
+        return commentService.findAllWithRecommentUsingFetchJoin(commentid);
+    }
 
 
     //새 글 작성
