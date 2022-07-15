@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.entity.Board;
+import springdb.dbtest.entity.BoardType;
 import springdb.dbtest.entity.Comment;
+import springdb.dbtest.repository.BoardTypeRepository;
 import springdb.dbtest.service.BoardService;
 import springdb.dbtest.service.CommentService;
 
@@ -24,24 +26,35 @@ public class BoardController {
     private final BoardService boardService;
     private final CommentService commentService;
 
-    // 공지사함
+    private final BoardTypeRepository boardTypeRepository;
+
+    // type에 따라 게시글 10개 가져오기
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Board> getNotificationBoard(@RequestParam(value = "type") Long type,
                                             @RequestParam(value = "pagenum") int pagenumber) {
         return boardService.get10latestboard(type, pagenumber);
     }
 
-    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public List<Board> getoneboard(@PathVariable("id") Long boardid) {
-        return boardService.findAllWithCommentUsingFetchJoin(boardid);
+
+    // board type 종류 불러오기
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public List<BoardType> getBoardType() {
+        return boardTypeRepository.findAll();
     }
 
 
-    //그 글에 맞는 댓글 가져오기
-//    @RequestMapping(value = "/test", method = RequestMethod.GET)
-//    public List<Board> getcomment(@PathVariable) {
-//        return boardService.findAllWithCommentUsingFetchJoin();
-//    }
+
+    //이거는 controller에서 view의 속성으로 넣어줘야함
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    public List<Board> getoneboardwithcomment(@PathVariable("id") Long boardid) {
+        return boardService.findAllWithCommentUsingFetchJoin(boardid);
+    }
+
+    //요청을 하면 comment id와 매칭되는 recomment를 가져옴
+    @RequestMapping(value = "/info/recomment/{id}", method = RequestMethod.GET)
+    public List<Comment> getrecomment(@PathVariable("id") Long commentid) {
+        return commentService.findAllWithRecommentUsingFetchJoin(commentid);
+    }
 
 
 

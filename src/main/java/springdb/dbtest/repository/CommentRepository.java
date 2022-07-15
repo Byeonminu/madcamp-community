@@ -13,8 +13,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findAllByBoard(Long boardid);
 
-//    @Query("select DISTINCT c from Comment c join fetch c.board ") // (1)
-//    List<Comment> findAllComments();
+    @Query("select DISTINCT c from Comment c join fetch c.recomments where c.id = :commentid") // (1)
+    List<Comment> findAllWithRecommentUsingFetchJoin(Long commentid);
 
 
 }
