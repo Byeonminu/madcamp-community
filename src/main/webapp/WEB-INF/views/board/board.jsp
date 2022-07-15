@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/resources/css/board.css">
         <script src="https://kit.fontawesome.com/fab8e6b94b.js" crossorigin="anonymous"></script>
-        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <title>몰입캠프 게시판</title>
     </head>
 

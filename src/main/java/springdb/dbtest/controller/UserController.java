@@ -28,13 +28,15 @@ import static java.lang.Math.toIntExact;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/auth")
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/newuser")
-    public String signup(UserDto infoDto) { // 회원 추가
-        userService.save(infoDto);
+    @PostMapping("/insertUser")
+    public String signup(UserDto userDto) { // 회원 추가
+        System.out.println("새로운 유저" + userDto);
+//        userService.save(infoDto);
         return "redirect:/login";
     }
 
