@@ -25,14 +25,7 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.findTop3ByOrderByLikecntDesc();
     }
 
-    public BoardRespDto insertBoardInfo(BoardReqDto boardReqDto) {
-        Board board = boardReqDto.toEntity();
-
-        return boardRepository.save(board).toDto();
-    }
-
     @Override
-
     public List<Board> getGeneration14(Long type) {
         return boardRepository.findTop5ByTypeOrderByCreatedateDesc(type);
     }
@@ -48,4 +41,15 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.findTop3ByTypeOrderByCreatedateDesc(type);
     }
 
+
+    public BoardRespDto insertBoardInfo(BoardReqDto boardReqDto) {
+        Board board = boardReqDto.toEntity();
+
+        return boardRepository.save(board).toDto();
+    }
+
+    @Override
+    public List<Board> get10latestboard(Long type) {
+        return boardRepository.findTop10ByTypeOrderByCreatedateDesc(type);
+    }
 }

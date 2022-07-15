@@ -33,9 +33,7 @@ public class HomeController {
     // best 게시판
     @GetMapping("best")
     public List<Board> getBestBoard() {
-        List<Board> tt = boardService.getBest3board();
-        System.out.println(tt);
-        return tt;
+        return boardService.getBest3board();
     }
     // 정보게시판
     @GetMapping("info")
@@ -46,9 +44,7 @@ public class HomeController {
     // 14기 게시판
     @GetMapping("generation-14")
     public List<Board> getGeneration14Board() {
-        List<Board> tt = boardService.getGeneration14(3L);
-        System.out.println(tt);
-        return tt;
+        return boardService.getGeneration14(3L);
     }
     @GetMapping("insertinfo")
     public BoardRespDto insertInfo(@RequestParam("user_id") Long userId,

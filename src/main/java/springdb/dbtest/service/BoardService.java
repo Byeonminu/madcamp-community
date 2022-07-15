@@ -21,4 +21,7 @@ public interface BoardService {
 
     public List<Board> getGeneration14(Long type);
 
+    //최신 10개
+    public List<Board> get10latestboard(Long type);
+
 }
