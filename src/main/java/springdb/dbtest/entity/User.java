@@ -1,16 +1,23 @@
 package springdb.dbtest.entity;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "user")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +42,46 @@ public class User {
     private String picture;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> roles = new HashSet<>();
+        for (String role : isadmin.split(",")) {
+            roles.add(new SimpleGrantedAuthority(role));
+        }
+        return roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // 만료되었는지 확인하는 로직
+        return true; // true -> 만료되지 않았음
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // 계정 잠금되었는지 확인하는 로직
+        return true; // true -> 잠금되지 않았음
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // 패스워드가 만료되었는지 확인하는 로직
+        return true; // true -> 만료되지 않았음
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // 계정이 사용 가능한지 확인하는 로직
+        return true; // true -> 사용 가능
+    }
 }
