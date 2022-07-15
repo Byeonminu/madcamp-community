@@ -241,12 +241,12 @@ header {
 .head_role {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: space-around;
     align-items: center;
     width: 220px;
     height: 100%;
     background-color: #F1F1F1;
-    margin: 0px 40px 0px 60px;
+    margin: 0px 20px 0px 80px;
     border-radius: 30px;
 }
 
@@ -259,20 +259,23 @@ header {
     background-color: white;
     color: #5429FF;
     border-radius: 30px;
-    font-weight: 550;
+    font-weight: 600;
     font-size: 1.1em;
-    margin: 0px 30px 0px 10px
+    margin: 0px 30px 0px 10px;
+    curser:pointer;
 }
 
 .head_role_Creator {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     width: 40%;
     height: 80%;
     color: #8C8C8C;
+    border-radius: 30px;
     font-weight: 600;
     font-size: 1.1em;
+    curser:pointer;
 }
 
 .head_bell {
@@ -293,7 +296,7 @@ header {
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .head_img img {
