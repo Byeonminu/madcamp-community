@@ -6,6 +6,8 @@ import springdb.dbtest.dto.BoardRespDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -47,6 +49,9 @@ public class Board {
 
     @Column
     private LocalDateTime updatedate;
+
+    @OneToMany(mappedBy = "board") // 연관관계의 주인은 'board'를 가지고 있는 Comment 클래스임
+    List<Comment> comments = new ArrayList<>();
 
     public BoardRespDto toDto(){
         return BoardRespDto.builder()
