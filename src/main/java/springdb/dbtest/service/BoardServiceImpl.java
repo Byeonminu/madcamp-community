@@ -63,4 +63,9 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.findAllWithCommentUsingFetchJoin(Boardid);
     }
 
+    @Override
+    public Long getBoardcount(Long type) {
+        return boardRepository.countByType(type);
+    }
+
 }

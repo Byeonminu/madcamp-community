@@ -4,6 +4,7 @@ package springdb.dbtest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import springdb.dbtest.dto.BoardLIstRespDto;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.BoardType;
@@ -18,6 +19,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.Math.*;
+
 @RestController // JSON 형태 결과값을 반환해줌 (@ResponseBody가 필요없음)
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌. (Autowired 역할)
 @RequestMapping("/board") // version1의 API
@@ -30,13 +33,16 @@ public class BoardController {
 
     // type에 따라 게시글 10개 가져오기
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Board> getNotificationBoard(@RequestParam(value = "type") Long type,
-                                            @RequestParam(value = "pagenum") int pagenumber) {
-        return boardService.get10latestboard(type, pagenumber);
+    public BoardLIstRespDto getNotificationBoard(@RequestParam(value = "type") Long type,
+                                                 @RequestParam(value = "pagenum") int pagenumber) {
+        System.out.println("개수 : " + toIntExact(boardService.getBoardcount(type)));
+        BoardLIstRespDto boardLIstRespDto = new BoardLIstRespDto(boardService.get10latestboard(type, pagenumber), toIntExact(boardService.getBoardcount(type)));
+        return boardLIstRespDto;
     }
 
 
-    // board type 종류 불러오기
+
+    // board category 종류 불러오기
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public List<BoardType> getBoardType() {
         return boardTypeRepository.findAll();

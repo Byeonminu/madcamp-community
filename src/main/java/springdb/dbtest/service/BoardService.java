@@ -28,4 +28,6 @@ public interface BoardService {
 
     public List<Board> findAllWithCommentUsingFetchJoin(Long boardid);
 
+    public Long getBoardcount(Long type);
+
 }

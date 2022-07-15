@@ -31,6 +31,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query("select DISTINCT c from Board c join fetch c.comments where c.id = :boardid") // (1)
     List<Board> findAllWithCommentUsingFetchJoin(Long boardid);
 
+    Long countByType(Long type);
+
 
 
 
