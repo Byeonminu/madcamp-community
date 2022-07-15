@@ -16,6 +16,7 @@ function boardLoad() {
         url: `/board?type=2&pagenum=1`,
         dataType: "text",
         success: function (data) {
+            alert("2"+data);
             let boardListObj = JSON.parse(data);
             boardItem += getBoards(boardListObj.boardList);
             boardItem+=getNumber(boardListObj.cnt);
