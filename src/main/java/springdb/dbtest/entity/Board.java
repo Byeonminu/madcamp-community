@@ -1,5 +1,6 @@
 package springdb.dbtest.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import springdb.dbtest.dto.BoardRespDto;
@@ -50,6 +51,7 @@ public class Board {
     @Column
     private LocalDateTime updatedate;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "board") // 연관관계의 주인은 'board'를 가지고 있는 Comment 클래스임
     List<Comment> comments = new ArrayList<>();
 

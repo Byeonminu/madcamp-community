@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.entity.Board;
+import springdb.dbtest.entity.Comment;
 import springdb.dbtest.service.BoardService;
+import springdb.dbtest.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ import java.util.Optional;
 public class BoardController {
 
     private final BoardService boardService;
+    private final CommentService commentService;
 
     // 공지사함
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -28,10 +31,17 @@ public class BoardController {
         return boardService.get10latestboard(type, pagenumber);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Optional<Board> getoneboard(@PathVariable("id") Long id) {
-        return boardService.getOneboardbyid(id);
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    public List<Board> getoneboard(@PathVariable("id") Long boardid) {
+        return boardService.findAllWithCommentUsingFetchJoin(boardid);
     }
+
+
+    //그 글에 맞는 댓글 가져오기
+//    @RequestMapping(value = "/test", method = RequestMethod.GET)
+//    public List<Board> getcomment(@PathVariable) {
+//        return boardService.findAllWithCommentUsingFetchJoin();
+//    }
 
 
 
