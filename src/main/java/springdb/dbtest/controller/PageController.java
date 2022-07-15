@@ -12,6 +12,13 @@ public class PageController {
         System.out.println("여기에요 여기 !!");
         return "board/board";
     }
+
+
+    @GetMapping("/signup")
+    public String signupForm(){
+        System.out.println("여기에요 여기 !!");
+        return "auth/signup";
+    }
 //    @GetMapping("/board-main/{board_id}")
 //    public String boardForm(){
 //        System.out.println("여기에요 여기 !!");
