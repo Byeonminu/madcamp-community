@@ -1,8 +1,7 @@
 package springdb.dbtest.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +10,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Table(name = "comment")
 public class Comment {
 
@@ -21,7 +21,8 @@ public class Comment {
     @Column()
     private Long userid;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY) //LAZY - 지연 로딩, EAGER - 즉시 로딩
     @JoinColumn(name = "boardid")
     private Board board;
 

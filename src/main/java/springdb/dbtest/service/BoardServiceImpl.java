@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
+import springdb.dbtest.entity.Comment;
 import springdb.dbtest.repository.BoardRepository;
 
 import java.util.List;
@@ -56,4 +57,10 @@ public class BoardServiceImpl implements BoardService {
     public Optional<Board> getOneboardbyid(Long id) {
         return boardRepository.findById(id);
     }
+
+    @Override
+    public List<Board> findAllWithCommentUsingFetchJoin(Long Boardid) {
+        return boardRepository.findAllWithCommentUsingFetchJoin(Boardid);
+    }
+
 }

@@ -26,4 +26,6 @@ public interface BoardService {
 
     public Optional<Board> getOneboardbyid(Long id);
 
+    public List<Board> findAllWithCommentUsingFetchJoin(Long boardid);
+
 }
