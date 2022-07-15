@@ -38,13 +38,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
  
-    public List<Board> findTop5ByTypeOrderByCreatedateDesc(Long type) {
+    public List<Board> getInfo5board(Long type) {
 
         return boardRepository.findTop5ByTypeOrderByCreatedateDesc(type);
     }
 
     @Override
-    public List<Board> findTop3ByTypeOrderByCreatedateDesc(Long type) {
+    public List<Board> getnoti3board(Long type) {
         return boardRepository.findTop3ByTypeOrderByCreatedateDesc(type);
     }
 

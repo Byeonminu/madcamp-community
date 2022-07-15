@@ -14,10 +14,10 @@ public interface BoardService {
 
     // 보드 객체 추가
     public BoardRespDto insertBoardInfo(BoardReqDto boardReqDto);
-    // info 보드 3개 받아오기
-    public List<Board> findTop5ByTypeOrderByCreatedateDesc(Long type);
+    // info 보드 5개 받아오기
+    public List<Board> getInfo5board(Long type);
     //공지사항 3개 받아오기 ( 최신순 )
-    public List<Board> findTop3ByTypeOrderByCreatedateDesc(Long type);
+    public List<Board> getnoti3board(Long type);
 
     public List<Board> getGeneration14(Long type);
 
