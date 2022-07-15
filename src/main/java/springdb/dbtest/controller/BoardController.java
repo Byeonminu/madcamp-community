@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.entity.Board;
+import springdb.dbtest.entity.BoardType;
 import springdb.dbtest.entity.Comment;
+import springdb.dbtest.repository.BoardTypeRepository;
 import springdb.dbtest.service.BoardService;
 import springdb.dbtest.service.CommentService;
 
@@ -24,12 +26,23 @@ public class BoardController {
     private final BoardService boardService;
     private final CommentService commentService;
 
+    private final BoardTypeRepository boardTypeRepository;
+
     // type에 따라 게시글 10개 가져오기
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Board> getNotificationBoard(@RequestParam(value = "type") Long type,
                                             @RequestParam(value = "pagenum") int pagenumber) {
         return boardService.get10latestboard(type, pagenumber);
     }
+
+
+    // board type 종류 불러오기
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public List<BoardType> getBoardType() {
+        return boardTypeRepository.findAll();
+    }
+
+
 
     //이거는 controller에서 view의 속성으로 넣어줘야함
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
@@ -42,6 +55,8 @@ public class BoardController {
     public List<Comment> getrecomment(@PathVariable("id") Long commentid) {
         return commentService.findAllWithRecommentUsingFetchJoin(commentid);
     }
+
+
 
 
     //새 글 작성

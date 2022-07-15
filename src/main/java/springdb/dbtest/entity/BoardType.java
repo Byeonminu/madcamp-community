@@ -2,6 +2,7 @@ package springdb.dbtest.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Builder
 @AllArgsConstructor
+@Data
 @NoArgsConstructor
 @Table(name = "board_type")
 public class BoardType {
