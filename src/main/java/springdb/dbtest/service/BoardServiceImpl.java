@@ -2,10 +2,6 @@ package springdb.dbtest.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.engine.jdbc.Size;
 import org.springframework.stereotype.Service;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
@@ -13,6 +9,7 @@ import springdb.dbtest.entity.Board;
 import springdb.dbtest.repository.BoardRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service("boardService")
@@ -51,5 +48,10 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<Board> get10latestboard(Long type) {
         return boardRepository.findTop10ByTypeOrderByCreatedateDesc(type);
+    }
+
+    @Override
+    public Optional<Board> getOneboardbyid(Long id) {
+        return boardRepository.findById(id);
     }
 }

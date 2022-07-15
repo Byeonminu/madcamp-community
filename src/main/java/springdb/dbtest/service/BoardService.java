@@ -1,11 +1,11 @@
 package springdb.dbtest.service;
 
-import lombok.Data;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BoardService {
 
@@ -23,5 +23,7 @@ public interface BoardService {
 
     //최신 10개
     public List<Board> get10latestboard(Long type);
+
+    public Optional<Board> getOneboardbyid(Long id);
 
 }
