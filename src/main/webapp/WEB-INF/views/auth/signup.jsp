@@ -28,11 +28,11 @@
 <%--            </div>--%>
 
             <!-- Login Form -->
-            <form>
+            <form action="/auth/insertUser" method="post">
                 <input type="text" id="nickname" class="fadeIn first" name="nickname" placeholder="nickname">
-                <input type="text" id="login" class="fadeIn second" name="login" placeholder="email">
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-                <input type="text" id="password remind" class="fadeIn fourth" name="login"
+                <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
+                <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+                <input type="text" id="password remind" class="fadeIn fourth" name="picture"
                        placeholder="password remind">
                 <input type="submit" class="fadeIn fifth" value="Sign Up">
             </form>
