@@ -28,7 +28,9 @@ public class BoardController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Board> getNotificationBoard(@RequestParam(value = "type") Long type,
                                             @RequestParam(value = "pagenum") int pagenumber) {
-        return boardService.get10latestboard(type, pagenumber);
+        System.out.println("보드요청 입니다 ~~~~");
+        List<Board> boardList = boardService.get10latestboard(type, pagenumber);
+        return boardList;
     }
 
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
