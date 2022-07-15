@@ -46,8 +46,10 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> get10latestboard(Long type) {
-        return boardRepository.findTop10ByTypeOrderByCreatedateDesc(type);
+    public List<Board> get10latestboard(Long type, int pagenumber) {
+        List<Board> alllist = boardRepository.findAllByTypeOrderByCreatedateDesc(type);
+        List<Board> ret = alllist.subList((pagenumber-1) * 10, Math.min(pagenumber * 10, alllist.size()));
+        return ret;
     }
 
     @Override

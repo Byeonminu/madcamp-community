@@ -23,14 +23,17 @@ public class BoardController {
 
     // 공지사함
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Board> getNotificationBoard(@RequestParam(value = "type") Long type) {
-        return boardService.get10latestboard(type);
+    public List<Board> getNotificationBoard(@RequestParam(value = "type") Long type,
+                                            @RequestParam(value = "pagenum") int pagenumber) {
+        return boardService.get10latestboard(type, pagenumber);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Optional<Board> getoneboard(@PathVariable("id") Long id) {
         return boardService.getOneboardbyid(id);
     }
+
+
 
 
     //새 글 작성

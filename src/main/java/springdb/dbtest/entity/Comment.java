@@ -21,8 +21,9 @@ public class Comment {
     @Column()
     private Long userid;
 
-    @Column()
-    private Long boardid;
+    @ManyToOne
+    @JoinColumn(name = "boardid")
+    private Board board;
 
     @Column(columnDefinition = "TEXT")
     private String comment;
