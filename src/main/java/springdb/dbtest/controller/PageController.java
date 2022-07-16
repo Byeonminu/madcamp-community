@@ -1,8 +1,10 @@
 package springdb.dbtest.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import springdb.dbtest.entity.User;
 
 @Controller
 public class PageController {
@@ -27,7 +29,8 @@ public class PageController {
     }
 
     @GetMapping({"/","/index"})
-    public String indexForm(){
+    public String indexForm(@AuthenticationPrincipal User user){
+        System.out.println("유저 정뵈ㅣ:: " + String.valueOf(user));
         System.out.println("여기에요 여기 !!");
         return "index";
     }

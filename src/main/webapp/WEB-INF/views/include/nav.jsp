@@ -20,8 +20,8 @@
                         <img src="/resources/image/mad_logo.png" alt="몰입캠프 로고" class="nav_img">
                     </div>
                     <div class="nav_auth">
-                        <a class="login">LOG IN</a>
-                        <a class="logout">SIGN UP</a>
+                        <a href="/login" class="login">LOG IN</a>
+                        <a href="/signup" class="logout">SIGN UP</a>
                     </div>
                     <div class="nav_board_container">
 

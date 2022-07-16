@@ -39,7 +39,8 @@ public class UserService implements UserDetailsService {
             return userRepository.save(User.builder()
                     .username(infoDto.getUsername())
                     .password(infoDto.getPassword())
-                    .nickname(infoDto.getNickname()).build()).getId();
+                    .nickname(infoDto.getNickname())
+                    .isadmin("USER").build()).getId();
         }
 
 
@@ -49,9 +50,11 @@ public class UserService implements UserDetailsService {
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         // 시큐리티에서 지정한 서비스이기 때문에 이 메소드를 필수로 구현
-        System.out.println("로그인 로드유저바이유저네임");
-        return userRepository.findByUsername(username)
+        System.out.println("로그인 로드유저바이유저네임: " + username);
+        User user =  userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("등록되지 않은 사용자 입니다."));
+        System.out.println("로그인한 유저 : " + user);
+        return user;
     }
 
 //    public String login(UserDto userDto) throws Exception {
