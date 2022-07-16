@@ -15,7 +15,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'mysql:mysql-connector-java'
+	implementation 'mysql:mysql-connector-java'
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly 'org.projectlombok:lombok'
