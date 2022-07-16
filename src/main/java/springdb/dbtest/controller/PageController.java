@@ -20,6 +20,12 @@ public class PageController {
         return "auth/signup";
     }
 
+    @GetMapping("/login")
+    public String loginForm(){
+        System.out.println("여기에요 여기 !!");
+        return "auth/login";
+    }
+
     @GetMapping({"/","/index"})
     public String indexForm(){
         System.out.println("여기에요 여기 !!");
