@@ -8,5 +8,5 @@ import springdb.dbtest.entity.BoardType;
 import java.util.List;
 
 public interface BoardTypeRepository extends JpaRepository<BoardType, Long> {
-
+    List<BoardType> findAllByOrderByIdAsc();
 }

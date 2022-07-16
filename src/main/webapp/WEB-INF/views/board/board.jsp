@@ -14,6 +14,7 @@
     </head>
 
     <body>
+    <input class="type" value="${type}"/>
         <div class="container">
             <jsp:include page="../include/nav.jsp"></jsp:include>
             <main class="main_box">

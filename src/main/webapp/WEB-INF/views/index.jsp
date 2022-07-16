@@ -13,6 +13,7 @@
     </head>
 
     <body>
+    <input class="type" value="0" />
         <div class="container">
             <jsp:include page="./include/nav.jsp"></jsp:include>
             <main class="main_box">
@@ -23,28 +24,21 @@
                     <main class="main_center">
                         <div class="row-0">
                             <div class="col">
-                                <a href="#" class="noti_title">공지사항</a>
+                                <a href="/board-main?type=1" class="noti_title">공지사항</a>
                                 <div class="noti_list">
-
                                     <!-- 글 3개 -->
-
-
                                 </div>
                             </div>
                             <div class="col">
-                                <a href="/board/#" class="best_title">추천글</a>
+                                <div class="best_title">추천글</div>
                                 <div class="best_list">
-
                                     <!-- 글 3개 -->
-
-
-
                                 </div>
 
                             </div>
                         </div>
                         <div class="row-1">
-                            <a href="/board/#" class="main_title">
+                            <a href="/board-main?type=2" class="main_title">
                                 정보 게시판
                             </a>
                             <div class="main_list">
@@ -52,7 +46,7 @@
                             </div>
                         </div>
                         <div class="row-1">
-                            <a href="/board/#" class="generation_title">
+                            <a href="/board-main?type=3" class="generation_title">
                                 몰입캠프 14기 게시판
                             </a>
                             <div class="generation_list">

@@ -1,22 +1,25 @@
 const boardParent = document.querySelector('.main_list');
-const roleUser = document.querySelector('.head_role_user');
-const roleCreaater = document.querySelector('.head_role_Creator');
-
-
-
+// const roleUser = document.querySelector('.head_role_user');
+// const roleCreaater = document.querySelector('.head_role_Creator');
+const type = document.querySelector('.type').value;
+var main_title = document.querySelector('.main_title');
 var pagenum = 1;
-var type = 2;
 var totalCount = 0;
 boardLoad(type,pagenum);
+if(type == 1) {
+    main_title.innerHTML = "공지사항";
 
+}else if(type == 2) {
+    main_title.innerHTML = "일반 게시판";
 
-// 관리자페이지
-setUser("USER");
+}else if(type == 3) {
+    main_title.innerHTML = "몰입캠프 14기";
+
+}
 
 // 게시글 10개 가져오기 ///////////////////////////////////////
 function boardLoad(type,pagenum) {
     $.ajax({
-
         type: "get",
         // type 동적으로 처리하기
         url: `/board?type=${type}&pagenum=${pagenum}`,
@@ -94,31 +97,31 @@ function getNumber(count) {
 
     return numHtml;
 }
+//
+// // 관리자인지 일반 유저인지
+// function setUser(role) {
+//     if(role == "ADMIN") {
+//         alert(role);
+//         roleCreaater.style.color="#5429FF";
+//         roleCreaater.style.backgroundColor="#ffffff";
+//         roleUser.style.color="#8C8C8C";
+//         roleUser.style.backgroundColor="#F1F1F1";
+//     }
+// }
 
-// 관리자인지 일반 유저인지
-function setUser(role) {
-    if(role == "ADMIN") {
-        alert(role);
-        roleCreaater.style.color="#5429FF";
-        roleCreaater.style.backgroundColor="#ffffff";
-        roleUser.style.color="#8C8C8C";
-        roleUser.style.backgroundColor="#F1F1F1";
-    }
-}
-
-setTimeout(() => {
-    const numList = document.querySelector('.main_num_list');
-    numList.innerHTML = getNumber(totalCount);
-    const numbers = document.querySelectorAll('.numbtn');
-    alert(numbers.length);
-    for(let i=0; i<numbers.length; i++){
-        numbers[i].onclick = () => {
-            for(let j=0; j<numbers.length; j++){
-                numbers[j].id ='';
-            }
-            numbers[i].id='clicknum';
-            boardLoad(type,numbers[i].textContent);
-        }
-
-    }
-}, 1000);
+// setTimeout(() => {
+//     const numList = document.querySelector('.main_num_list');
+//     numList.innerHTML = getNumber(totalCount);
+//     const numbers = document.querySelectorAll('.numbtn');
+//     alert(numbers.length);
+//     for(let i=0; i<numbers.length; i++){
+//         numbers[i].onclick = () => {
+//             for(let j=0; j<numbers.length; j++){
+//                 numbers[j].id ='';
+//             }
+//             numbers[i].id='clicknum';
+//             boardLoad(type,numbers[i].textContent);
+//         }
+//
+//     }
+// }, 1000);
