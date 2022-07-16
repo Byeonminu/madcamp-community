@@ -32,9 +32,7 @@ function getnotis(notiList) {
          <ul class="noti_list_ul">
             <a href="/board/${noti.id}" class="noti_list_sub">
                 <li class="noti_list_title">${noti.title}</li>
-                <li class="noti_list_location">
-                    ${noti.description}
-                </li>
+                
                 <li class="noti_list_time">
                     ${noti.updatedate}
                 </li>

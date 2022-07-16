@@ -30,7 +30,7 @@
             <!-- Login Form -->
             <form action="/auth/login" method="post">
                 <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
-                <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                 <input type="submit" class="fadeIn fourth" value="Log In">
             </form>
 
