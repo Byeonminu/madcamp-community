@@ -17,8 +17,8 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="active"> Sign In </h2>
-            <h2 class="inactive underlineHover">Sign Up </h2>
+            <h2 class="active" id="top_signin"> Sign In </h2>
+            <h2 class="inactive underlineHover" id="top_signun">Sign Up </h2>
 
             <!-- Icon -->
             <div class="fadeIn first">
@@ -41,7 +41,7 @@
         </div>
     </div>
 </div>
-
+<script src="/resources/js/login.js"></script>
 </body>
 
 </html>
