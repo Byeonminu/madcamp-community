@@ -35,8 +35,10 @@ public class UserController {
 
     @PostMapping("/insertUser")
     public String signup(UserDto userDto) { // 회원 추가
-        System.out.println("새로운 유저" + userDto);
-//        userService.save(infoDto);
+
+
+        //비밀번호 체크, 이미 가입한 이메일인지 체크
+        Long test = userService.save(userDto); // 유저 정보 저장
         return "redirect:/login";
     }
 

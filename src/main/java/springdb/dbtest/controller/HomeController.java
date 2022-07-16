@@ -24,27 +24,27 @@ public class HomeController {
 
     private final BoardService boardService;
 
-    // 공지사함
+    // 공지사함 3개 가져오기
     @GetMapping("notification")
     public List<Board> getNotificationBoard() {
 
         return boardService.getnoti3board(1L);
     }
-    // best 게시판
+    // best 게시판 3개 가져오기
     @GetMapping("best")
     public List<Board> getBestBoard() {
         return boardService.getBest3board();
     }
-    // 정보게시판
+    // 정보게시판 5개 가져오기
     @GetMapping("info")
     public List<Board> getInfoBoard() {
 
-        return boardService.getInfo5board(2L);
+        return boardService.get5Boardbytype(2L);
     }
-    // 14기 게시판
+    // 14기 5개 가져오기 게시판
     @GetMapping("generation-14")
     public List<Board> getGeneration14Board() {
-        return boardService.getGeneration14(3L);
+        return boardService.get5Boardbytype(3L);
     }
     @GetMapping("insertinfo")
     public BoardRespDto insertInfo(@RequestParam("user_id") Long userId,

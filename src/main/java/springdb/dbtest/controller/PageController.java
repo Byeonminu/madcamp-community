@@ -25,6 +25,9 @@ public class PageController {
         System.out.println("여기에요 여기 !!");
         return "index";
     }
+
+
+
 //    @GetMapping("/board-main/{board_id}")
 //    public String boardForm(){
 //        System.out.println("여기에요 여기 !!");
