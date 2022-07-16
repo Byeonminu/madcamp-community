@@ -29,7 +29,7 @@
                     <div class="nav_auth">
                         <c:choose>
                             <c:when test="${empty principal}">
-                                <a href="/login" class="login">LOG IN}</a>
+                                <a href="/login" class="login">LOG IN</a>
                                 <a href="/signup" class="logout">SIGN UP</a>
                             </c:when>
                             <c:otherwise>

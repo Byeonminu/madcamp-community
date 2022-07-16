@@ -1,11 +1,11 @@
-var email = document.querySelector('#email').value;
+
 const signupBtn = document.querySelector('#signup');
 const emailCheckContainer = document.querySelector('.email_check');
 // const nickname = document.querySelector('#nickname').value;
 // const password = document.querySelector('#password').value;
 const topSignInBtn = document.querySelector('#top_signin');
 const topSignUpBtn = document.querySelector('#top_signun');
-
+let commitBtn = null;
 topSignInBtn.onclick = () => {
     window.location.href = '/login';
 }
@@ -14,22 +14,17 @@ topSignUpBtn.onclick = () => {
 }
 
 var emailCheckFlag = true;
-signupBtn.onclick = (tempEmail) => {
-
+signupBtn.onclick = () => {
     const email = document.querySelector('#email').value;
-
     emailCheck(email);
 }
 function emailCheck(email) {
-    alert(email);
     $.ajax({
-
         type: "post",
         // type 동적으로 처리하기
         url: `/auth/emailcheck?email=${email}`,
         dataType: "text",
         success: function (data) {
-            alert(data);
             emailCheckFlag = JSON.parse(data);
             isMadCamp(emailCheckFlag);
         },
@@ -43,15 +38,13 @@ function emailCheck(email) {
 function isMadCamp(flag) {
     if (flag) {
         emailCheckContainer.style.display = 'block';
+
     }
     else {
         alert("이메일이 유효하지 않습니다.");
     }
 }
-
-
-const commitBtn = document.querySelector('#signupBtn');
-
+commitBtn = document.querySelector('#signupBtn');
 commitBtn.onclick = () => {
     const nickname1 = document.querySelector('#nickname').value;
     const email1 = document.querySelector('#email').value;
@@ -60,7 +53,6 @@ commitBtn.onclick = () => {
     SignUpCommit(nickname1, email1, password1, checkNum1);
 }
 function SignUpCommit(nickname, email, password, checkNum) {
-    alert(nickname + " " + email + " " + password + " " + checkNum);
     $.ajax({
 
         type: "post",
@@ -68,7 +60,6 @@ function SignUpCommit(nickname, email, password, checkNum) {
         url: `/auth/emailcheck/key?username=${email}&password=${password}&nickname=${nickname}&inputCode=${checkNum}`,
         dataType: "text",
         success: function (data) {
-            alert("회원가입 결과 : " + data);
             signupCheck = JSON.parse(data);
             if (signupCheck) {
                 alert("회원가입에 성공하였습니다.");

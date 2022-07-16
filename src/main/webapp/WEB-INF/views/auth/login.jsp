@@ -22,7 +22,7 @@
 
             <!-- Icon -->
             <div class="fadeIn first">
-                <a href="">
+                <a href="/">
                     <img class="logo" src="/resources/image/mad_logo.png" id="icon" alt="Madcamp Logo"/>
                 </a>
             </div>
