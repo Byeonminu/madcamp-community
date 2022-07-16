@@ -24,8 +24,8 @@ function getBoardNames(boardList) {
     let boardHtml = ``;
     for (let board of boardList) {
         boardHtml += `
-        <ul className="nav_board_name">
-            <li className="nav_board_name_svg">
+        <ul class="nav_board_name">
+            <li class="nav_board_name_svg">
                 <svg width="22" height="22" viewBox="0 0 16 16" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path

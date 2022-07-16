@@ -12,12 +12,13 @@ a {
 
 
 nav {
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: #8C8C8C;
     width: 292px;
-
+    height: 969px;
     padding: 0px 40px 0px;
 
 }
@@ -60,6 +61,8 @@ nav {
 .nav_board_name {
     display: flex;
     flex-direction: row;
+    justify-content: start;
+    align-content: center;
     gap: 25px;
     margin-top: 20px;
     cursor: pointer;

@@ -51,7 +51,7 @@ public class BoardController {
 
 
     //이거는 controller에서 view의 속성으로 넣어줘야함
-    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<Board> getoneboardwithcomment(@PathVariable("id") Long boardid) {
         return boardService.findAllWithCommentUsingFetchJoin(boardid);
     }

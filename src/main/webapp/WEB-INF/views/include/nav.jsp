@@ -21,7 +21,7 @@
                     </div>
                     <div class="nav_auth">
                         <a class="login">LOG IN</a>
-                        <a class="logout">SIGN IN</a>
+                        <a class="logout">SIGN UP</a>
                     </div>
                     <div class="nav_board_container">
 
