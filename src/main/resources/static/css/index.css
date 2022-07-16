@@ -38,99 +38,6 @@ header {
     height: 50px;
 }
 
-.head_search {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    background-color: white;
-    border-radius: 30px;
-    width: 500px;
-}
-
-.head_search svg {
-    margin: 0px 20px;
-}
-
-.head_search input {
-    border: none;
-    width: 80%;
-    height: 100%;
-    padding-left: 20px;
-    font-size: 1.1em;
-}
-
-.head_search input::placeholder {
-    font-size: 1.2em;
-    color: #dfdada;
-    font-weight: 500;
-
-}
-
-.head_role {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    width: 220px;
-    height: 100%;
-    background-color: #F1F1F1;
-    margin: 0px 40px 0px 60px;
-    border-radius: 30px;
-}
-
-.head_role_user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    height: 80%;
-    background-color: white;
-    color: #5429FF;
-    border-radius: 30px;
-    font-weight: 550;
-    font-size: 1.1em;
-    margin: 0px 30px 0px 10px
-}
-
-.head_role_Creator {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    width: 40%;
-    height: 80%;
-    color: #8C8C8C;
-    font-weight: 600;
-    font-size: 1.1em;
-}
-
-.head_bell {
-    width: 50px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border: 1px #F1F1F1 solid;
-    border-radius: 100%;
-}
-
-.head_img {
-    width: 50px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-    margin-left: 30px;
-}
-
-.head_img img {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-}
-
 /* 여기부터 */
 .main_center {
     display: flex;
@@ -153,14 +60,13 @@ header {
 .noti_list {
     background-color: white;
     border-radius: 10px;
-    margin-top: 20px;
     padding: 30px;
 }
 
 .noti_title {
     font-size: 1.5em;
     font-weight: bold;
-    margin:  10px 0 30px;
+    margin:  10px 0 30px 20px;
     padding: 0px 0px 0px 15px;
 }
 
@@ -219,7 +125,6 @@ header {
     background-color: white;
     border-radius: 10px;
     padding: 30px;
-    margin-top: 20px;
 }
 
 .best_list_ul {
@@ -272,9 +177,13 @@ header {
 }
 
 .best_list_name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #8C8C8C;
     font-size: 0.9em;
     font-weight: 600;
+    width: 30px;
 }
 
 .best_list_time {
@@ -297,7 +206,7 @@ header {
 .main_title {
     font-size: 1.5em;
     font-weight: bold;
-    margin: 30px 0px 30px;
+    margin: 30px 0px 0px;
     padding: 0px 0px 0px 30px;
 
 }
@@ -384,7 +293,7 @@ header {
 .generation_title {
     font-size: 1.5em;
     font-weight: bold;
-    margin: 30px 0px 30px;
+    margin: 30px 0px 0px;
     padding: 0px 0px 0px 30px;
 
 }

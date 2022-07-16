@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%><!DOCTYPE html>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal"/>
+</sec:authorize>
+
 <!DOCTYPE html>
 <html lang="kor">
 
@@ -20,8 +27,19 @@
                         <img src="/resources/image/mad_logo.png" alt="몰입캠프 로고" class="nav_img">
                     </div>
                     <div class="nav_auth">
-                        <a href="/login" class="login">LOG IN</a>
-                        <a href="/signup" class="logout">SIGN UP</a>
+                        <c:choose>
+                            <c:when test="${empty principal}">
+                                <a href="/login" class="login">LOG IN}</a>
+                                <a href="/signup" class="logout">SIGN UP</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/user/${user.id}" class="login">${user.nickname}님 !</a>
+                                <a href="/logout" class="logout">LOG OUT</a>
+                            </c:otherwise>
+
+                        </c:choose>
+
+
                     </div>
                     <div class="nav_board_container">
 
