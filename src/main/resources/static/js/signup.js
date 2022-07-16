@@ -1,11 +1,10 @@
 const signupBtn = document.querySelector('#signup');
-const nickname = document.querySelector('#nickname').textContent;
-const email = document.querySelector('#email').textContent;
-const password = document.querySelector('#password').textContent;
 const emailCheckContainer = document.querySelector('.email_check');
-
+// const nickname = document.querySelector('#nickname').value;
+// const password = document.querySelector('#password').value;
 const topSignInBtn = document.querySelector('#top_signin');
 const topSignUpBtn = document.querySelector('#top_signun');
+
 topSignInBtn.onclick = () => {
     window.location.href = '/login';
 }
@@ -14,16 +13,19 @@ topSignUpBtn.onclick = () => {
 }
 
 var emailCheckFlag = true;
-signupBtn.onclick = () => {
-    emailCheck();
+signupBtn.onclick = (tempEmail) => {
+
+    const email = document.querySelector('#email').value;
+
+    emailCheck(email);
 }
 function emailCheck(email) {
-    alert(nickname + " " + email + " " + password);
+    alert(email);
     $.ajax({
 
         type: "post",
         // type 동적으로 처리하기
-        url: `/emailcheck?email=${email}`,
+        url: `/auth/emailcheck?email=${email}`,
         dataType: "text",
         success: function (data) {
             alert(data);

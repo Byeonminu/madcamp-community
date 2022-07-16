@@ -21,7 +21,7 @@
             <h2 class="active" id="top_signun">Sign Up </h2>
 
             <!-- Login Form -->
-            <form action="/auth/insertUser" method="post">
+            <form action="/auth/emailcheck/key" method="post">
                 <input type="text" id="nickname" class="fadeIn first" name="nickname" placeholder="nickname">
                 <input type="text" id="email" class="fadeIn second" name="username" placeholder="email">
                 <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">

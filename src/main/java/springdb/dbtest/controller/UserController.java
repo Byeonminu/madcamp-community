@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springdb.dbtest.dto.BoardLIstRespDto;
 import springdb.dbtest.dto.BoardReqDto;
+import springdb.dbtest.dto.SignupReqDto;
 import springdb.dbtest.dto.UserDto;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.BoardType;
@@ -23,6 +24,7 @@ import springdb.dbtest.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -48,7 +50,7 @@ public class UserController {
     //email 인증번호
     @PostMapping("/emailcheck")
     @ResponseBody
-    public boolean emailauth(HttpServletRequest request, String email) {
+    public boolean emailauth(HttpServletRequest request, @RequestParam String email) {
         System.out.println("이메일 체크: " + email);
         if(emailRepository.existsByEmail(email) == false) return false;
         else{
@@ -60,21 +62,27 @@ public class UserController {
 
     @PostMapping("/emailcheck/key")
     @ResponseBody
-    public boolean emailCertification(HttpServletRequest request, UserDto userDto, String inputCode) {
+    public boolean emailCertification(HttpServletRequest request, SignupReqDto signupReqDto) {
         HttpSession session = request.getSession();
-        boolean result = userService.emailCertification(session, userDto.getUsername(), inputCode);
+        boolean result = userService.emailCertification(session, signupReqDto.getUsername(), signupReqDto.getInputCode());
 
         System.out.println("키 체크: trueorfalse : "+  result);
 
         if(result == false) return false;// 키가 다를 때
         else{
-            //비밀번호 체크, 이미 가입한 이메일인지 체크
-
+            //이미 가입한 이메일인지 체크
+            UserDto userDto = new UserDto(signupReqDto.getUsername(),
+                    signupReqDto.getPassword(),
+                    signupReqDto.getNickname(),
+                    signupReqDto.getIsadmin(),
+                    signupReqDto.getIntroduction(),
+                    signupReqDto.getPicture());
             Long test = userService.save(userDto); // 유저 정보 저장
             if(test != null) return true;
             else return false;
         }
     }
+
 
 
 //    @GetMapping("/login")

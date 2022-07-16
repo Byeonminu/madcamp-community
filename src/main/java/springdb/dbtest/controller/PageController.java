@@ -5,9 +5,18 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import springdb.dbtest.dto.SignupReqDto;
+import springdb.dbtest.dto.UserDto;
 import springdb.dbtest.entity.User;
+import springdb.dbtest.service.UserService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
+@RequiredArgsConstructor
 public class PageController {
 
     @GetMapping("/board-main")
@@ -33,6 +42,8 @@ public class PageController {
         model.addAttribute("user", user);
         return "index";
     }
+
+
 
     // @GetMapping("/board-main/{board_id}")
     // public String boardForm(){
