@@ -15,6 +15,7 @@ import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.BoardType;
 import springdb.dbtest.entity.Comment;
 import springdb.dbtest.repository.BoardTypeRepository;
+import springdb.dbtest.repository.EmailRepository;
 import springdb.dbtest.service.BoardService;
 import springdb.dbtest.service.CommentService;
 import springdb.dbtest.service.UserService;
@@ -28,20 +29,23 @@ import java.util.List;
 
 import static java.lang.Math.toIntExact;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class UserController {
 
     private final UserService userService;
+    private final EmailRepository emailRepository;
 
     @PostMapping("/insertUser")
-    public String signup(UserDto userDto) { // 회원 추가
+    @ResponseBody
+    public boolean signup(UserDto userDto) { // 회원 추가
 
 
         //비밀번호 체크, 이미 가입한 이메일인지 체크
         Long test = userService.save(userDto); // 유저 정보 저장
-        return "redirect:/";
+        if(test != null) return true;
+        else return false;
     }
 
     //email 인증번호
@@ -49,8 +53,12 @@ public class UserController {
     @ResponseBody
     public boolean emailauth(HttpServletRequest request, String email) {
         System.out.println("이메일 체크: " + email);
-        HttpSession session = request.getSession();
-        return userService.authEmail(session, email);
+        if(emailRepository.existsByEmail(email) == false) return false;
+        else{
+            HttpSession session = request.getSession();
+            return userService.authEmail(session, email);
+        }
+
     }
 
     @PostMapping("/emailcheck/key")
@@ -59,7 +67,7 @@ public class UserController {
         HttpSession session = request.getSession();
         boolean result = userService.emailCertification(session, email, inputCode);
 
-        System.out.println("키 체킈: tf : "+  result);
+        System.out.println("키 체크: trueorfalse : "+  result);
 
         return result;
     }
