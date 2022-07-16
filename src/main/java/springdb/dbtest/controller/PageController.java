@@ -3,6 +3,7 @@ package springdb.dbtest.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import springdb.dbtest.entity.User;
 
@@ -10,28 +11,26 @@ import springdb.dbtest.entity.User;
 public class PageController {
 
     @GetMapping("/board-main")
-    public String boardForm(){
-        System.out.println("여기에요 여기 !!");
+    public String boardForm(Model model, @AuthenticationPrincipal User user){
+        model.addAttribute("principal", user);
         return "board/board";
     }
 
 
     @GetMapping("/signup")
     public String signupForm(){
-        System.out.println("여기에요 여기 !!");
         return "auth/signup";
     }
 
     @GetMapping("/login")
     public String loginForm(){
-        System.out.println("여기에요 여기 !!");
         return "auth/login";
     }
 
     @GetMapping({"/","/index"})
-    public String indexForm(@AuthenticationPrincipal User user){
-        System.out.println("유저 정뵈ㅣ:: " + String.valueOf(user));
-        System.out.println("여기에요 여기 !!");
+    public String indexForm(Model model, @AuthenticationPrincipal User user){
+        model.addAttribute("principal", user);
+        System.out.println("유저 정보:: " + String.valueOf(user));
         return "index";
     }
 

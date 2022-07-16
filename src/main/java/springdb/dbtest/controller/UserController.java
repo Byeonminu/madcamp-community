@@ -3,6 +3,7 @@ package springdb.dbtest.controller;
 //import lombok.RequiredArgsConstructor;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import springdb.dbtest.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -41,6 +43,25 @@ public class UserController {
         Long test = userService.save(userDto); // 유저 정보 저장
         return "redirect:/";
     }
+
+    //email 인증번호
+    @PostMapping("/emailcheck")
+    @ResponseBody
+    public boolean emailauth(HttpServletRequest request, String email) {
+        System.out.println("이메일 체크: " + email);
+        HttpSession session = request.getSession();
+        return userService.authEmail(session, email);
+    }
+
+    @PostMapping("/emailcheck/key")
+    @ResponseBody
+    public boolean emailCertification(HttpServletRequest request, String email, String inputCode) {
+        HttpSession session = request.getSession();
+        boolean result = userService.emailCertification(session, email, inputCode);
+
+        return result;
+    }
+
 
 //    @GetMapping("/login")
 //    public String login(UserDto userDto) { // 회원 추가

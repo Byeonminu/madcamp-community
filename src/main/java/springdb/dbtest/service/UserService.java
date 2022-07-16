@@ -1,14 +1,8 @@
 package springdb.dbtest.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,13 +11,17 @@ import springdb.dbtest.dto.UserDto;
 import springdb.dbtest.entity.User;
 import springdb.dbtest.repository.UserRepository;
 
-import java.util.Optional;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final JavaMailSender javaMailSender;
 
 
 
@@ -57,14 +55,55 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-//    public String login(UserDto userDto) throws Exception {
-//        Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword())
-//        );
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//        User principal = (User) authentication.getPrincipal();
-//
-//        return principal.getUsername();
-//    }
+
+    public boolean authEmail(HttpSession session, String email){
+        Random random = new Random();
+        String authKey = String.valueOf(random.nextInt(88888) + 11111); // 범위 11111~ 99999
+
+
+
+        return sendAuthEmail(session, email, authKey);
+    }
+
+    private boolean sendAuthEmail(HttpSession session, String email, String authKey){
+        String subject = "몰입캠프 커뮤니티 이메일 인증입니다.";
+        String text = "회원 가입을 위한 인증번호는 " + authKey + "입니다. <br/>";
+
+        System.out.println("사용자 이메일 : " + email + "키 : " + authKey);
+
+        try{
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setFrom("ufo3764@naver.com");
+            helper.setTo(email);
+            helper.setSubject(subject);
+            helper.setText(text, true);
+            javaMailSender.send(mimeMessage);
+
+            session.setAttribute("" + email, authKey);
+            return true;
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public boolean emailCertification(HttpSession session, String email, String inputCode){
+        try{
+            String generationCode = String.valueOf(session.getAttribute(email));
+
+            if(generationCode == inputCode){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+
 }
