@@ -51,13 +51,13 @@ public class BoardController {
 
 
     //이거는 controller에서 view의 속성으로 넣어줘야함
-    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<Board> getoneboardwithcomment(@PathVariable("id") Long boardid) {
         return boardService.findAllWithCommentUsingFetchJoin(boardid);
     }
 
     //요청을 하면 comment id와 매칭되는 recomment를 가져옴
-    @RequestMapping(value = "/info/recomment/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/recomment/{id}", method = RequestMethod.GET)
     public List<Comment> getrecomment(@PathVariable("id") Long commentid) {
         return commentService.findAllWithRecommentUsingFetchJoin(commentid);
     }

@@ -39,8 +39,22 @@ public class UserController {
 
         //비밀번호 체크, 이미 가입한 이메일인지 체크
         Long test = userService.save(userDto); // 유저 정보 저장
-        return "redirect:/login";
+        return "redirect:/";
     }
+
+//    @GetMapping("/login")
+//    public String login(UserDto userDto) { // 회원 추가
+//
+//        try{
+//            System.out.println("로그인으로 들어온 유저: " + userDto);
+////            String username = userService.login(userDto);
+////            System.out.println("로그인한 유저 이름: " + username);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        return "redirect:/";
+//    }
 
     @GetMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
