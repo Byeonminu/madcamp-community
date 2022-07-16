@@ -19,6 +19,7 @@ a {
 .main_box {
     background-color: #F8F8F8;
     width: 1360px;
+    margin-left: 292px;
 }
 
 .main_container {
@@ -35,101 +36,6 @@ header {
     height: 50px;
 }
 
-.head_search {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    background-color: white;
-    border-radius: 30px;
-    width: 500px;
-}
-
-.head_search svg {
-    margin: 0px 20px;
-}
-
-.head_search input {
-    border: none;
-    width: 80%;
-    height: 100%;
-    padding-left: 20px;
-    font-size: 1.1em;
-}
-
-.head_search input::placeholder {
-    font-size: 1.2em;
-    color: #dfdada;
-    font-weight: 500;
-
-}
-
-.head_role {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 220px;
-    height: 100%;
-    background-color: #F1F1F1;
-    margin: 0px 20px 0px 80px;
-    border-radius: 30px;
-}
-
-.head_role_user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    height: 80%;
-    background-color: white;
-    color: #5429FF;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 1.1em;
-    margin: 0px 30px 0px 10px;
-    curser:pointer;
-}
-
-.head_role_Creator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    height: 80%;
-    color: #8C8C8C;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 1.1em;
-    curser:pointer;
-}
-
-.head_bell {
-    width: 50px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border: 1px #F1F1F1 solid;
-    border-radius: 100%;
-}
-
-.head_img {
-    width: 50px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-    margin-left: 10px;
-}
-
-.head_img img {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-}
 
 .main_center {
     display: flex;

@@ -3,6 +3,7 @@ package springdb.dbtest.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import springdb.dbtest.entity.User;
 
@@ -29,9 +30,10 @@ public class PageController {
     }
 
     @GetMapping({"/","/index"})
-    public String indexForm(@AuthenticationPrincipal User user){
+    public String indexForm(Model model, @AuthenticationPrincipal User user){
         System.out.println("유저 정뵈ㅣ:: " + String.valueOf(user));
         System.out.println("여기에요 여기 !!");
+        model.addAttribute("user",user);
         return "index";
     }
 
