@@ -59,6 +59,8 @@ public class UserController {
         HttpSession session = request.getSession();
         boolean result = userService.emailCertification(session, email, inputCode);
 
+        System.out.println("키 체킈: tf : "+  result);
+
         return result;
     }
 

@@ -93,7 +93,11 @@ public class UserService implements UserDetailsService {
         try{
             String generationCode = String.valueOf(session.getAttribute(email));
 
-            if(generationCode == inputCode){
+            System.out.println("제너레이션 코드 : " + generationCode + "inputCode : " + inputCode);
+
+
+            if(generationCode.equals(inputCode)){
+
                 return true;
             }
             else{
