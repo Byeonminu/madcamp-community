@@ -86,11 +86,13 @@ h2 {
 
 h2.inactive {
     color: #cccccc;
+    cursor: pointer;
 }
 
 h2.active {
     color: #0d0d0d;
     border-bottom: 2px solid #F4DC42;
+    cursor: pointer;
 }
 
 
@@ -163,7 +165,7 @@ input[type=text]:focus {
     border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type=text]::placeholder {
     color: #cccccc;
 }
 
@@ -315,10 +317,14 @@ input[type=text]:placeholder {
 
 #icon {
     width: 20%;
-    filter:  invert(100%);
+    filter: invert(100%);
     -webkit-filter: invert(100%);
 }
 
 * {
     box-sizing: border-box;
+}
+
+.email_check {
+    display: none;
 }

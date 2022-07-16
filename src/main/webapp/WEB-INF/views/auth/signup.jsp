@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" type="text/css" href="/resources/css/signup.css">
-    <title>몰입캠프</title>
+    <title>SIGN UP</title>
 </head>
 
 <body>
@@ -17,34 +17,32 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="inactive underlineHover"> Sign In </h2>
-            <h2 class="active">Sign Up </h2>
-
-<%--            <!-- Icon -->--%>
-<%--            <div class="fadeIn first">--%>
-<%--                <a href="">--%>
-<%--                    <img class="logo" src="/resources/image/mad_logo.png" id="icon" alt="Madcamp Logo"/>--%>
-<%--                </a>--%>
-<%--            </div>--%>
+            <h2 class="inactive underlineHover" id="top_signin"> Sign In </h2>
+            <h2 class="active" id="top_signun">Sign Up </h2>
 
             <!-- Login Form -->
             <form action="/auth/insertUser" method="post">
                 <input type="text" id="nickname" class="fadeIn first" name="nickname" placeholder="nickname">
-                <input type="text" id="login" class="fadeIn second" name="username" placeholder="email">
+                <input type="text" id="email" class="fadeIn second" name="username" placeholder="email">
                 <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
-                <input type="text" id="password remind" class="fadeIn fourth" name="picture"
-                       placeholder="password remind">
-                <input type="submit" class="fadeIn fifth" value="Sign Up">
+
+                <input type="button" id="signup" class="fadeIn fifth" value="Sign Up">
+                <div class="email_check">
+                    <input type="text" id="email_check_text" class="fadeIn second" name="inputCode"
+                           placeholder="Email 인증번호를 입력해주세요.">
+                    <input type="submit" id="signupBtn" class="fadeIn fifth" value="Email Check">
+                </div>
+
             </form>
 
             <!-- Remind Passowrd -->
             <!-- <div id="formFooter">
-              <a class="underlineHover" href="#">Forgot Password?</a>
-            </div> -->
+          <a class="underlineHover" href="#">Forgot Password?</a>
+        </div> -->
         </div>
     </div>
 </div>
-
+<script src="/resources/js/signup.js"></script>
 </body>
 
 </html>
