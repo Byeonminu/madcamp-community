@@ -1,7 +1,9 @@
 package springdb.dbtest.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -36,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 2
                 .and()
                 .formLogin() // 7
                 .loginPage("/signup") // 로그인 페이지 링크
+                .loginProcessingUrl("/auth/login")
                 .defaultSuccessUrl("/") // 로그인 성공 후 리다이렉트 주소
                 .and()
                 .logout() // 8
@@ -44,11 +47,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 2
         ;
     }
 
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception { // 9
-        auth.userDetailsService(userService)
-                // 해당 서비스(userService)에서는 UserDetailsService를 implements해서
-                // loadUserByUsername() 구현해야함 (서비스 참고)
+              auth.userDetailsService(userService)
                 .passwordEncoder(new BCryptPasswordEncoder());
+//        auth.userDetailsService(userService)
+//                // 해당 서비스(userService)에서는 UserDetailsService를 implements해서
+//                // loadUserByUsername() 구현해야함 (서비스 참고)
+//                .passwordEncoder(new BCryptPasswordEncoder());
     }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+
+
+
 }

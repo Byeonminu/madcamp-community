@@ -24,15 +24,15 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> getGeneration14(Long type) {
+    public List<Board> get5Boardbytype(Long type) {
         return boardRepository.findTop5ByTypeOrderByCreatedateDesc(type);
     }
 
- 
-    public List<Board> getInfo5board(Long type) {
-
-        return boardRepository.findTop5ByTypeOrderByCreatedateDesc(type);
-    }
+//
+//    public List<Board> getInfo5board(Long type) {
+//
+//        return boardRepository.findTop5ByTypeOrderByCreatedateDesc(type);
+//    }
 
     @Override
     public List<Board> getnoti3board(Long type) {
