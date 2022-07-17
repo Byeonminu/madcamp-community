@@ -23,7 +23,15 @@
             </header>
             <div class="writing box">
                 <form action="" class="writing form">
-                    <input type="text" class="writing title item" placeholder="제목">
+                    <div class="writing_header row">
+                        <input type="text" class="writing title header item" placeholder="제목">
+                        <p class="writing header item anonymous">익명</p>
+                        <label class="switch writing header item anonymous">
+                           <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
                     <form class="writing form item" method="post">
                         <textarea id="summernote" name="editordata" ></textarea>
                         <script>
@@ -88,33 +96,6 @@
                                 tabSize: 4
                             });
                         </script>
-<%--                        <script>--%>
-<%--                            $(document).ready(function () {--%>
-<%--                                $('#summernote').summernote({--%>
-<%--                                    height: 300,                              // 에디터 높이--%>
-<%--                                    minHeight: null,                          // 최소 높이--%>
-<%--                                    maxHeight: null,                          // 최대 높이--%>
-<%--                                    focus: true,                              // 에디터 로딩후 포커스를 맞출지 여부--%>
-<%--                                    lang: "ko-KR",				              // 한글 설정--%>
-<%--                                    placeholder: '몰입의 경험을 공유하세요',	//placeholder 설정--%>
-<%--                                    tabsize: 2,--%>
-<%--                                    toolbar: [--%>
-<%--                                        // [groupName, [list of button]]--%>
-<%--                                        ['style', ['style']],--%>
-<%--                                        ['fontname', ['fontname']],--%>
-<%--                                        ['fontsize', ['fontsize']],--%>
-<%--                                        ['font', ['bold', 'underline', 'clear']],--%>
-<%--                                        ['para', ['ul', 'ol', 'paragraph']],--%>
-<%--                                        ['height', ['height']],--%>
-<%--                                        ['table', ['table']],--%>
-<%--                                        ['insert', ['picture', 'link', 'video']],--%>
-<%--                                        ['view', ['codeview']]--%>
-<%--                                    ],--%>
-<%--                                    fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체'],--%>
-<%--                                    fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72']--%>
-<%--                                });--%>
-<%--                            });--%>
-<%--                        </script>--%>
                     </form>
                     <button type="submit" class="writing item button post">POST</button>
                 </form>
