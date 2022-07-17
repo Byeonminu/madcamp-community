@@ -5,18 +5,18 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import springdb.dbtest.dto.SignupReqDto;
+import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.dto.UserDto;
 import springdb.dbtest.entity.User;
-import springdb.dbtest.service.UserService;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import springdb.dbtest.repository.UserRepository;
+import springdb.dbtest.service.BoardService;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
 public class PageController {
-
+    private final BoardService boardService;
+    private final UserRepository userRepository;
     @GetMapping("/board-main")
     public String boardForm(Model model, @AuthenticationPrincipal User user, @RequestParam Long type) {
         model.addAttribute("principal", user);
@@ -41,8 +41,13 @@ public class PageController {
         model.addAttribute("user", user);
         return "index";
     }
-    @GetMapping("/board-main/detail")
-    public String boardDetailForm() {
+    @GetMapping("/board-main/{id}")
+    public String boardDetailForm(@PathVariable Long id,Model model) {
+        BoardRespDto boardRespDto = boardService.getBoardDetail(id);
+        Optional<User> user = userRepository.findById(boardRespDto.getUserid());
+        UserDto userDto = user.get().toDto();
+        model.addAttribute("boardRespDto",boardRespDto);
+        model.addAttribute("userDto",userDto);
         return "board/board_detail";
     }
 

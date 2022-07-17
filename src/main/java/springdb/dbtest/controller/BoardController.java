@@ -4,11 +4,14 @@ package springdb.dbtest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import springdb.dbtest.dto.BoardCommentRespDto;
 import springdb.dbtest.dto.BoardLIstRespDto;
+import springdb.dbtest.dto.BoardRecommentRespDto;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.BoardType;
 import springdb.dbtest.entity.Comment;
+import springdb.dbtest.repository.BoardCommentRepository;
 import springdb.dbtest.repository.BoardTypeRepository;
 import springdb.dbtest.service.BoardService;
 import springdb.dbtest.service.CommentService;
@@ -28,7 +31,7 @@ public class BoardController {
 
     private final BoardService boardService;
     private final CommentService commentService;
-
+    private final BoardCommentRepository boardCommentRepository;
     private final BoardTypeRepository boardTypeRepository;
 
     // type에 따라 게시글 10개 가져오기
@@ -53,13 +56,28 @@ public class BoardController {
     //이거는 controller에서 view의 속성으로 넣어줘야함
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public List<Board> getoneboardwithcomment(@PathVariable("id") Long boardid) {
+        System.out.println("살려주세요 !!!!!!!");
         return boardService.findAllWithCommentUsingFetchJoin(boardid);
     }
+    @RequestMapping(value = "/test/{id}", method = RequestMethod.GET)
+    public List<Comment> test(@PathVariable("id") Long boardId) {
 
+        return boardCommentRepository.findByBoard_IdOrderByIdAsc(boardId);
+    }
+    //요청을 하면 board id와 매칭되는 comment를 가져옴
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    public List<BoardCommentRespDto> getcomment(@PathVariable("id") Long boardId) {
+        System.out.println("getcomment!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        List<BoardCommentRespDto> boardCommentList = boardService.getCommentListByBoardId(boardId);
+        System.out.println("getcomment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+boardCommentList);
+        return boardCommentList;
+    }
     //요청을 하면 comment id와 매칭되는 recomment를 가져옴
     @RequestMapping(value = "/recomment/{id}", method = RequestMethod.GET)
-    public List<Comment> getrecomment(@PathVariable("id") Long commentid) {
-        return commentService.findAllWithRecommentUsingFetchJoin(commentid);
+    public List<BoardRecommentRespDto> getrecomment(@PathVariable("id") Long commentId) {
+        System.out.println("getrecomment");
+        List<BoardRecommentRespDto> boardRecommentList = boardService.getRecommentListByCommentId(commentId);
+        return boardRecommentList;
     }
 
 

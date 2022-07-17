@@ -46,8 +46,6 @@ function getBoardNames(boardList) {
     return boardHtml;
 }
 function clickedColor(type){
-    alert("type:"+type);
     const clicked = document.querySelectorAll('.nav_board_name_text');
-    alert("clicked:"+clicked[type-1].textContent);
     clicked[type-1].style.color = '#F4DC42';
 }
