@@ -110,6 +110,12 @@ public class PageController {
         return "board/board_detail";
     }
 
+    @GetMapping("/myprofile")
+    public String myprofile(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("user",user);
+        return "index";
+    }
+
 
 
 
