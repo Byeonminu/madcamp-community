@@ -41,6 +41,10 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     void plusonelike(Long boardid);
 
 
+    @Transactional
+    @Modifying
+    @Query("update Board b set b.commentcnt = b.commentcnt + 1 where b.id = :boardid")
+    void plusonecomment(Long boardid);
 
 
 }

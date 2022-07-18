@@ -96,6 +96,7 @@ public class BoardController {
     @PostMapping("/comment_write")
     public void commentWrite(CommentReqDto commentReqDto) {
         Comment comment = new Comment(0L,commentReqDto.getPrincipalUserId(),boardRepository.findById(commentReqDto.getBoardid()).get(),commentReqDto.getComment(),0,null);
+        boardRepository.plusonecomment(commentReqDto.getBoardid());
         boardCommentRepository.save(comment);
     }
     //대댓글 작성
