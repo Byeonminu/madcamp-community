@@ -2,11 +2,13 @@ package springdb.dbtest.repository;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.Comment;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +34,11 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findAllWithCommentUsingFetchJoin(Long boardid);
 
     Long countByType(Long type);
+
+    @Transactional
+    @Modifying
+    @Query("update Board b set b.likecnt = b.likecnt + 1 where b.id = :boardid")
+    void plusonelike(Long boardid);
 
 
 
