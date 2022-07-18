@@ -24,6 +24,17 @@ public class PageController {
         return "board/board";
     }
 
+    @GetMapping("/board-write")
+    public String writeForm(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("principal", user);
+        return "board_write/board_write";
+    }
+
+    @GetMapping("/search") // 쿼리로 검색어 넣으면 될 듯?
+    public String searchForm() {
+        return "search/search";
+    }
+
     @GetMapping("/signup")
     public String signupForm() {
         return "auth/signup";
@@ -32,6 +43,11 @@ public class PageController {
     @GetMapping("/login")
     public String loginForm() {
         return "auth/login";
+    }
+
+    @GetMapping("/info")
+    public String infoForm() {
+        return "user_info/info";
     }
 
     @GetMapping({ "/", "/index" })
