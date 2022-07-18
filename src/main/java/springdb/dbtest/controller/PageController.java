@@ -40,7 +40,7 @@ public class PageController {
 
 
     @PostMapping("/board-write")
-    public String PostNewBoard(HttpServletRequest request) {
+    public String PostNewBoard(HttpServletRequest request, @AuthenticationPrincipal User user) {
         LocalDateTime now = LocalDateTime.now();
         // 현재 날짜/시간 출력
         System.out.println(now); // 2021-06-17T06:43:21.419878100
@@ -51,8 +51,8 @@ public class PageController {
         Long type = Long.valueOf(request.getParameter("type"));
 
 
-        String isanonymous = "YES";
-        if(request.getParameter("anonymous") == null) isanonymous = "NO";
+        String isanonymous = "익명";
+        if(request.getParameter("anonymous") == null) isanonymous = user.getNickname();
 
         BoardReqDto boardReqDto = new BoardReqDto(0L, Long.parseLong(request.getParameter("userid")),
                 type,
