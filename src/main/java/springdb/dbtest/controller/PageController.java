@@ -32,33 +32,35 @@ public class PageController {
     @GetMapping("/board-main")
     public String boardForm(Model model, @AuthenticationPrincipal User user, @RequestParam Long type) {
 
-        model.addAttribute("viewcnt", viewCntRepository.findByDate(new SimpleDateFormat ( "yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         model.addAttribute("principal", user);
-        model.addAttribute("type",type);
+        model.addAttribute("type", type);
         return "board/board";
     }
 
-
-
     @GetMapping("/board-write")
     public String writeForm(Model model, @AuthenticationPrincipal User user) {
-        model.addAttribute("viewcnt", viewCntRepository.findByDate(new SimpleDateFormat ( "yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        System.out.println("유저 정보 : " + user);
         model.addAttribute("principal", user);
         return "board_write/board_write";
     }
-
 
     @PostMapping("/board-write")
     public String PostNewBoard(HttpServletRequest request, @AuthenticationPrincipal User user) {
         LocalDateTime now = LocalDateTime.now();
         // 포맷팅
-        LocalDateTime formatedNow = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), now.getHour(), now.getMinute(),0);
+        LocalDateTime formatedNow = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), now.getHour(),
+                now.getMinute(), 0);
 
         // 포맷팅 현재 날짜/시간 출력
         Long type = Long.valueOf(request.getParameter("type"));
 
         String isanonymous = "익명";
-        if(request.getParameter("anonymous") == null) isanonymous = user.getNickname();
+        if (request.getParameter("anonymous") == null)
+            isanonymous = user.getNickname();
 
         BoardReqDto boardReqDto = new BoardReqDto(0L, Long.parseLong(request.getParameter("userid")),
                 type,
@@ -73,7 +75,7 @@ public class PageController {
 
         boardService.insertBoardInfo(boardReqDto);
 
-        return "redirect:/board-main?type="+type;
+        return "redirect:/board-main?type=" + type;
     }
 
     @GetMapping("/search") // 쿼리로 검색어 넣으면 될 듯?
@@ -91,24 +93,24 @@ public class PageController {
         return "auth/login";
     }
 
-    @GetMapping("/info")
-    public String infoForm() {
+    @GetMapping("/myprofile")
+    public String infoForm(@AuthenticationPrincipal User principal, Model model) {
+        model.addAttribute("user", principal);
         return "user_info/info";
     }
 
     @GetMapping({ "/", "/index" })
     public String indexForm(Model model, @AuthenticationPrincipal User user) {
 
-        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd");
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         Calendar time = Calendar.getInstance();
         String today = format1.format(time.getTime());
         Long view_cnt = 0L;
 
-        if(viewCntRepository.existsByDate(today) == false){ // 오늘의 첫 방문
+        if (viewCntRepository.existsByDate(today) == false) { // 오늘의 첫 방문
             viewCntRepository.save(new ViewCnt(0L, today, 1L));
             view_cnt = 1L;
-        }
-        else{
+        } else {
             viewCntRepository.updateView(today); // +1
             ViewCnt temp = viewCntRepository.findByDate(today);
             view_cnt = temp.getCnt();
@@ -118,35 +120,22 @@ public class PageController {
         model.addAttribute("user", user);
         return "index";
     }
+
     @GetMapping("/board-main/{id}")
-    public String boardDetailForm(@PathVariable Long id,Model model, @AuthenticationPrincipal User user) {
+    public String boardDetailForm(@PathVariable Long id, Model model, @AuthenticationPrincipal User user) {
         BoardRespDto boardRespDto = boardService.getBoardDetail(id);
         Optional<User> userOp = userRepository.findById(boardRespDto.getUserid());
         UserDto userDto = userOp.get().toDto();
-        model.addAttribute("boardRespDto",boardRespDto);
-        model.addAttribute("userDto",userDto);
-        model.addAttribute("user",user);
-        model.addAttribute("viewcnt", viewCntRepository.findByDate(new SimpleDateFormat ( "yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        model.addAttribute("boardRespDto", boardRespDto);
+        model.addAttribute("userDto", userDto);
+        model.addAttribute("user", user);
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "board/board_detail";
     }
+
     @GetMapping("/admin")
     public String adminMainForm() {
         return "admin/admin";
     }
-
-    @GetMapping("/myprofile")
-    public String myprofile(Model model, @AuthenticationPrincipal User user) {
-        model.addAttribute("user",user);
-        return "index";
-    }
-
-
-
-
-
-    // @GetMapping("/board-main/{board_id}")
-    // public String boardForm(){
-    // System.out.println("여기에요 여기 !!");
-    // return "board/board";
-    // }
 }
