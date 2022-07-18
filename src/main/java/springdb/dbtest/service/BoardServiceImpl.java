@@ -3,10 +3,7 @@ package springdb.dbtest.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import springdb.dbtest.dto.BoardCommentRespDto;
-import springdb.dbtest.dto.BoardRecommentRespDto;
-import springdb.dbtest.dto.BoardReqDto;
-import springdb.dbtest.dto.BoardRespDto;
+import springdb.dbtest.dto.*;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.Comment;
 import springdb.dbtest.entity.Recomment;
@@ -117,6 +114,32 @@ public class BoardServiceImpl implements BoardService {
             recommentRespDtoList.add(boardRecommentRespDto);
         }
         return recommentRespDtoList;
+    }
+
+    @Override
+    public BoardLIstRespDto searchBoard(String search, int pagenum) {
+        BoardLIstRespDto boardLIstRespDto = new BoardLIstRespDto();
+        List<Board> boardList = boardRepository.findByTitleContainsIgnoreCase(search);
+        List<Board> boardListTemp = new ArrayList<>();
+        int startNum = (pagenum-1) * 10;
+        int endNum;
+        if(boardList.size() % 10 == 0) {
+            endNum = startNum * 10;
+        }else {
+            if((boardList.size()-startNum) > 10) {
+                endNum = startNum+10;
+            }else {
+                endNum = startNum + boardList.size() % 10;
+            }
+        }
+        for(int i=startNum; i<endNum; i++){
+            System.out.println(i);
+            boardListTemp.add(boardList.get(i));
+        }
+
+        boardLIstRespDto.setBoardList(boardListTemp);
+        boardLIstRespDto.setCnt(boardList.size());
+        return boardLIstRespDto;
     }
 
 }

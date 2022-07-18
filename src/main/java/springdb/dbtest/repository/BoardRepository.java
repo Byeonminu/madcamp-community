@@ -33,7 +33,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     Long countByType(Long type);
 
-
+    List<Board> findByTitleContainsIgnoreCase(String title);
 
 
 }

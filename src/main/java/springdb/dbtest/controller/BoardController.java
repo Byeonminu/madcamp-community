@@ -104,6 +104,11 @@ public class BoardController {
         boardReCommentRepository.save(recomment);
     }
 
+    @GetMapping("/search")
+    public BoardLIstRespDto searchBoard(@RequestParam("search") String search, @RequestParam("pagenum") int pagenum) {
+        return boardService.searchBoard(search,pagenum);
+    }
+
 
 
 
