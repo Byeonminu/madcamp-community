@@ -92,7 +92,7 @@ function getcomments(commentList) {
                     <img class="comment_img" src="../resources/image/board/makguli.jpg"
                         alt="">
                     <div class="comment_user">
-                        <h5 class="main_mid_comment_li_title">${comment.nickname}</h5>
+                        <h5 class="main_mid_comment_li_title">익명</h5>
                         <p>2022-07-15 01:12:11</p>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ function getrecomments(recommentList) {
                         <img class="reco_img" src="../resources/image/board/makguli.jpg"
                             alt="">
                         <div class="reco_user">
-                            <h5 class="recomment_li_title">${recomment.nickname}</h5>
+                            <h5 class="recomment_li_title">익명</h5>
                             <p>2022-07-15 01:13:11</p>
                         </div>
                     </div>

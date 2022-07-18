@@ -45,7 +45,8 @@ public class PageController {
         // 현재 날짜/시간 출력
         System.out.println(now); // 2021-06-17T06:43:21.419878100
         // 포맷팅
-        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        LocalDateTime formatedNow = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), now.getHour(), now.getMinute(),0);
+
         // 포맷팅 현재 날짜/시간 출력
         System.out.println(formatedNow);  // 2021년 06월 17일 06시 43분 21초
         Long type = Long.valueOf(request.getParameter("type"));
@@ -61,8 +62,8 @@ public class PageController {
                 0,
                 0,
                 0,
-                now,
-                now,
+                formatedNow,
+                formatedNow,
                 isanonymous);
 
         boardService.insertBoardInfo(boardReqDto);

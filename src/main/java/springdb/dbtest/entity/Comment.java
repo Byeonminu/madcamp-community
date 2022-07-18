@@ -36,6 +36,8 @@ public class Comment {
     @Column(columnDefinition = "int(11) default 0")
     private int comlikecnt;
 
+
+
     @Builder.Default
     @JsonManagedReference
     @OneToMany(mappedBy = "comment") // 연관관계의 주인은 'comment'를 가지고 있는 Recomment 클래스임
