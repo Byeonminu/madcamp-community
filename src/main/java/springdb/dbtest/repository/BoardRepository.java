@@ -35,5 +35,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     List<Board> findByTitleContainsIgnoreCase(String title);
 
+    List<Board> findByUseridOrderByIdDesc(Long userid);
+
 
 }

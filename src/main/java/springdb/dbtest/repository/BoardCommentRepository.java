@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BoardCommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByBoard_IdOrderByIdAsc(Long board_Id);
+    List<Comment> findByUseridOrderByIdDesc(Long userid);
 }

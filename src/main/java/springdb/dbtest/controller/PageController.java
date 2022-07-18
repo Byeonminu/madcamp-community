@@ -22,18 +22,18 @@ import java.util.Optional;
 public class PageController {
     private final BoardService boardService;
     private final UserRepository userRepository;
+
     @GetMapping("/board-main")
     public String boardForm(Model model, @AuthenticationPrincipal User user, @RequestParam Long type) {
         model.addAttribute("principal", user);
-        model.addAttribute("type",type);
+        model.addAttribute("type", type);
         return "board/board";
     }
 
 
-
     @GetMapping("/board-write")
     public String writeForm(Model model, @AuthenticationPrincipal User user) {
-        System.out.println("유저 정보 : "+ user);
+        System.out.println("유저 정보 : " + user);
         model.addAttribute("principal", user);
         return "board_write/board_write";
     }
@@ -45,7 +45,7 @@ public class PageController {
         // 현재 날짜/시간 출력
         System.out.println(now); // 2021-06-17T06:43:21.419878100
         // 포맷팅
-        LocalDateTime formatedNow = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), now.getHour(), now.getMinute(),0);
+        LocalDateTime formatedNow = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), now.getHour(), now.getMinute(), 0);
 
         // 포맷팅 현재 날짜/시간 출력
         System.out.println(formatedNow);  // 2021년 06월 17일 06시 43분 21초
@@ -53,7 +53,7 @@ public class PageController {
 
 
         String isanonymous = "익명";
-        if(request.getParameter("anonymous") == null) isanonymous = user.getNickname();
+        if (request.getParameter("anonymous") == null) isanonymous = user.getNickname();
 
         BoardReqDto boardReqDto = new BoardReqDto(0L, Long.parseLong(request.getParameter("userid")),
                 type,
@@ -69,7 +69,7 @@ public class PageController {
         boardService.insertBoardInfo(boardReqDto);
         System.out.println("보드 라이트");
 
-        return "redirect:/board-main?type="+type;
+        return "redirect:/board-main?type=" + type;
     }
 
     @GetMapping("/search") // 쿼리로 검색어 넣으면 될 듯?
@@ -87,46 +87,35 @@ public class PageController {
         return "auth/login";
     }
 
-    @GetMapping("/info")
-    public String infoForm() {
+    @GetMapping("/myprofile")
+    public String infoForm(@AuthenticationPrincipal User principal, Model model) {
+        model.addAttribute("user", principal);
         return "user_info/info";
     }
 
-    @GetMapping({ "/", "/index" })
+    @GetMapping({"/", "/index"})
     public String indexForm(Model model, @AuthenticationPrincipal User user) {
         System.out.println("유저 정뵈ㅣ:: " + String.valueOf(user));
         System.out.println("여기에요 여기 !!");
         model.addAttribute("user", user);
         return "index";
     }
+
     @GetMapping("/board-main/{id}")
-    public String boardDetailForm(@PathVariable Long id,Model model, @AuthenticationPrincipal User user) {
+    public String boardDetailForm(@PathVariable Long id, Model model, @AuthenticationPrincipal User user) {
         BoardRespDto boardRespDto = boardService.getBoardDetail(id);
         Optional<User> userOp = userRepository.findById(boardRespDto.getUserid());
         UserDto userDto = userOp.get().toDto();
-        model.addAttribute("boardRespDto",boardRespDto);
-        model.addAttribute("userDto",userDto);
-        model.addAttribute("user",user);
+        model.addAttribute("boardRespDto", boardRespDto);
+        model.addAttribute("userDto", userDto);
+        model.addAttribute("user", user);
         return "board/board_detail";
     }
+
     @GetMapping("/admin")
     public String adminMainForm() {
         return "admin/admin";
     }
-
-    @GetMapping("/myprofile")
-    public String myprofile(Model model, @AuthenticationPrincipal User user) {
-        model.addAttribute("user",user);
-        return "index";
-    }
-
-
-
-
-
-    // @GetMapping("/board-main/{board_id}")
-    // public String boardForm(){
-    // System.out.println("여기에요 여기 !!");
-    // return "board/board";
-    // }
 }
+
+
