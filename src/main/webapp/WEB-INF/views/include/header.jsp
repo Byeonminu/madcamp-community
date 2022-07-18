@@ -41,7 +41,7 @@
             </svg>
         </div>
         <div class="head_img">
-            <img src="resources/image/board/makguli.jpg" alt="">
+            <img src="/resources/image/board/makguli.jpg" alt="">
         </div>
         <script src="/resources/js/footer.js"></script>
     </body>

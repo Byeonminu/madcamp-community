@@ -3,6 +3,7 @@ package springdb.dbtest.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import springdb.dbtest.dto.BoardCommentRespDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;

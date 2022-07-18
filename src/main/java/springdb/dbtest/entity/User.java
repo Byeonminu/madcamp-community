@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import springdb.dbtest.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -83,5 +84,14 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         // 계정이 사용 가능한지 확인하는 로직
         return true; // true -> 사용 가능
+    }
+    public UserDto toDto(){
+        return UserDto.builder()
+                .id(id)
+                .username(username)
+                .nickname(nickname)
+                .introduction(introduction)
+                .picture(picture)
+                .build();
     }
 }

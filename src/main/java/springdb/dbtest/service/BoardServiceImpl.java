@@ -3,20 +3,30 @@ package springdb.dbtest.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import springdb.dbtest.dto.BoardCommentRespDto;
+import springdb.dbtest.dto.BoardRecommentRespDto;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.Comment;
+import springdb.dbtest.entity.Recomment;
+import springdb.dbtest.entity.User;
+import springdb.dbtest.repository.BoardCommentRepository;
+import springdb.dbtest.repository.BoardReCommentRepository;
 import springdb.dbtest.repository.BoardRepository;
+import springdb.dbtest.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
-
+    private final UserRepository userRepository;
     private final BoardRepository boardRepository;
+    private final BoardCommentRepository boardCommentRepository;
+    private final BoardReCommentRepository boardReCommentRepository;
 
     @Override
     public List<Board> getBest3board() {
@@ -66,6 +76,47 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Long getBoardcount(Long type) {
         return boardRepository.countByType(type);
+    }
+
+    @Override
+    public BoardRespDto getBoardDetail(Long id) {
+        BoardRespDto boardRespDto = boardRepository.findById(id).get().toDto();
+        return boardRespDto;
+    }
+
+    @Override
+    public List<BoardCommentRespDto> getCommentListByBoardId(Long boardId) {
+        List<Comment> commentList = boardCommentRepository.findByBoard_IdOrderByIdAsc(boardId);
+        List<BoardCommentRespDto> boardCommentList = new ArrayList<>();
+        for(int i=0; i<commentList.size(); i++){
+            BoardCommentRespDto boardCommentRespDto = new BoardCommentRespDto();
+            boardCommentRespDto.setId(commentList.get(i).getId());
+            boardCommentRespDto.setUserId(commentList.get(i).getUserid());
+            Optional<User> user = userRepository.findById(boardCommentRespDto.getUserId());
+            boardCommentRespDto.setNickname(user.get().getNickname());
+            boardCommentRespDto.setPicture(user.get().getNickname());
+            boardCommentRespDto.setComment(commentList.get(i).getComment());
+            boardCommentRespDto.setComlikecnt(commentList.get(i).getComlikecnt());
+            boardCommentRespDto.setRecommentcnt(commentList.get(i).getRecomments().size());
+            boardCommentList.add(boardCommentRespDto);
+        }
+        return boardCommentList;
+    }
+
+    @Override
+    public List<BoardRecommentRespDto> getRecommentListByCommentId(Long commentId) {
+        List<Recomment> recommentList = boardReCommentRepository.findByCommentIdOrderByIdAsc(commentId);
+        List<BoardRecommentRespDto> recommentRespDtoList = new ArrayList<>();
+        for(int i=0 ;i<recommentList.size(); i++){
+            BoardRecommentRespDto boardRecommentRespDto = new BoardRecommentRespDto();
+            boardRecommentRespDto.setId(recommentList.get(i).getId());
+            boardRecommentRespDto.setNickname(userRepository.findById(recommentList.get(i).getUserid()).get().getNickname());
+            boardRecommentRespDto.setPicture(userRepository.findById(recommentList.get(i).getUserid()).get().getPicture());
+            boardRecommentRespDto.setRecomment(recommentList.get(i).getRecomment());
+            boardRecommentRespDto.setRecomlikecnt(recommentList.get(i).getRecomlikecnt());
+            recommentRespDtoList.add(boardRecommentRespDto);
+        }
+        return recommentRespDtoList;
     }
 
 }

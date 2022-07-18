@@ -1,8 +1,11 @@
 package springdb.dbtest.service;
 
+import springdb.dbtest.dto.BoardCommentRespDto;
+import springdb.dbtest.dto.BoardRecommentRespDto;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
+import springdb.dbtest.entity.Comment;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,5 +31,9 @@ public interface BoardService {
     public List<Board> findAllWithCommentUsingFetchJoin(Long boardid);
 
     public Long getBoardcount(Long type);
+    public BoardRespDto getBoardDetail(Long id);
+
+    public List<BoardCommentRespDto> getCommentListByBoardId(Long boardId);
+    public List<BoardRecommentRespDto> getRecommentListByCommentId(Long commentId);
 
 }

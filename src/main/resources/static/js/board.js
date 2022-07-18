@@ -3,6 +3,10 @@ const boardParent = document.querySelector('.main_list');
 // const roleCreaater = document.querySelector('.head_role_Creator');
 const type = document.querySelector('.type').value;
 var main_title = document.querySelector('.main_title');
+const writebtn = document.querySelector('.writebtn');
+writebtn.onclick = () => {
+    document.location.href = '/board-write';
+}
 var pagenum = 1;
 var totalCount = 0;
 boardLoad(type,pagenum);
@@ -44,7 +48,7 @@ function getBoards(boardList) {
         boardHtml += `
          <ul class="main_list_ul">
             <li class="main_list_title">
-                <a href='${board.id}'>${board.title}</a>
+                <a href='/board-main/${board.id}'>${board.title}</a>
             </li>
             <div class="main_list_sub">
                 <li class="main_list_heart">

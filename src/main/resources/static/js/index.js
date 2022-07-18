@@ -30,7 +30,7 @@ function getnotis(notiList) {
     for (let noti of notiList) {
         notiHtml += `
          <ul class="noti_list_ul">
-            <a href="/board/${noti.id}" class="noti_list_sub">
+            <a href="/board-main/${noti.id}" class="noti_list_sub">
                 <li class="noti_list_title">${noti.title}</li>
                 
                 <li class="noti_list_time">
@@ -73,7 +73,7 @@ function getbests(bestList) {
     for (let best of bestList) {
         bestHtml += `
          <ul class="best_list_ul">
-            <a href="/board/${best.id}" class="best_list_title">
+            <a href="/board-main/${best.id}" class="best_list_title">
                 ${best.title}
             </a>
             <div class="best_list_sub">
@@ -140,7 +140,7 @@ function getinfos(infoList) {
     for (let info of infoList) {
         infoHtml += `
          <ul class="main_list_ul">
-            <a href="/board/${info.id}" class="main_list_title">
+            <a href="/board-main/${info.id}" class="main_list_title">
                 ${info.title}
             </a>
             <div class="main_list_sub">
@@ -207,7 +207,7 @@ function getgenerations(generationList) {
     for (let generation of generationList) {
         generationHtml += `
         <ul class="generation_list_ul">
-            <a href="/board/${generation.id} " class="generation_list_title">
+            <a href="/board-main/${generation.id} " class="generation_list_title">
                 ${generation.title}
             </a >
             <div class="generation_list_sub">

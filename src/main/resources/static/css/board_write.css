@@ -10,8 +10,6 @@ a {
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
     height: 100vh;
     /* height: 969px; */
 }
