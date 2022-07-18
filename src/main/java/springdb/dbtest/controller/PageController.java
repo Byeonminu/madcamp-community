@@ -108,6 +108,10 @@ public class PageController {
         model.addAttribute("user",user);
         return "board/board_detail";
     }
+    @GetMapping("/admin")
+    public String adminMainForm() {
+        return "admin/admin";
+    }
 
 
 
