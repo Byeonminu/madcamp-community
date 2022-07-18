@@ -75,7 +75,7 @@ function getcomments(commentList) {
         if(!isLogin) {
             `
             <textarea id="reply_textarea" name="reply" placeholder="로그인 후 이용하실 수 있습니다."></textarea>
-            <button id="reply_submit_btn" class="logout_reply_submit_btn" type="button">동의</button>`;
+            <button id="reply_submit_btn" class="logout_reply_submit_btn" type="button">작성</button>`;
         }
         else {
             loginHtml = `<input type="hidden" class="principalUserId" name="principalUserId" value="${principalUserId}">
@@ -206,7 +206,10 @@ setTimeout(() => {
             });
         }
     }
+    const logout_reply_submit_btn = document.querySelectorAll('logout_reply_submit_btn');
+    for(let i =0; i<logout_reply_submit_btn.length;i++){
+        logout_reply_submit_btn[i].onclick = () => window.location.href = '/login';
+    }
 
 
-
-}, 1000);
+}, 500);
