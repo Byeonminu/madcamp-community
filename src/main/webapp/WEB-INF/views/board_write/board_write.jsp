@@ -22,18 +22,22 @@
                 <jsp:include page="../include/header.jsp"></jsp:include>
             </header>
             <div class="writing box">
-                <form action="" class="writing form">
-                    <div class="writing_header row">
-                        <input type="text" class="writing title header item" placeholder="제목">
-                        <p class="writing header item anonymous">익명</p>
+                <form action="/board-write" class="writing form" method="post">
+                    <input type="hidden" name="userid" value="${principal.id}">
+                        <input type="text" class="writing title header item" name= "title" placeholder="제목">
+
+                    <select id="type" name="type">
+                        <option value="2">일반게시판</option>
+                        <option value="3">14기 게시판</option>
+                    </select>
+
+                    <p class="writing header item anonymous">익명</p>
                         <label class="switch writing header item anonymous">
-                           <input type="checkbox">
+                           <input type="checkbox" name="anonym" value="1">
                             <span class="slider round"></span>
                         </label>
-                    </div>
-
-                    <form class="writing form item" method="post">
-                        <textarea id="summernote" name="editordata" ></textarea>
+<%--                    <form class="writing form item" method="post">--%>
+                        <textarea id="summernote" name="description"></textarea>
                         <script>
                             // Most options demonstrate the non-default behavior
                             var simplemde = new SimpleMDE({
@@ -96,7 +100,7 @@
                                 tabSize: 4
                             });
                         </script>
-                    </form>
+<%--                    </form>--%>
                     <button type="submit" class="writing item button post">POST</button>
                 </form>
             </div>

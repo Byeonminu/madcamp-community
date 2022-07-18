@@ -36,7 +36,7 @@
                                 <a href="/signup" class="logout">SIGN UP</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="/user/${user.id}" class="login">${user.nickname}님 !</a>
+                                <a href="/user/${user.id}" class="login">${principal.nickname}님 !</a>
                                 <a href="/logout" class="logout">LOG OUT</a>
                             </c:otherwise>
 
