@@ -98,7 +98,7 @@ function getbests(bestList) {
                     <div>${best.commentcnt}</div>
                 </li>
                 <li class="best_list_name">
-                    익명
+                    ${best.isanonymous}
                 </li>
                 <li class="best_list_time">
                     ${best.updatedate}
@@ -165,7 +165,7 @@ function getinfos(infoList) {
                     <div>${info.commentcnt}</div>
                 </li>
                 <li class="main_list_name">
-                    익명
+                    ${info.isanonymous}
                 </li>
                 <li class="main_list_time">
                     ${info.updatedate}
@@ -232,7 +232,7 @@ function getgenerations(generationList) {
                     <div>${generation.commentcnt}</div>
                 </li>
                 <li class="generation_list_name">
-                    익명
+                    ${generation.isanonymous}
                 </li>
                 <li class="generation_list_time">
                     ${generation.updatedate}
