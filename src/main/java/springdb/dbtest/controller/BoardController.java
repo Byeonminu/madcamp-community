@@ -17,6 +17,7 @@ import springdb.dbtest.service.BoardService;
 import springdb.dbtest.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.http.HttpRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -109,6 +110,13 @@ public class BoardController {
         return boardService.searchBoard(search,pagenum);
     }
 
+    @PostMapping("/likeup")
+    public String likeup(HttpServletRequest request) {
+        Long boardid = Long.valueOf(request.getParameter("boardid"));
+
+        boardRepository.plusonelike(boardid);
+        return "redirect:/board-main/" + boardid;
+    }
 
 
 
