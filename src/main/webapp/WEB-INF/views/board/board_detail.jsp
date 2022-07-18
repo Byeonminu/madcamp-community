@@ -76,7 +76,7 @@
                             <c:choose>
                                 <c:when test="${empty  principal}">
                                     <textarea id="reply_textarea" name="reply" placeholder="로그인 후 이용하실 수 있습니다."></textarea>
-                                    <button id="reply_submit_btn" class="logout_reply_submit_btn" type="button">동의</button>
+                                    <button id="reply_submit_btn" class="logout_reply_submit_btn" type="button">작성</button>
                                 </c:when>
                                 <c:otherwise>
                                     <input type="hidden" class="principalUserId" name="principalUserId" value="${user.id}">

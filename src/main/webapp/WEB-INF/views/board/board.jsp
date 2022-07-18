@@ -26,6 +26,9 @@
                         <div class="main_title">
                             일반게시판
                         </div>
+                        <div>
+
+                        </div>
                         <div class="main_list">
 
 

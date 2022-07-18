@@ -342,3 +342,6 @@ header {
 .login_reply_submit_btn{
     cursor: pointer;
 }
+.logout_reply_submit_btn{
+    cursor: pointer;
+}
