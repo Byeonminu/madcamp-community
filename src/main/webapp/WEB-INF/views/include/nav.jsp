@@ -36,7 +36,7 @@
                                 <a href="/signup" class="logout">SIGN UP</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="/user/${user.id}" class="login">${principal.nickname}님 !</a>
+                                <a href="/user/${user.id}" class="login">${principal.nickname}님</a>
                                 <a href="/logout" class="logout">LOG OUT</a>
                             </c:otherwise>
 
@@ -112,7 +112,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div class="num">10,000</div>
+                                <div class="num">${viewcnt}</div>
                             </div>
                             <div class="nav_view_count_per">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
