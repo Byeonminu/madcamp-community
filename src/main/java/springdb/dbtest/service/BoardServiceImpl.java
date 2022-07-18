@@ -10,6 +10,7 @@ import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.Comment;
 import springdb.dbtest.entity.Recomment;
+import springdb.dbtest.entity.User;
 import springdb.dbtest.repository.BoardCommentRepository;
 import springdb.dbtest.repository.BoardReCommentRepository;
 import springdb.dbtest.repository.BoardRepository;
@@ -86,22 +87,20 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardCommentRespDto> getCommentListByBoardId(Long boardId) {
         List<Comment> commentList = boardCommentRepository.findByBoard_IdOrderByIdAsc(boardId);
-        System.out.println("리스트!!!!!!!!!!!!"+commentList);
-//        System.out.println("리스트!!!!!!!!!!!!"+commentList);
-//        System.out.println("닉네임!!!!!!!!!!!!"+commentList.get(0).getUserid());
-//        List<BoardCommentRespDto> boardCommentList = new ArrayList<>();
-//        for(int i=0; i<commentList.size(); i++){
-//
-//            BoardCommentRespDto boardCommentRespDto = new BoardCommentRespDto();
-//            boardCommentRespDto.setId(commentList.get(i).getId());
-//            boardCommentRespDto.setNickname(userRepository.findById(commentList.get(i).getUserid()).get().getNickname());
-//            boardCommentRespDto.setPicture(userRepository.findById(commentList.get(i).getUserid()).get().getPicture());
-//            boardCommentRespDto.setComment(commentList.get(i).getComment());
-//            boardCommentRespDto.setComlikecnt(commentList.get(i).getComlikecnt());
-//            boardCommentRespDto.setRecommentcnt(commentList.get(i).getRecomments().size());
-//            boardCommentList.add(boardCommentRespDto);
-//        }
-        return null;
+        List<BoardCommentRespDto> boardCommentList = new ArrayList<>();
+        for(int i=0; i<commentList.size(); i++){
+            BoardCommentRespDto boardCommentRespDto = new BoardCommentRespDto();
+            boardCommentRespDto.setId(commentList.get(i).getId());
+            boardCommentRespDto.setUserId(commentList.get(i).getUserid());
+            Optional<User> user = userRepository.findById(boardCommentRespDto.getUserId());
+            boardCommentRespDto.setNickname(user.get().getNickname());
+            boardCommentRespDto.setPicture(user.get().getNickname());
+            boardCommentRespDto.setComment(commentList.get(i).getComment());
+            boardCommentRespDto.setComlikecnt(commentList.get(i).getComlikecnt());
+            boardCommentRespDto.setRecommentcnt(commentList.get(i).getRecomments().size());
+            boardCommentList.add(boardCommentRespDto);
+        }
+        return boardCommentList;
     }
 
     @Override

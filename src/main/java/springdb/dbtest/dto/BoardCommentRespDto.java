@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class BoardCommentRespDto {
 
     Long id;
+    Long userId;
     String nickname;
     String picture;
     String comment;

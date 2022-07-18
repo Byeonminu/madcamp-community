@@ -4,14 +4,14 @@ package springdb.dbtest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import springdb.dbtest.dto.BoardCommentRespDto;
-import springdb.dbtest.dto.BoardLIstRespDto;
-import springdb.dbtest.dto.BoardRecommentRespDto;
-import springdb.dbtest.dto.BoardReqDto;
+import springdb.dbtest.dto.*;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.BoardType;
 import springdb.dbtest.entity.Comment;
+import springdb.dbtest.entity.Recomment;
 import springdb.dbtest.repository.BoardCommentRepository;
+import springdb.dbtest.repository.BoardReCommentRepository;
+import springdb.dbtest.repository.BoardRepository;
 import springdb.dbtest.repository.BoardTypeRepository;
 import springdb.dbtest.service.BoardService;
 import springdb.dbtest.service.CommentService;
@@ -19,6 +19,7 @@ import springdb.dbtest.service.CommentService;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +31,10 @@ import static java.lang.Math.*;
 public class BoardController {
 
     private final BoardService boardService;
-    private final CommentService commentService;
-    private final BoardCommentRepository boardCommentRepository;
     private final BoardTypeRepository boardTypeRepository;
+    private final BoardCommentRepository boardCommentRepository;
+    private final BoardReCommentRepository boardReCommentRepository;
+    private final BoardRepository boardRepository;
 
     // type에 따라 게시글 10개 가져오기
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -52,36 +54,18 @@ public class BoardController {
     }
 
 
-
-    //이거는 controller에서 view의 속성으로 넣어줘야함
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public List<Board> getoneboardwithcomment(@PathVariable("id") Long boardid) {
-        System.out.println("살려주세요 !!!!!!!");
-        return boardService.findAllWithCommentUsingFetchJoin(boardid);
-    }
-    @RequestMapping(value = "/test/{id}", method = RequestMethod.GET)
-    public List<Comment> test(@PathVariable("id") Long boardId) {
-
-        return boardCommentRepository.findByBoard_IdOrderByIdAsc(boardId);
-    }
     //요청을 하면 board id와 매칭되는 comment를 가져옴
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public List<BoardCommentRespDto> getcomment(@PathVariable("id") Long boardId) {
-        System.out.println("getcomment!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        List<BoardCommentRespDto> boardCommentList = boardService.getCommentListByBoardId(boardId);
-        System.out.println("getcomment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+boardCommentList);
+        List<BoardCommentRespDto> boardCommentList= boardService.getCommentListByBoardId(boardId);
         return boardCommentList;
     }
     //요청을 하면 comment id와 매칭되는 recomment를 가져옴
     @RequestMapping(value = "/recomment/{id}", method = RequestMethod.GET)
     public List<BoardRecommentRespDto> getrecomment(@PathVariable("id") Long commentId) {
-        System.out.println("getrecomment");
         List<BoardRecommentRespDto> boardRecommentList = boardService.getRecommentListByCommentId(commentId);
         return boardRecommentList;
     }
-
-
-
 
     //새 글 작성
     @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -106,6 +90,20 @@ public class BoardController {
         boardService.insertBoardInfo(boardReqDto);
         return;
     }
+
+    //댓글 작성
+    @PostMapping("/comment_write")
+    public void commentWrite(CommentReqDto commentReqDto) {
+        Comment comment = new Comment(0L,commentReqDto.getPrincipalUserId(),boardRepository.findById(commentReqDto.getBoardid()).get(),commentReqDto.getComment(),0,null);
+        boardCommentRepository.save(comment);
+    }
+    //대댓글 작성
+    @PostMapping("/recomment_write")
+    public void recommentWrite(RecommentReqDto recommentReqDto) {
+        Recomment recomment = new Recomment(0L,recommentReqDto.getPrincipalUserId(),boardCommentRepository.findById(recommentReqDto.getCommentid()).get(),recommentReqDto.getRecomment(),0L);
+        boardReCommentRepository.save(recomment);
+    }
+
 
 
 

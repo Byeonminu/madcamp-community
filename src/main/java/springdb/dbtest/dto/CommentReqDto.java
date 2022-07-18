@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BoardRecommentRespDto {
+public class CommentReqDto {
 
-    Long id;
-    Long userId;
-    String nickname;
-    String picture;
-    String recomment;
-    Long recomlikecnt;
+    Long principalUserId;
+    Long boardid;
+    String comment;
+
 }

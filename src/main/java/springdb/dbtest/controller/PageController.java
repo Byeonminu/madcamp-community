@@ -42,12 +42,13 @@ public class PageController {
         return "index";
     }
     @GetMapping("/board-main/{id}")
-    public String boardDetailForm(@PathVariable Long id,Model model) {
+    public String boardDetailForm(@PathVariable Long id,Model model, @AuthenticationPrincipal User user) {
         BoardRespDto boardRespDto = boardService.getBoardDetail(id);
-        Optional<User> user = userRepository.findById(boardRespDto.getUserid());
-        UserDto userDto = user.get().toDto();
+        Optional<User> userOp = userRepository.findById(boardRespDto.getUserid());
+        UserDto userDto = userOp.get().toDto();
         model.addAttribute("boardRespDto",boardRespDto);
         model.addAttribute("userDto",userDto);
+        model.addAttribute("user",user);
         return "board/board_detail";
     }
 
