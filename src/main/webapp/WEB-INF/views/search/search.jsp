@@ -23,7 +23,7 @@
             </header>
             <main class="main_center">
                 <div class="main_title">
-                    검색 결과
+                    검색 결과 : " <span class="red title"></span> "
                 </div>
                 <div class="main_list">
 
@@ -39,7 +39,7 @@
         </div>
     </main>
 </div>
-<script src="/resources/js/board.js"></script>
+<script src="/resources/js/search.js"></script>
 </body>
 
 </html>

@@ -1,54 +1,41 @@
-const boardParent = document.querySelector('.main_list');
-// const roleUser = document.querySelector('.head_role_user');
-// const roleCreaater = document.querySelector('.head_role_Creator');
-const type = document.querySelector('.type').value;
-var main_title = document.querySelector('.main_title');
-const writebtn = document.querySelector('.writebtn');
-writebtn.onclick = () => {
-    document.location.href = '/board-write';
-}
-var pagenum = 1;
+const searchParent = document.querySelector('.main_list');
+var searchText = window.localStorage.getItem("searchText");
+var titleName =  document.querySelector('.title');
+titleName.textContent = searchText;
 var totalCount = 0;
-boardLoad(type,pagenum);
-if(type == 1) {
-    main_title.innerHTML = "공지사항";
-
-}else if(type == 2) {
-    main_title.innerHTML = "일반 게시판";
-
-}else if(type == 3) {
-    main_title.innerHTML = "몰입캠프 14기";
-
-}
-
+var pagenum = 1;
+searchLoad(searchText, pagenum);
 // 게시글 10개 가져오기 ///////////////////////////////////////
-function boardLoad(type,pagenum) {
+function searchLoad(searchText, pagenum) {
     $.ajax({
         type: "get",
         // type 동적으로 처리하기
-        url: `/board?type=${type}&pagenum=${pagenum}`,
+        url: `/board/search?search=${searchText}&pagenum=${pagenum}`,
         dataType: "text",
+        async : false,
         success: function (data) {
-            let boardListObj = JSON.parse(data);
-            let boardItem = ``;
-            boardItem += getBoards(boardListObj.boardList);
-            totalCount = boardListObj.cnt;
-            boardParent.innerHTML = boardItem;
+            let searchListObj = JSON.parse(data);
+            let searchItem = ``;
+            searchItem += getsearch(searchListObj.boardList);
+            totalCount = searchListObj.cnt;
+            searchParent.innerHTML = searchItem;
+            searchColor();
         },
         error: function () {
-            alert('board 비동기 처리오류');
+            alert('search 비동기 처리오류');
         }
 
     });
 
 }
-function getBoards(boardList) {
-    let boardHtml = ``;
-    for (let board of boardList) {
-        boardHtml += `
+
+function getsearch(searchList) {
+    let searchHtml = ``;
+    for (let search of searchList) {
+        searchHtml += `
          <ul class="main_list_ul">
             <li class="main_list_title">
-                <a href='/board-main/${board.id}'>${board.title}</a>
+                <a class="red" href='/board-main/${search.id}'>${search.title}</a>
             </li>
             <div class="main_list_sub">
                 <li class="main_list_heart">
@@ -59,7 +46,7 @@ function getBoards(boardList) {
                             stroke="none" stroke-width="2" stroke-linejoin="round" />
                     </svg>
 
-                    <div>${board.likecnt}</div>
+                    <div>${search.likecnt}</div>
                 </li>
                 <li class="main_list_comment">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="#007BF7"
@@ -69,13 +56,13 @@ function getBoards(boardList) {
                             stroke="none" stroke-width="2" stroke-linejoin="round" />
                     </svg>
 
-                    <div>${board.reportcnt}</div>
+                    <div>${search.reportcnt}</div>
                 </li>
                 <li class="main_list_name">
                     익명
                 </li>
                 <li class="main_list_time">
-                    ${board.updatedate}
+                    ${search.updatedate}
                 </li>
             </div>
         </ul>
@@ -83,24 +70,9 @@ function getBoards(boardList) {
       `;
 
     }
-    return boardHtml;
+    return searchHtml;
 }
-// 게시글 10개 가져오기 ///////////////////////////////////////
-
-
-// 밑에 숫자 가져오기
-function getNumber(count) {
-    let numHtml = `
-         <ul class="numbers">
-            <li id="clicknum" class="numbtn">1</li>`;
-    var num = count % 10;
-    for(let i =0; i<num; i++){
-        numHtml += `<li class="numbtn">${i+2}</li>`
-    }
-    numHtml+=`</ul>`;
-
-    return numHtml;
-}
+// 게시글 10개 가져오기 //////////////////////////////////////
 const numList = document.querySelector('.main_num_list');
 setTimeout(() => {
 
@@ -112,7 +84,7 @@ setTimeout(() => {
                 numbers[j].id ='';
             }
             numbers[i].id='clicknum';
-            boardLoad(type,numbers[i].textContent);
+            searchLoad(searchText,numbers[i].textContent);
         }
 
     }
@@ -131,3 +103,10 @@ function getNumber(count) {
 
     return numHtml;
 }
+function searchColor(){
+    $(".red:contains('"+searchText+"')").each(function () {
+        var regex = new RegExp(searchText,'gi');
+        $(this).html( $(this).text().replace(regex, "<span class='text-red'>"+searchText+"</span>") );
+    });
+}
+

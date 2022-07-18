@@ -59,6 +59,10 @@ header {
     padding: 0px 0px 0px 30px;
 
 }
+.title {
+    font-size: 1.3em;
+    font-weight: bold;
+}
 
 .main_list {
     background-color: white;
@@ -192,4 +196,8 @@ input[type=button]:active {
     -o-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
+}
+.text-red{
+    color: red;
+    font-weight: bold;
 }

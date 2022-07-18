@@ -1,9 +1,6 @@
 package springdb.dbtest.service;
 
-import springdb.dbtest.dto.BoardCommentRespDto;
-import springdb.dbtest.dto.BoardRecommentRespDto;
-import springdb.dbtest.dto.BoardReqDto;
-import springdb.dbtest.dto.BoardRespDto;
+import springdb.dbtest.dto.*;
 import springdb.dbtest.entity.Board;
 import springdb.dbtest.entity.Comment;
 
@@ -35,5 +32,7 @@ public interface BoardService {
 
     public List<BoardCommentRespDto> getCommentListByBoardId(Long boardId);
     public List<BoardRecommentRespDto> getRecommentListByCommentId(Long commentId);
+
+    public BoardLIstRespDto searchBoard(String search, int pagenum);
 
 }
