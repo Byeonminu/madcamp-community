@@ -52,10 +52,13 @@ public class UserController {
     @ResponseBody
     public boolean emailauth(HttpServletRequest request, @RequestParam String email) {
         System.out.println("이메일 체크: " + email);
-        if(emailRepository.existsByEmail(email) == false) return false;
+        if(emailRepository.existsByEmail(email) == false) return false; // DB에 있는 이메일이 맞는지 확인
         else{
-            HttpSession session = request.getSession();
-            return userService.authEmail(session, email);
+            if(userService.alreadyexist(email) == true ) return false; // 이미 가입한 계정이 있을 경우
+            else{
+                HttpSession session = request.getSession();
+                return userService.authEmail(session, email);
+            }
         }
 
     }
