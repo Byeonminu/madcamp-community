@@ -21,7 +21,7 @@
     </head>
 
     <body>
-    <input class="type" value="${type}"/>
+    <input type="hidden" class="type" value="${type}"/>
             <nav>
                 <div class="nav_top">
                     <div class="nav_logo">

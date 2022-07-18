@@ -23,12 +23,13 @@
                         <jsp:include page="../include/header.jsp"></jsp:include>
                     </header>
                     <main class="main_center">
-                        <div class="main_title">
-                            일반게시판
+                        <div class="main_center_top">
+                            <div class="main_title">
+                                일반게시판
+                            </div>
+                            <input type="button" class="writebtn" value="글 작성하기">
                         </div>
-                        <div>
 
-                        </div>
                         <div class="main_list">
 
 

@@ -3,6 +3,10 @@ const boardParent = document.querySelector('.main_list');
 // const roleCreaater = document.querySelector('.head_role_Creator');
 const type = document.querySelector('.type').value;
 var main_title = document.querySelector('.main_title');
+const writebtn = document.querySelector('.writebtn');
+writebtn.onclick = () => {
+    document.location.href = '/board-write';
+}
 var pagenum = 1;
 var totalCount = 0;
 boardLoad(type,pagenum);
@@ -53,7 +57,7 @@ function getBoards(boardList) {
                         <path
                             d="M13.9447 3.04697C12.5376 1.65101 10.2563 1.65101 8.84926 3.04697L8 4L7.15074 3.04699C5.74368 1.65102 3.46237 1.65102 2.0553 3.04699C0.648234 4.44295 0.648232 6.70626 2.0553 8.10222L7.99998 14L13.9447 8.10221C15.3518 6.70625 15.3518 4.44294 13.9447 3.04697Z"
                             stroke="none" stroke-width="2" stroke-linejoin="round" />
-                    </svg>f
+                    </svg>
 
                     <div>${board.likecnt}</div>
                 </li>
