@@ -61,6 +61,10 @@ public class PageController {
     public String boardDetailForm() {
         return "board/board_detail";
     }
+    @GetMapping("/admin")
+    public String adminMainForm() {
+        return "admin/admin";
+    }
 
 
     // @GetMapping("/board-main/{board_id}")
