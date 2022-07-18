@@ -1,0 +1,157 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    min-height: 969px;
+}
+
+.main_box {
+    background-color: #E5E5E5;
+    width: 1360px;
+    margin-left: 292px;
+}
+
+.main_container { /*헤더, 메인센터*/
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0px 0 50px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.main_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.row_0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start; /* NEW */
+}
+
+.my_info_box {
+    flex-basis: 30%;
+    margin: 10px 5px;
+    padding: 10px;
+    height: 100%;
+    align-self: flex-start;
+}
+.my_comment_box {
+    flex-basis: 70%;
+    margin: 10px 5px;
+    padding: 10px;
+    height: 100%;
+}
+
+.my_post_box {
+    margin: 10px 5px;
+    padding: 10px;
+}
+
+.my_info_white_box,
+.my_post_white_box,
+.my_post_white_box {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px transparent solid;
+    border-radius: 10px;
+}
+
+.my_info.img-circle {
+    width: 30%;
+    height: 30%;
+    border-radius: 100%;
+}
+
+ul.my_info_white_box { /*프로필 카드*/
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 10px 0;
+}
+
+li.my_info {
+    margin: 10px 5px;
+}
+
+.my_comment, .my_post { /*글 하나*/
+    background-color: #fff;
+    border: 1px #F1F1F1 solid;
+    border-radius: 10px;
+}
+
+.my_info_title,
+.my_comment_title,
+.my_post_title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0 20px;
+    padding: 0px 0px 0px 15px;
+}
+
+.my_comment,
+.my_post { /*글 하나*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    margin-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+ul.my_post_info,
+ul.my_comment_info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+li.my_comment_heart,
+li.my_comment_comment,
+li.my_post_heart,
+li.my_post_comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+/* 페이지 넘기는 숫자 */
+ul.count {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+li.count { /*li.num은 nav.jsp랑 겹침*/
+    margin: 1% 1% 0 ;
+}
