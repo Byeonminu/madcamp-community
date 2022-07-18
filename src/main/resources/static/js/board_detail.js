@@ -208,7 +208,10 @@ setTimeout(() => {
     }
     const logout_reply_submit_btn = document.querySelectorAll('logout_reply_submit_btn');
     for(let i =0; i<logout_reply_submit_btn.length;i++){
-        logout_reply_submit_btn[i].onclick = () => window.location.href = '/login';
+        logout_reply_submit_btn[i].onclick = () => {
+            alert('')
+            document.location.href = '/login';
+        }
     }
 
 
