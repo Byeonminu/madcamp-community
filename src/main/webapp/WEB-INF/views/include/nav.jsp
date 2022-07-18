@@ -44,6 +44,7 @@
 
 
                     </div>
+                    <a href="/myprofile" class="myprofile">내 정보</a>
                     <div class="nav_board_container">
 
 

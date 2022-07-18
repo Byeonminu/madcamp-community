@@ -12,10 +12,11 @@ topSignInBtn.onclick = () => {
 topSignUpBtn.onclick = () => {
     window.location.href = '/signup';
 }
+var email = ``;
 
 var emailCheckFlag = true;
 signupBtn.onclick = () => {
-    const email = document.querySelector('#email').value;
+    email = document.querySelector('#email').value;
     emailCheck(email);
 }
 function emailCheck(email) {
@@ -25,7 +26,7 @@ function emailCheck(email) {
         url: `/auth/emailcheck?email=${email}`,
         dataType: "text",
         success: function (data) {
-            emailCheckFlag = JSON.parse(data);
+            emailCheckFlag = JSON.parse(data,email);
             isMadCamp(emailCheckFlag);
         },
         error: function () {
@@ -35,8 +36,9 @@ function emailCheck(email) {
     });
 
 }
-function isMadCamp(flag) {
+function isMadCamp(flag,email) {
     if (flag) {
+        alert(email+"로 인증번호가 전송되었습니다.");
         emailCheckContainer.style.display = 'block';
 
     }

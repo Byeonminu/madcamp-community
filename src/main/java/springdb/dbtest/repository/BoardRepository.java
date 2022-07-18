@@ -44,5 +44,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
 
 
+    List<Board> findByUseridOrderByIdDesc(Long userid);
+
 
 }
