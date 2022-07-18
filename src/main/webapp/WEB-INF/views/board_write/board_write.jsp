@@ -32,8 +32,8 @@
                     </select>
 
                     <p class="writing header item anonymous">익명</p>
-                        <label class="switch writing header item anonymous">
-                           <input type="checkbox" name="anonym" value="1">
+                        <label class="switch writing header item anonymous" for="anonymous">
+                           <input type="checkbox" id="anonymous" name="anonymous" >
                             <span class="slider round"></span>
                         </label>
 <%--                    <form class="writing form item" method="post">--%>

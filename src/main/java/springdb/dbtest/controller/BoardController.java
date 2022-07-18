@@ -68,28 +68,28 @@ public class BoardController {
     }
 
     //새 글 작성
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public void createnewboard(HttpServletRequest request) {
-        LocalDateTime now = LocalDateTime.now();
-        // 현재 날짜/시간 출력
-        System.out.println(now); // 2021-06-17T06:43:21.419878100
-        // 포맷팅
-        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        // 포맷팅 현재 날짜/시간 출력
-        System.out.println(formatedNow);  // 2021년 06월 17일 06시 43분 21초
-        BoardReqDto boardReqDto = new BoardReqDto(0L, Long.parseLong(request.getParameter("userid")),
-                Long.parseLong(request.getParameter("type")),
-                request.getParameter("title"),
-                request.getParameter("description"),
-                0,
-               0,
-                0,
-                now,
-                now);
-
-        boardService.insertBoardInfo(boardReqDto);
-        return;
-    }
+//    @RequestMapping(value = "/new", method = RequestMethod.POST)
+//    public void createnewboard(HttpServletRequest request) {
+//        LocalDateTime now = LocalDateTime.now();
+//        // 현재 날짜/시간 출력
+//        System.out.println(now); // 2021-06-17T06:43:21.419878100
+//        // 포맷팅
+//        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//        // 포맷팅 현재 날짜/시간 출력
+//        System.out.println(formatedNow);  // 2021년 06월 17일 06시 43분 21초
+//        BoardReqDto boardReqDto = new BoardReqDto(0L, Long.parseLong(request.getParameter("userid")),
+//                Long.parseLong(request.getParameter("type")),
+//                request.getParameter("title"),
+//                request.getParameter("description"),
+//                0,
+//               0,
+//                0,
+//                now,
+//                now);
+//
+//        boardService.insertBoardInfo(boardReqDto);
+//        return;
+//    }
 
     //댓글 작성
     @PostMapping("/comment_write")

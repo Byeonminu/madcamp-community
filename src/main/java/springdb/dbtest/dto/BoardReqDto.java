@@ -23,6 +23,8 @@ public class BoardReqDto {
     private LocalDateTime createdate;
     private LocalDateTime updatedate;
 
+    private String isanonymous;
+
     public Board toEntity(){
         return Board.builder()
                 .id(id)
@@ -35,6 +37,7 @@ public class BoardReqDto {
                 .reportcnt(reportcnt)
                 .createdate(createdate)
                 .updatedate(updatedate)
+                .isanonymous(isanonymous)
                 .build();
 
     }

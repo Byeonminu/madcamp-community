@@ -46,25 +46,27 @@ public class HomeController {
     public List<Board> getGeneration14Board() {
         return boardService.get5Boardbytype(3L);
     }
-    @GetMapping("insertinfo")
-    public BoardRespDto insertInfo(@RequestParam("user_id") Long userId,
-                                   @RequestParam("type") Long type,
-                                   @RequestParam("title") String title,
-                                   @RequestParam("description") String description,
-                                   @RequestParam("comment_cnt") int comment_cnt,
-                                   @RequestParam("like_cnt") int like_cnt,
-                                   @RequestParam("report_cnt") int report_cnt ) {
-        // 현재 날짜/시간
-        LocalDateTime now = LocalDateTime.now();
-        // 현재 날짜/시간 출력
-        System.out.println(now); // 2021-06-17T06:43:21.419878100
-        // 포맷팅
-        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        // 포맷팅 현재 날짜/시간 출력
-        System.out.println(formatedNow);  // 2021년 06월 17일 06시 43분 21초
-        BoardReqDto boardReqDto = new BoardReqDto(0L,userId,type,title,description,comment_cnt,like_cnt,report_cnt,now,now);
-        return boardService.insertBoardInfo(boardReqDto);
-    }
+
+
+//    @GetMapping("insertinfo")
+//    public BoardRespDto insertInfo(@RequestParam("user_id") Long userId,
+//                                   @RequestParam("type") Long type,
+//                                   @RequestParam("title") String title,
+//                                   @RequestParam("description") String description,
+//                                   @RequestParam("comment_cnt") int comment_cnt,
+//                                   @RequestParam("like_cnt") int like_cnt,
+//                                   @RequestParam("report_cnt") int report_cnt ) {
+//        // 현재 날짜/시간
+//        LocalDateTime now = LocalDateTime.now();
+//        // 현재 날짜/시간 출력
+//        System.out.println(now); // 2021-06-17T06:43:21.419878100
+//        // 포맷팅
+//        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//        // 포맷팅 현재 날짜/시간 출력
+//        System.out.println(formatedNow);  // 2021년 06월 17일 06시 43분 21초
+//        BoardReqDto boardReqDto = new BoardReqDto(0L,userId,type,title,description,comment_cnt,like_cnt,report_cnt,now,now);
+//        return boardService.insertBoardInfo(boardReqDto);
+//    }
 
 
 }

@@ -49,6 +49,11 @@ public class PageController {
         // 포맷팅 현재 날짜/시간 출력
         System.out.println(formatedNow);  // 2021년 06월 17일 06시 43분 21초
         Long type = Long.valueOf(request.getParameter("type"));
+
+
+        String isanonymous = "YES";
+        if(request.getParameter("anonymous") == null) isanonymous = "NO";
+
         BoardReqDto boardReqDto = new BoardReqDto(0L, Long.parseLong(request.getParameter("userid")),
                 type,
                 request.getParameter("title"),
@@ -57,7 +62,8 @@ public class PageController {
                 0,
                 0,
                 now,
-                now);
+                now,
+                isanonymous);
 
         boardService.insertBoardInfo(boardReqDto);
         System.out.println("보드 라이트");

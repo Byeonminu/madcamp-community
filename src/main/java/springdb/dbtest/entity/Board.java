@@ -44,6 +44,9 @@ public class Board {
     @Column(columnDefinition = "int(11) default 0")
     private int reportcnt;
 
+    @Column(columnDefinition = "varchar(10) default YES")
+    private String isanonymous;
+
     @Column
     @CreatedDate
     private LocalDateTime createdate;
