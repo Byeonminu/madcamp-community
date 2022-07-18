@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
+import springdb.dbtest.entity.Comment;
 import springdb.dbtest.service.BoardService;
 
 import java.time.LocalDateTime;
