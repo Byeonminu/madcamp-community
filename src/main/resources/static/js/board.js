@@ -72,7 +72,7 @@ function getBoards(boardList) {
                     <div>${board.reportcnt}</div>
                 </li>
                 <li class="main_list_name">
-                    익명
+                    ${board.isanonymous}
                 </li>
                 <li class="main_list_time">
                     ${board.updatedate}

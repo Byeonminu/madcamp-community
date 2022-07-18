@@ -24,6 +24,7 @@ public class BoardRespDto {
     private int reportcnt;
     private LocalDateTime createdate;
     private LocalDateTime updatedate;
+    private String isanonymous;
 
 
 }

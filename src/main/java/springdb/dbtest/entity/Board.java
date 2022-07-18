@@ -44,7 +44,7 @@ public class Board {
     @Column(columnDefinition = "int(11) default 0")
     private int reportcnt;
 
-    @Column(columnDefinition = "varchar(10) default YES")
+    @Column(columnDefinition = "varchar(10) default 익명")
     private String isanonymous;
 
     @Column
@@ -71,6 +71,7 @@ public class Board {
                 .reportcnt(reportcnt)
                 .createdate(createdate)
                 .updatedate(updatedate)
+                .isanonymous(isanonymous)
                 .build();
     }
 

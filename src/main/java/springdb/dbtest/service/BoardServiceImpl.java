@@ -51,7 +51,7 @@ public class BoardServiceImpl implements BoardService {
 
 
     public BoardRespDto insertBoardInfo(BoardReqDto boardReqDto) {
-        Board board = boardReqDto.toEntity();
+        Board board = boardReqDto .toEntity();
 
         return boardRepository.save(board).toDto();
     }

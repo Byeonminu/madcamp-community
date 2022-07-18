@@ -41,7 +41,7 @@
                             <img class="user_img" src="/resources/image/board/makguli.jpg" alt="">
                             <%-- <img class="user_img" src="${userDto.picture}" alt="">--%>
                             <div class="main_profile_box">
-                                <div class="main_profile_name">${userDto.nickname}</div>
+                                <div class="main_profile_name">${boardRespDto.isanonymous}</div>
                                 <div class="main_profile_date">${boardRespDto.updatedate}</div>
                             </div>
                         </div>
