@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springdb.dbtest.dto.SignupReqDto;
 import springdb.dbtest.dto.UserDto;
 import springdb.dbtest.entity.User;
@@ -20,8 +18,9 @@ import javax.servlet.http.HttpSession;
 public class PageController {
 
     @GetMapping("/board-main")
-    public String boardForm(Model model, @AuthenticationPrincipal User user) {
+    public String boardForm(Model model, @AuthenticationPrincipal User user, @RequestParam Long type) {
         model.addAttribute("principal", user);
+        model.addAttribute("type",type);
         return "board/board";
     }
 
@@ -58,7 +57,10 @@ public class PageController {
         model.addAttribute("user", user);
         return "index";
     }
-
+    @GetMapping("/board-main/detail")
+    public String boardDetailForm() {
+        return "board/board_detail";
+    }
 
 
     // @GetMapping("/board-main/{board_id}")

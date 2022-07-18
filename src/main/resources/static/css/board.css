@@ -9,7 +9,9 @@
 a {
     text-decoration: none;
 }
-
+.type {
+    display: none;
+}
 .container {
     display: flex;
     flex-direction: row;

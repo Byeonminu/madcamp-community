@@ -45,7 +45,7 @@ public class BoardController {
     // board category 종류 불러오기
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public List<BoardType> getBoardType() {
-        return boardTypeRepository.findAll();
+        return boardTypeRepository.findAllByOrderByIdAsc();
     }
 
 
