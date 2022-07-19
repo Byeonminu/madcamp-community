@@ -27,7 +27,7 @@ a {
 .container {
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 100vmax;
     /* height: 969px; */
 }
 

@@ -31,6 +31,8 @@ a {
     display: flex;
     flex-direction: row;
 
+    height: 100vmax;
+
 }
 .main_box {
     width: 1360px;

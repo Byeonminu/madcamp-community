@@ -27,7 +27,7 @@
                 <div class="nav_top">
                     <div class="nav_logo">
                         <a href="/">
-                            <img src="/resources/image/mad_logo.png" alt="몰입캠프 로고" class="nav_img">
+                            <img src="/resources/image/mad.png" alt="몰입캠프 로고" class="nav_img">
                         </a>
                     </div>
                     <div class="nav_auth">
