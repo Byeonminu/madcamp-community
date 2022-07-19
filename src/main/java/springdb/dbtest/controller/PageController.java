@@ -79,23 +79,31 @@ public class PageController {
     }
 
     @GetMapping("/search") // 쿼리로 검색어 넣으면 될 듯?
-    public String searchForm() {
+    public String searchForm(Model model) {
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "search/search";
     }
 
     @GetMapping("/signup")
-    public String signupForm() {
+    public String signupForm(Model model) {
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "auth/signup";
     }
 
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(Model model) {
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "auth/login";
     }
 
     @GetMapping("/myprofile")
     public String infoForm(@AuthenticationPrincipal User principal, Model model) {
         model.addAttribute("user", principal);
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "user_info/info";
     }
 

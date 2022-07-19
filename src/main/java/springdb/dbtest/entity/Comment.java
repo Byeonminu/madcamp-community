@@ -3,7 +3,6 @@ package springdb.dbtest.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import springdb.dbtest.dto.BoardCommentRespDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,6 +34,12 @@ public class Comment {
 
     @Column(columnDefinition = "int(11) default 0")
     private int comlikecnt;
+
+    @Column(columnDefinition = "int(11) default 0")
+    private int reportcnt;
+
+    @Column()
+    private String createdate;
 
 
 

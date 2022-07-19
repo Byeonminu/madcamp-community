@@ -95,6 +95,7 @@ public class BoardServiceImpl implements BoardService {
             boardCommentRespDto.setComment(commentList.get(i).getComment());
             boardCommentRespDto.setComlikecnt(commentList.get(i).getComlikecnt());
             boardCommentRespDto.setRecommentcnt(commentList.get(i).getRecomments().size());
+            boardCommentRespDto.setCreatedate(commentList.get(i).getCreatedate());
             boardCommentList.add(boardCommentRespDto);
         }
         return boardCommentList;
@@ -111,6 +112,7 @@ public class BoardServiceImpl implements BoardService {
             boardRecommentRespDto.setPicture(userRepository.findById(recommentList.get(i).getUserid()).get().getPicture());
             boardRecommentRespDto.setRecomment(recommentList.get(i).getRecomment());
             boardRecommentRespDto.setRecomlikecnt(recommentList.get(i).getRecomlikecnt());
+            boardRecommentRespDto.setCreatedate(recommentList.get(i).getCreatedate());
             recommentRespDtoList.add(boardRecommentRespDto);
         }
         return recommentRespDtoList;

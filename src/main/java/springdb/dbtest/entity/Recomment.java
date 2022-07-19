@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -34,6 +36,12 @@ public class Recomment {
 
     @Column(columnDefinition = "int(11) default 0")
     private Long recomlikecnt;
+
+    @Column(columnDefinition = "int(11) default 0")
+    private int reportcnt;
+
+    @Column()
+    private String createdate;
 
 
 }

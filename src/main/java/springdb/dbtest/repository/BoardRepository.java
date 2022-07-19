@@ -42,6 +42,11 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query("update Board b set b.likecnt = b.likecnt + 1 where b.id = :boardid")
     void plusonelike(Long boardid);
 
+    @Transactional
+    @Modifying
+    @Query("update Board b set b.reportcnt = b.reportcnt + 1 where b.id = :boardid")
+    void plusonereport(Long boardid);
+
 
     @Transactional
     @Modifying

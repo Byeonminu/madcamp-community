@@ -49,6 +49,8 @@ public class User implements UserDetails {
         for (String role : isadmin.split(",")) {
             roles.add(new SimpleGrantedAuthority(role));
         }
+
+        System.out.println("이 유저의 역할: " + roles);
         return roles;
     }
 
