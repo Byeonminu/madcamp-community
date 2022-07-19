@@ -27,7 +27,6 @@ public class BoardController {
     private final BoardCommentRepository boardCommentRepository;
     private final BoardReCommentRepository boardReCommentRepository;
 
-
     private final BoardRepository boardRepository;
     private final BoardLikeRepository boardLikeRepository;
     private final BoardReportRepository boardReportRepository;
@@ -40,17 +39,15 @@ public class BoardController {
     private final RecommentRepository recommentRepository;
     private final RecommentReportRepository recommentReportRepository;
 
-
     // type에 따라 게시글 10개 가져오기
     @RequestMapping(value = "", method = RequestMethod.GET)
     public BoardLIstRespDto getNotificationBoard(@RequestParam(value = "type") Long type,
-                                                 @RequestParam(value = "pagenum") int pagenumber) {
+            @RequestParam(value = "pagenum") int pagenumber) {
         System.out.println("개수 : " + toIntExact(boardService.getBoardcount(type)));
-        BoardLIstRespDto boardLIstRespDto = new BoardLIstRespDto(boardService.get10latestboard(type, pagenumber), toIntExact(boardService.getBoardcount(type)));
+        BoardLIstRespDto boardLIstRespDto = new BoardLIstRespDto(boardService.get10latestboard(type, pagenumber),
+                toIntExact(boardService.getBoardcount(type)));
         return boardLIstRespDto;
     }
-
-
 
     // board category 종류 불러오기
     @RequestMapping(value = "/category", method = RequestMethod.GET)
@@ -58,57 +55,59 @@ public class BoardController {
         return boardTypeRepository.findAllByOrderByIdAsc();
     }
 
-
-    //요청을 하면 board id와 매칭되는 comment를 가져옴
+    // 요청을 하면 board id와 매칭되는 comment를 가져옴
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public List<BoardCommentRespDto> getcomment(@PathVariable("id") Long boardId) {
-        List<BoardCommentRespDto> boardCommentList= boardService.getCommentListByBoardId(boardId);
+        List<BoardCommentRespDto> boardCommentList = boardService.getCommentListByBoardId(boardId);
         return boardCommentList;
     }
-    //요청을 하면 comment id와 매칭되는 recomment를 가져옴
+
+    // 요청을 하면 comment id와 매칭되는 recomment를 가져옴
     @RequestMapping(value = "/recomment/{id}", method = RequestMethod.GET)
     public List<BoardRecommentRespDto> getrecomment(@PathVariable("id") Long commentId) {
         List<BoardRecommentRespDto> boardRecommentList = boardService.getRecommentListByCommentId(commentId);
         return boardRecommentList;
     }
 
-
-    //댓글 작성
+    // 댓글 작성
     @PostMapping("/comment_write")
     public void commentWrite(CommentReqDto commentReqDto) {
         LocalDateTime now = LocalDateTime.now();
+        // 포맷팅
         String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        Comment comment = new Comment(0L,commentReqDto.getPrincipalUserId(),boardRepository.findById(commentReqDto.getBoardid()).get(),commentReqDto.getComment(),0,0,formatedNow,null);
+        Comment comment = new Comment(0L, commentReqDto.getPrincipalUserId(),
+                boardRepository.findById(commentReqDto.getBoardid()).get(), commentReqDto.getComment(), 0, 0,
+                formatedNow, null);
         boardRepository.plusonecomment(commentReqDto.getBoardid());
         boardCommentRepository.save(comment);
     }
-    //대댓글 작성
+
+    // 대댓글 작성
     @PostMapping("/recomment_write")
     public void recommentWrite(RecommentReqDto recommentReqDto) {
         LocalDateTime now = LocalDateTime.now();
         String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        Recomment recomment = new Recomment(0L,recommentReqDto.getPrincipalUserId(),boardCommentRepository.findById(recommentReqDto.getCommentid()).get(),recommentReqDto.getRecomment(),0L,0, formatedNow);
+        Recomment recomment = new Recomment(0L, recommentReqDto.getPrincipalUserId(),
+                boardCommentRepository.findById(recommentReqDto.getCommentid()).get(), recommentReqDto.getRecomment(),
+                0L, 0, formatedNow);
         boardReCommentRepository.save(recomment);
     }
 
     @GetMapping("/search")
     public BoardLIstRespDto searchBoard(@RequestParam("search") String search, @RequestParam("pagenum") int pagenum) {
-        return boardService.searchBoard(search,pagenum);
+        return boardService.searchBoard(search, pagenum);
     }
 
-
-
-
-    ////// 좋아요 ////// ////// 좋아요 ////// ////// 좋아요 ////// ////// 좋아요 ////// ////// 좋아요 //////
+    ////// 좋아요 ////// ////// 좋아요 ////// ////// 좋아요 ////// ////// 좋아요 ////// //////
+    ////// 좋아요 //////
     @PostMapping("/likeup/board")
     public String likeupboard(HttpServletRequest request, @AuthenticationPrincipal User user) {
         Long boardid = Long.valueOf(request.getParameter("boardid"));
 
         BoardLike check = boardLikeRepository.alreadyexist(user.getId(), boardid);
-        if(check != null){ // 이미 존재할 때
+        if (check != null) { // 이미 존재할 때
 
-        }
-        else{
+        } else {
             boardLikeRepository.insertdata(user.getId(), boardid);
             boardRepository.plusonelike(boardid);
         }
@@ -121,10 +120,9 @@ public class BoardController {
         Long commentid = Long.valueOf(request.getParameter("commentid"));
 
         CommentLike check = commentLikeRepository.alreadyexist(user.getId(), commentid);
-        if(check != null){ // 이미 존재할 때
+        if (check != null) { // 이미 존재할 때
 
-        }
-        else{
+        } else {
             commentLikeRepository.insertdata(user.getId(), commentid);
             commentRepository.plusonelike(commentid);
         }
@@ -137,10 +135,9 @@ public class BoardController {
         Long recommentid = Long.valueOf(request.getParameter("recommentid"));
 
         RecommentLike check = recommentLikeRepository.alreadyexist(user.getId(), recommentid);
-        if(check != null){ // 이미 존재할 때
+        if (check != null) { // 이미 존재할 때
 
-        }
-        else{
+        } else {
             recommentLikeRepository.insertdata(user.getId(), recommentid);
             recommentRepository.plusonelike(recommentid);
         }
@@ -148,18 +145,17 @@ public class BoardController {
         return "redirect:/board-main/" + recommentid;
     }
 
-
-    ////// 신고 ////// ////// 신고 ////// ////// 신고 ////// ////// 신고 ////// ////// 신고 //////
+    ////// 신고 ////// ////// 신고 ////// ////// 신고 ////// ////// 신고 ////// ////// 신고
+    ////// //////
 
     @PostMapping("/report/board")
     public String reportboard(HttpServletRequest request, @AuthenticationPrincipal User user) {
         Long boardid = Long.valueOf(request.getParameter("boardid"));
 
         BoardReport check = boardReportRepository.alreadyexist(user.getId(), boardid);
-        if(check != null){ // 이미 존재할 때
+        if (check != null) { // 이미 존재할 때
 
-        }
-        else{
+        } else {
             boardReportRepository.insertdata(user.getId(), boardid);
             boardRepository.plusonereport(boardid);
         }
@@ -172,10 +168,9 @@ public class BoardController {
         Long commentid = Long.valueOf(request.getParameter("commentid"));
 
         CommentReport check = commentReportRepository.alreadyexist(user.getId(), commentid);
-        if(check != null){ // 이미 존재할 때
+        if (check != null) { // 이미 존재할 때
 
-        }
-        else{
+        } else {
             commentReportRepository.insertdata(user.getId(), commentid);
             commentRepository.plusonereport(commentid);
         }
@@ -188,17 +183,14 @@ public class BoardController {
         Long recommentid = Long.valueOf(request.getParameter("recommentid"));
 
         RecommentReport check = recommentReportRepository.alreadyexist(user.getId(), recommentid);
-        if(check != null){ // 이미 존재할 때
+        if (check != null) { // 이미 존재할 때
 
-        }
-        else{
+        } else {
             recommentReportRepository.insertdata(user.getId(), recommentid);
             recommentRepository.plusonereport(recommentid);
         }
 
         return "redirect:/board-main/" + recommentid;
     }
-
-
 
 }
