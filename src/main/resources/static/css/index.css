@@ -199,6 +199,8 @@ header {
     color: #8C8C8C;
     font-size: 0.9em;
     font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
     width: 30px;
 }
 

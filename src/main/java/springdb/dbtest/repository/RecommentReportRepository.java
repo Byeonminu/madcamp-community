@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 public interface RecommentReportRepository extends JpaRepository<RecommentReport, Long> {
 
 
-    @Modifying
     @Transactional
     @Query("select b from RecommentReport b where b.userid = :userid and b.recommentid = :recommentid")
     RecommentReport alreadyexist(Long userid, Long recommentid);
@@ -19,7 +18,7 @@ public interface RecommentReportRepository extends JpaRepository<RecommentReport
 
     @Modifying
     @Transactional
-    @Query(value = "insert into RecommentReport values(0L, :userid, :recommentid)", nativeQuery = true)
+    @Query(value = "insert into recommentreport(userid,recommentid) values(:userid, :recommentid)", nativeQuery = true)
     void insertdata(Long userid, Long recommentid);
 
 

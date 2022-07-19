@@ -101,96 +101,95 @@ public class BoardController {
     ////// 좋아요 ////// ////// 좋아요 ////// ////// 좋아요 ////// ////// 좋아요 ////// //////
     ////// 좋아요 //////
     @PostMapping("/likeup/board")
-    public String likeupboard(HttpServletRequest request, @AuthenticationPrincipal User user) {
-        Long boardid = Long.valueOf(request.getParameter("boardid"));
+    public boolean likeupboard(@RequestParam("boardid") Long boardid, @AuthenticationPrincipal User user) {
 
+        System.out.println("그냥체크: "+boardid+" "+user.getId());
         BoardLike check = boardLikeRepository.alreadyexist(user.getId(), boardid);
+        System.out.println("체크: " + check);
         if (check != null) { // 이미 존재할 때
-
+            return false;
         } else {
             boardLikeRepository.insertdata(user.getId(), boardid);
             boardRepository.plusonelike(boardid);
+            return true;
         }
 
-        return "redirect:/board-main/" + boardid;
+
     }
 
     @PostMapping("/likeup/comment")
-    public String likeupcomment(HttpServletRequest request, @AuthenticationPrincipal User user) {
-        Long commentid = Long.valueOf(request.getParameter("commentid"));
-
+    public boolean likeupcomment(@RequestParam("commentid") Long commentid, @AuthenticationPrincipal User user) {
         CommentLike check = commentLikeRepository.alreadyexist(user.getId(), commentid);
         if (check != null) { // 이미 존재할 때
-
+            return false;
         } else {
             commentLikeRepository.insertdata(user.getId(), commentid);
             commentRepository.plusonelike(commentid);
+            return true;
         }
 
-        return "redirect:/board-main/" + commentid;
+
     }
 
     @PostMapping("/likeup/recomment")
-    public String likeuprecomment(HttpServletRequest request, @AuthenticationPrincipal User user) {
-        Long recommentid = Long.valueOf(request.getParameter("recommentid"));
-
+    public boolean likeuprecomment(@RequestParam("recommentid") Long recommentid, @AuthenticationPrincipal User user) {
         RecommentLike check = recommentLikeRepository.alreadyexist(user.getId(), recommentid);
         if (check != null) { // 이미 존재할 때
-
+            return false;
         } else {
             recommentLikeRepository.insertdata(user.getId(), recommentid);
             recommentRepository.plusonelike(recommentid);
+            return true;
         }
 
-        return "redirect:/board-main/" + recommentid;
+
     }
 
     ////// 신고 ////// ////// 신고 ////// ////// 신고 ////// ////// 신고 ////// ////// 신고
     ////// //////
 
     @PostMapping("/report/board")
-    public String reportboard(HttpServletRequest request, @AuthenticationPrincipal User user) {
-        Long boardid = Long.valueOf(request.getParameter("boardid"));
-
+    public boolean reportboard(@RequestParam("boardid") Long boardid, @AuthenticationPrincipal User user) {
         BoardReport check = boardReportRepository.alreadyexist(user.getId(), boardid);
         if (check != null) { // 이미 존재할 때
-
+            return false;
         } else {
             boardReportRepository.insertdata(user.getId(), boardid);
             boardRepository.plusonereport(boardid);
+            return true;
         }
 
-        return "redirect:/board-main/" + boardid;
+
     }
 
     @PostMapping("/report/comment")
-    public String reportcomment(HttpServletRequest request, @AuthenticationPrincipal User user) {
-        Long commentid = Long.valueOf(request.getParameter("commentid"));
-
+    public boolean reportcomment(@RequestParam("commentid") Long commentid, @AuthenticationPrincipal User user) {
         CommentReport check = commentReportRepository.alreadyexist(user.getId(), commentid);
         if (check != null) { // 이미 존재할 때
-
+            return false;
         } else {
             commentReportRepository.insertdata(user.getId(), commentid);
             commentRepository.plusonereport(commentid);
+            return true;
         }
 
-        return "redirect:/board-main/" + commentid;
+
     }
 
     @PostMapping("/report/recomment")
-    public String reportrecomment(HttpServletRequest request, @AuthenticationPrincipal User user) {
-        Long recommentid = Long.valueOf(request.getParameter("recommentid"));
+    public boolean reportrecomment(@RequestParam("recommentid") Long recommentid, @AuthenticationPrincipal User user) {
+
 
         RecommentReport check = recommentReportRepository.alreadyexist(user.getId(), recommentid);
         if (check != null) { // 이미 존재할 때
-
+            return false;
         } else {
             recommentReportRepository.insertdata(user.getId(), recommentid);
             recommentRepository.plusonereport(recommentid);
+            return true;
         }
 
-        return "redirect:/board-main/" + recommentid;
+
     }
 
 }

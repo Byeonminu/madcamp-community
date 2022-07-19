@@ -10,8 +10,6 @@ import javax.transaction.Transactional;
 
 public interface BoardLikeRepository extends JpaRepository<BoardLike, Long> {
 
-
-    @Modifying
     @Transactional
     @Query("select b from BoardLike b where b.userid = :userid and b.boardid = :boardid")
     BoardLike alreadyexist(Long userid, Long boardid);
@@ -19,7 +17,7 @@ public interface BoardLikeRepository extends JpaRepository<BoardLike, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "insert into BoardLike values(0L, :userid, :boardid)", nativeQuery = true)
+    @Query(value = "insert into boardlike (userid, boardid) values(:userid, :boardid)", nativeQuery = true)
     void insertdata(Long userid, Long boardid);
 
 
