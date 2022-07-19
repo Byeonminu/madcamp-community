@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -26,10 +28,16 @@
                     <input type="hidden" name="userid" value="${principal.id}">
                         <input type="text" class="writing title header item" name= "title" placeholder="제목">
 
+
                     <select id="type" name="type">
-                        <option value="2">일반게시판</option>
-                        <option value="3">14기 게시판</option>
+                                <option value="1">공지사항</option>
+                                <option value="2">일반게시판</option>
+                                <option value="3">14기 게시판</option>
                     </select>
+
+
+
+
 
                     <p class="writing header item anonymous">익명</p>
                         <label class="switch writing header item anonymous" for="anonymous">

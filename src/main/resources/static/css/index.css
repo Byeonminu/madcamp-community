@@ -199,6 +199,9 @@ header {
     color: #8C8C8C;
     font-size: 0.9em;
     font-weight: 600;
+    text-overflow: fade;
+    overflow: hidden;
+    height: 25px;
     width: 30px;
 }
 

@@ -39,7 +39,7 @@
                         </div>
                         <div class="row-1">
                             <a href="/board-main?type=2" class="main_title">
-                                정보 게시판
+                                일반 게시판
                             </a>
                             <div class="main_list">
 
