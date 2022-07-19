@@ -17,4 +17,5 @@ public class BoardRecommentRespDto {
     String picture;
     String recomment;
     Long recomlikecnt;
+    String createdate;
 }

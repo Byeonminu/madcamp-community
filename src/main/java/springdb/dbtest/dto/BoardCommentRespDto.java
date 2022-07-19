@@ -18,5 +18,6 @@ public class BoardCommentRespDto {
     String comment;
     int comlikecnt;
     int recommentcnt;
+    String createdate;
 
 }

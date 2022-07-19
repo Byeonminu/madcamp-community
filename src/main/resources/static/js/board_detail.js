@@ -93,7 +93,7 @@ function getcomments(commentList) {
                         alt="">
                     <div class="comment_user">
                         <h5 class="main_mid_comment_li_title">익명</h5>
-                        <p>2022-07-15 01:12:11</p>
+                        <p> ${comment.createdate}</p>
                     </div>
                 </div>
                 <div class="main_mid_comment_li_right">
@@ -154,7 +154,7 @@ function getrecomments(recommentList) {
                             alt="">
                         <div class="reco_user">
                             <h5 class="recomment_li_title">익명</h5>
-                            <p>2022-07-15 01:13:11</p>
+                            <p> ${recomment.createdate}</p>
                         </div>
                     </div>
                     <div class="recomment_li_right">
