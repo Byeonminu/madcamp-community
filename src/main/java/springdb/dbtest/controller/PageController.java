@@ -17,7 +17,6 @@ import springdb.dbtest.service.BoardService;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -132,6 +131,9 @@ public class PageController {
     @GetMapping("/board-main/{id}")
     public String boardDetailForm(@PathVariable Long id, Model model, @AuthenticationPrincipal User user) {
         BoardRespDto boardRespDto = boardService.getBoardDetail(id);
+        String temp = boardRespDto.getDescription();
+        temp  = temp.replace("\r\n", "<br/>");
+        boardRespDto.setDescription(temp);
         Optional<User> userOp = userRepository.findById(boardRespDto.getUserid());
         UserDto userDto = userOp.get().toDto();
         model.addAttribute("boardRespDto", boardRespDto);
