@@ -67,7 +67,7 @@ public class PageController {
         if (request.getParameter("anonymous") == null)
             isanonymous = user.getNickname();
 
-        BoardReqDto boardReqDto = new BoardReqDto(0L, Long.parseLong(request.getParameter("userid")),
+        BoardReqDto boardReqDto = new BoardReqDto(0L, user.getId(),
                 type,
                 request.getParameter("title"),
                 request.getParameter("description"),
