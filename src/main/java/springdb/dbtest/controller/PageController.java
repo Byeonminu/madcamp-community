@@ -36,7 +36,7 @@ public class PageController {
         Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
-        model.addAttribute("principal", user);
+        model.addAttribute("user", user);
         model.addAttribute("type", type);
         return "board/board";
     }
@@ -49,7 +49,7 @@ public class PageController {
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         System.out.println("유저 정보 : " + user);
-        model.addAttribute("principal", user);
+        model.addAttribute("user", user);
         return "board_write/board_write";
     }
 
@@ -80,15 +80,17 @@ public class PageController {
 
         boardService.insertBoardInfo(boardReqDto);
 
+
         return "redirect:/board-main?type=" + type;
     }
 
     @GetMapping("/search") // 쿼리로 검색어 넣으면 될 듯?
-    public String searchForm(Model model) {
+    public String searchForm(Model model, @AuthenticationPrincipal User user) {
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
         Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
+        model.addAttribute("user", user);
         model.addAttribute("viewcnt", view_cnt);
         return "search/search";
     }
