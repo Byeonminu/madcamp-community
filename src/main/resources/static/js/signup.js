@@ -25,9 +25,10 @@ function emailCheck(email) {
         // type 동적으로 처리하기
         url: `/auth/emailcheck?email=${email}`,
         dataType: "text",
+        async:false,
         success: function (data) {
-            emailCheckFlag = JSON.parse(data,email);
-            isMadCamp(emailCheckFlag);
+            emailCheckFlag = JSON.parse(data);
+            isMadCamp(emailCheckFlag, email);
         },
         error: function () {
             alert('board 비동기 처리오류');

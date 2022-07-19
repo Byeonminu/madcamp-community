@@ -18,9 +18,11 @@ import springdb.dbtest.service.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.http.HttpRequest;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,14 +97,18 @@ public class BoardController {
     //댓글 작성
     @PostMapping("/comment_write")
     public void commentWrite(CommentReqDto commentReqDto) {
-        Comment comment = new Comment(0L,commentReqDto.getPrincipalUserId(),boardRepository.findById(commentReqDto.getBoardid()).get(),commentReqDto.getComment(),0,null);
+        LocalDateTime now = LocalDateTime.now();
+        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        Comment comment = new Comment(0L,commentReqDto.getPrincipalUserId(),boardRepository.findById(commentReqDto.getBoardid()).get(),commentReqDto.getComment(),0,formatedNow,null);
         boardRepository.plusonecomment(commentReqDto.getBoardid());
         boardCommentRepository.save(comment);
     }
     //대댓글 작성
     @PostMapping("/recomment_write")
     public void recommentWrite(RecommentReqDto recommentReqDto) {
-        Recomment recomment = new Recomment(0L,recommentReqDto.getPrincipalUserId(),boardCommentRepository.findById(recommentReqDto.getCommentid()).get(),recommentReqDto.getRecomment(),0L);
+        LocalDateTime now = LocalDateTime.now();
+        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        Recomment recomment = new Recomment(0L,recommentReqDto.getPrincipalUserId(),boardCommentRepository.findById(recommentReqDto.getCommentid()).get(),recommentReqDto.getRecomment(),0L, formatedNow);
         boardReCommentRepository.save(recomment);
     }
 
