@@ -31,8 +31,11 @@ public class PageController {
     @GetMapping("/board-main")
     public String boardForm(Model model, @AuthenticationPrincipal User user, @RequestParam Long type) {
 
-        model.addAttribute("viewcnt", viewCntRepository
-                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
+        model.addAttribute("viewcnt", view_cnt);
         model.addAttribute("principal", user);
         model.addAttribute("type", type);
         return "board/board";
@@ -40,8 +43,11 @@ public class PageController {
 
     @GetMapping("/board-write")
     public String writeForm(Model model, @AuthenticationPrincipal User user) {
-        model.addAttribute("viewcnt", viewCntRepository
-                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
+        model.addAttribute("viewcnt", view_cnt);
         System.out.println("유저 정보 : " + user);
         model.addAttribute("principal", user);
         return "board_write/board_write";
@@ -79,13 +85,20 @@ public class PageController {
 
     @GetMapping("/search") // 쿼리로 검색어 넣으면 될 듯?
     public String searchForm(Model model) {
-        model.addAttribute("viewcnt", viewCntRepository
-                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
+        model.addAttribute("viewcnt", view_cnt);
         return "search/search";
     }
 
     @GetMapping("/signup")
     public String signupForm(Model model) {
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "auth/signup";
@@ -93,16 +106,22 @@ public class PageController {
 
     @GetMapping("/login")
     public String loginForm(Model model) {
-        model.addAttribute("viewcnt", viewCntRepository
-                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
+        model.addAttribute("viewcnt", view_cnt);
         return "auth/login";
     }
 
     @GetMapping("/myprofile")
     public String infoForm(@AuthenticationPrincipal User user, Model model) {
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("user", user);
-        model.addAttribute("viewcnt", viewCntRepository
-                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        model.addAttribute("viewcnt", view_cnt);
         return "user_info/info";
     }
 
@@ -122,6 +141,8 @@ public class PageController {
             ViewCnt temp = viewCntRepository.findByDate(today);
             view_cnt = temp.getCnt();
         }
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         System.out.println("여기에요 여기 !!");
         model.addAttribute("user", user);
@@ -139,15 +160,22 @@ public class PageController {
         model.addAttribute("boardRespDto", boardRespDto);
         model.addAttribute("userDto", userDto);
         model.addAttribute("user", user);
-        model.addAttribute("viewcnt", viewCntRepository
-                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
+        model.addAttribute("viewcnt", view_cnt);
         return "board/board_detail";
     }
 
     @GetMapping("/admin")
     public String adminMainForm(Model model) {
-        model.addAttribute("viewcnt", viewCntRepository
-                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        Long view_cnt = viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
+        Double percent = Double.valueOf((view_cnt / 300D ));
+        model.addAttribute("percent", Math.round(percent * 100) / 100.0);
+        model.addAttribute("viewcnt", view_cnt);
         return "admin/admin";
     }
 }
