@@ -213,6 +213,8 @@ setTimeout(() => {
             document.location.href = '/login';
         }
     }
+    const main_background = document.querySelector('.main_box');
+    main_background.style.backgroundColor = '#F8F8F8';
 
 
 }, 500);
