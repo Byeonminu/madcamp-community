@@ -19,7 +19,6 @@ function myBoardLoad(pagenum) {
             totalCount_c = myBoardListObj.cnt;
         },
         error: function () {
-            alert('myBoard 비동기 처리오류');
         }
 
     });
@@ -75,7 +74,6 @@ function myCommentLoad(pagenum) {
             totalCount_b = myCommentListObj.cnt;
         },
         error: function () {
-            alert('myComment 비동기 처리오류');
         }
 
     });

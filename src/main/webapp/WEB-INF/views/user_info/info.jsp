@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" href="/resources/css/info.css">
+    <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
     <title>내 정보</title>
 </head>
 

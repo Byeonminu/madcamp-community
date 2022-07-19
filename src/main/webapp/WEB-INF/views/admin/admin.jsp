@@ -8,10 +8,11 @@
 
 <head>
 
-    <title>몰입커뮤니티 관리자 페이지</title>
+    <title>관리자 페이지</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="/resources/css/bootstrap/all.min.css" rel="stylesheet" type="text/css">

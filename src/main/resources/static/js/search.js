@@ -22,7 +22,6 @@ function searchLoad(searchText, pagenum) {
             searchColor();
         },
         error: function () {
-            alert('search 비동기 처리오류');
         }
 
     });

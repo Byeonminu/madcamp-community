@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="/resources/css/index.css">
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <title>몰입캠프</title>
+        <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
     </head>
 
     <body>

@@ -18,7 +18,6 @@ comment_submit_btn.onclick = () => {
             commentLoad(boardID);
         },
         error: function () {
-            alert('댓글작성 비동기 처리오류');
         }
 
     });
@@ -60,7 +59,6 @@ function commentLoad(boardID) {
             commentParent.innerHTML = commentItem;
         },
         error: function () {
-            alert('comment 비동기 처리오류');
         }
 
     });
@@ -130,7 +128,6 @@ function recomment1Load(commentId) {
             recommentItem += getrecomments(recommentListObj);
         },
         error: function () {
-            alert('recomment 비동기 처리오류');
         }
 
     });
@@ -200,7 +197,6 @@ setTimeout(() => {
                     commentLoad(boardID);
                 },
                 error: function () {
-                    alert('댓글작성 비동기 처리오류');
                 }
 
             });
@@ -209,7 +205,6 @@ setTimeout(() => {
     const logout_reply_submit_btn = document.querySelectorAll('logout_reply_submit_btn');
     for(let i =0; i<logout_reply_submit_btn.length;i++){
         logout_reply_submit_btn[i].onclick = () => {
-            alert('')
             document.location.href = '/login';
         }
     }
@@ -232,7 +227,6 @@ setTimeout(() => {
     }
     for(let i=0;i<commentLike.length; i++){
         commentLike[i].onclick = () => {
-            alert('댓글 클릭');
             funCommentLike(ajaxCommentId[i].value);
         }
     }
@@ -273,7 +267,6 @@ function funBoardLike(boardid) {
 
         },
         error: function () {
-            alert('게시글 좋아요 비동기 처리오류');
         }
 
     });
@@ -298,7 +291,6 @@ function funBoardReport(boardid) {
 
         },
         error: function () {
-            alert('게시글 신고 비동기 처리오류');
         }
 
     });
@@ -322,7 +314,6 @@ function funCommentLike(commentid) {
 
         },
         error: function () {
-            alert('댓글 좋아요 비동기 처리오류');
         }
 
     });
@@ -346,7 +337,6 @@ function funCommentReport(commentid) {
 
         },
         error: function () {
-            alert('댓글신고 비동기 처리오류');
         }
 
     });
@@ -369,7 +359,6 @@ function funRecommentLike(recommentid) {
 
         },
         error: function () {
-            alert('대댓글 좋아요 비동기 처리오류');
         }
 
     });
@@ -393,7 +382,6 @@ function funRecommentReport(recommentid) {
 
         },
         error: function () {
-            alert('대댓글신고 비동기 처리오류');
         }
 
     });

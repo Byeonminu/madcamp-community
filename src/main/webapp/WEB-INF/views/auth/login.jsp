@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
     <title>몰입캠프</title>
+    <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>
@@ -22,9 +23,7 @@
 
             <!-- Icon -->
             <div class="fadeIn first">
-                <a href="/">
-                    <img class="logo" src="/resources/image/mad_logo.png" id="icon" alt="Madcamp Logo"/>
-                </a>
+
             </div>
 
             <!-- Login Form -->
@@ -35,9 +34,7 @@
             </form>
 
             <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <a class="underlineHover" href="#">Forgot Password?</a>
-            </div>
+
         </div>
     </div>
 </div>

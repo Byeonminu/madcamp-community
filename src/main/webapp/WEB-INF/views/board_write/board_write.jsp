@@ -10,7 +10,7 @@
     <%--SimpleMDE - Markdown Editor--%>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-
+    <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="/resources/css/board_write.css">
     <title>몰입 경험 공유하기</title>
 </head>
@@ -30,9 +30,18 @@
 
 
                     <select id="type" name="type">
+                        <c:choose>
+                            <c:when test="${user.isadmin eq 'ROLE_ADMIN'}">
                                 <option value="1">공지사항</option>
                                 <option value="2">일반게시판</option>
                                 <option value="3">14기 게시판</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="2">일반게시판</option>
+                                <option value="3">14기 게시판</option>
+                            </c:otherwise>
+                        </c:choose>
+
                     </select>
 
 

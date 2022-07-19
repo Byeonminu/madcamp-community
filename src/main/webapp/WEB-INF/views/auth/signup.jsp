@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="/resources/css/signup.css">
         <link rel="stylesheet" type="text/css" href="signup.css">
         <title>SIGN UP</title>
+        <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
     </head>
 
     <body>

@@ -33,7 +33,7 @@ public class PageController {
 
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         model.addAttribute("principal", user);
@@ -45,7 +45,7 @@ public class PageController {
     public String writeForm(Model model, @AuthenticationPrincipal User user) {
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         System.out.println("유저 정보 : " + user);
@@ -87,7 +87,7 @@ public class PageController {
     public String searchForm(Model model) {
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         return "search/search";
@@ -97,7 +97,7 @@ public class PageController {
     public String signupForm(Model model) {
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
@@ -108,7 +108,7 @@ public class PageController {
     public String loginForm(Model model) {
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         return "auth/login";
@@ -118,7 +118,7 @@ public class PageController {
     public String infoForm(@AuthenticationPrincipal User user, Model model) {
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("user", user);
         model.addAttribute("viewcnt", view_cnt);
@@ -141,7 +141,7 @@ public class PageController {
             ViewCnt temp = viewCntRepository.findByDate(today);
             view_cnt = temp.getCnt();
         }
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         System.out.println("여기에요 여기 !!");
@@ -153,7 +153,7 @@ public class PageController {
     public String boardDetailForm(@PathVariable Long id, Model model, @AuthenticationPrincipal User user) {
         BoardRespDto boardRespDto = boardService.getBoardDetail(id);
         String temp = boardRespDto.getDescription();
-        temp  = temp.replace("\r\n", "<br/>");
+        temp = temp.replace("\r\n", "<br/>");
         boardRespDto.setDescription(temp);
         Optional<User> userOp = userRepository.findById(boardRespDto.getUserid());
         UserDto userDto = userOp.get().toDto();
@@ -163,19 +163,20 @@ public class PageController {
 
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
         return "board/board_detail";
     }
 
     @GetMapping("/admin")
-    public String adminMainForm(Model model) {
+    public String adminMainForm(Model model, @AuthenticationPrincipal User user) {
         Long view_cnt = viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt();
-        Double percent = Double.valueOf((view_cnt / 300D ));
+        Double percent = Double.valueOf((view_cnt / 300D));
         model.addAttribute("percent", Math.round(percent * 100) / 100.0);
         model.addAttribute("viewcnt", view_cnt);
+        model.addAttribute("user", user);
         return "admin/admin";
     }
 }

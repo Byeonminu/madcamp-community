@@ -19,7 +19,6 @@ function notiLoad() {
             notiParent.innerHTML = notiItem;
         },
         error: function () {
-            alert('noti 비동기 처리오류');
         }
 
     });
@@ -62,7 +61,6 @@ function bestLoad() {
             bestParent.innerHTML = bestItem;
         },
         error: function () {
-            alert('best 비동기 처리오류');
         }
 
     });
@@ -129,7 +127,6 @@ function infoLoad() {
             infoParent.innerHTML = infoItem;
         },
         error: function () {
-            alert('info 비동기 처리오류');
         }
 
     });
@@ -196,7 +193,6 @@ function generationLoad() {
             generationParent.innerHTML = generationItem;
         },
         error: function () {
-            alert('generation 비동기 처리오류');
         }
 
     });
