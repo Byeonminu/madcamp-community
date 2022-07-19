@@ -34,17 +34,17 @@
                             <c:when test="${empty principal}">
                                 <a href="/login" class="login">LOG IN</a>
                                 <a href="/signup" class="logout">SIGN UP</a>
+                    </div>
                             </c:when>
                             <c:otherwise>
                                 <a href="/user/${user.id}" class="login">${principal.nickname}님</a>
                                 <a href="/logout" class="logout">LOG OUT</a>
+                </div>
+                <a href="/myprofile" class="myprofile">내 정보</a>
                             </c:otherwise>
 
                         </c:choose>
 
-
-                    </div>
-                    <a href="/myprofile" class="myprofile">내 정보</a>
                     <div class="nav_board_container">
 
 
