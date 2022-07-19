@@ -33,7 +33,7 @@ public class User implements UserDetails {
     @Column(length = 20, nullable = false, unique = true)
     private String nickname;
 
-    @Column(columnDefinition = "varchar(10) default 'USER'")
+    @Column(columnDefinition = "varchar(10) default 'ROLE_USER'")
     private String isadmin;
 
     @Column(length = 50)

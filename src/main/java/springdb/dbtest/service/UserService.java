@@ -64,8 +64,8 @@ public class UserService implements UserDetailsService {
     }
 
     private boolean sendAuthEmail(HttpSession session, String email, String authKey){
-        String subject = "몰입캠프 커뮤니티 이메일 인증입니다.";
-        String text = "회원 가입을 위한 인증번호는 " + authKey + "입니다. <br/>";
+        String subject = "MadTime 이메일 인증입니다.";
+        String text = "회원 가입을 위한 인증번호는 [" + authKey + "]입니다. <br/>";
 
         System.out.println("사용자 이메일 : " + email + "키 : " + authKey);
 
