@@ -3,6 +3,7 @@ package springdb.dbtest.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import springdb.dbtest.dto.AdminRespDto;
 import springdb.dbtest.dto.BoardRespDto;
 
 import javax.persistence.*;
@@ -74,6 +75,7 @@ public class Board {
                 .isanonymous(isanonymous)
                 .build();
     }
+
 
 
 }

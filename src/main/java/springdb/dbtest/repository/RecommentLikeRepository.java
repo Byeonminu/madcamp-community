@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 public interface RecommentLikeRepository extends JpaRepository<RecommentLike, Long> {
 
 
-    @Modifying
     @Transactional
     @Query("select b from RecommentLike b where b.userid = :userid and b.recommentid = :recommentid")
     RecommentLike alreadyexist(Long userid, Long recommentid);
@@ -19,7 +18,7 @@ public interface RecommentLikeRepository extends JpaRepository<RecommentLike, Lo
 
     @Modifying
     @Transactional
-    @Query(value = "insert into CommentLike values(0L, :userid, :recommentid)", nativeQuery = true)
+    @Query(value = "insert into recommentlike(userid,recommentid) values( :userid, :recommentid)", nativeQuery = true)
     void insertdata(Long userid, Long recommentid);
 
 

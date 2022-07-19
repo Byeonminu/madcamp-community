@@ -34,6 +34,7 @@ public class Recomment {
     @Column(columnDefinition = "TEXT")
     private String recomment;
 
+
     @Column(columnDefinition = "int(11) default 0")
     private Long recomlikecnt;
 
@@ -42,6 +43,4 @@ public class Recomment {
 
     @Column()
     private String createdate;
-
-
 }

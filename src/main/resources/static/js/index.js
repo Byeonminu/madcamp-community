@@ -245,4 +245,11 @@ function getgenerations(generationList) {
     }
     return generationHtml;
 }
+setTimeout(() => {
+
+    const main_background = document.querySelector('.main_box');
+    main_background.style.height = 'border-box';
+    main_background.style.backgroundColor = '#F8F8F8';
+}, 300);
+
 // 몰캠14기 게시판 5개 ///////////////////////////////////////

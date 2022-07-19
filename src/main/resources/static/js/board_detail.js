@@ -84,7 +84,6 @@ function getcomments(commentList) {
                         <button id="comment_submit_btn"  class="login_reply_submit_btn" type="button">작성</button>`;
         }
         commentHtml += `
-        
         <ul class="main_mid_comment_ul">
             <li class="main_mid_comment_li_top">
                 <div class="main_mid_comment_li_left">
@@ -184,11 +183,12 @@ setTimeout(() => {
     }
     const recomment_submit_btn = document.querySelectorAll('#comment_submit_btn');
     const ajaxCommentId = document.querySelectorAll('.ajaxCommentId');
+    var ajaxRecomments = ``;
 
     for(let i=0; i<recomment_submit_btn.length;i++){
 
         recomment_submit_btn[i].onclick = () => {
-            const ajaxRecomments = document.querySelectorAll('.ajaxRecomments');
+            ajaxRecomments = document.querySelectorAll('.ajaxRecomments');
 
             $.ajax({
 
@@ -213,6 +213,188 @@ setTimeout(() => {
             document.location.href = '/login';
         }
     }
+    const main_background = document.querySelector('.main_box');
+    main_background.style.backgroundColor = '#F8F8F8';
 
+    const boardLike = document.querySelector('.likeCount');
+    const boardReport = document.querySelector('.reportCount');
+
+    const commentLike = document.querySelectorAll('.main_mid_comment_li_right_like');
+    const commentReport = document.querySelectorAll('.main_mid_comment_li_right_report');
+    const recommentLike = document.querySelectorAll('.recomment_li_right_like');
+    const recommentReport = document.querySelectorAll('.recomment_li_right_report');
+    boardLike.onclick = () => {
+        funBoardLike(boardID);
+
+    }
+    boardReport.onclick = () => {
+        funBoardReport(boardID);
+    }
+    for(let i=0;i<commentLike.length; i++){
+        commentLike[i].onclick = () => {
+            alert('댓글 클릭');
+            funCommentLike(ajaxCommentId[i].value);
+        }
+    }
+    for(let i=0;i<commentReport.length; i++){
+        commentReport[i].onclick = () => {
+            funCommentReport(ajaxCommentId[i].value);
+        }
+    }
+    for(let i=0;i<recommentLike.length; i++){
+        recommentLike[i].onclick = () => {
+            funRecommentLike(ajaxRecomments[i].value);
+        }
+    }
+    for(let i=0;i<recommentReport.length; i++){
+        recommentReport[i].onclick = () => {
+            funRecommentReport(ajaxRecomments[i].value)
+        }
+    }
 
 }, 500);
+
+
+function funBoardLike(boardid) {
+    $.ajax({
+
+        type: "post",
+        // type 동적으로 처리하기
+        url: `/board/likeup/board?boardid=${boardid}`,
+        dataType: "text",
+        success: function (data) {
+            let jsonObj = JSON.parse(data);
+            if(jsonObj){
+                commentLoad(boardID);
+                history.go(0);
+            }else {
+                alert('좋아요는 한번 만 가능합니다.');
+            }
+
+        },
+        error: function () {
+            alert('게시글 좋아요 비동기 처리오류');
+        }
+
+    });
+}
+function funBoardReport(boardid) {
+    $.ajax({
+
+        type: "post",
+        // type 동적으로 처리하기
+        url: `/board/report/board?boardid=${boardid}`,
+        dataType: "text",
+        success: function (data) {
+            let jsonObj = JSON.parse(data);
+            if(jsonObj){
+                commentLoad(boardID);
+                alert('신고 접수가 완료되었습니다.');
+                history.go(0);
+            }else {
+                alert('신고는 한번 만 가능합니다.');
+
+            }
+
+        },
+        error: function () {
+            alert('게시글 신고 비동기 처리오류');
+        }
+
+    });
+}
+
+function funCommentLike(commentid) {
+    $.ajax({
+
+        type: "post",
+        // type 동적으로 처리하기
+        url: `/board/likeup/comment?commentid=${commentid}`,
+        dataType: "text",
+        success: function (data) {
+            let jsonObj = JSON.parse(data);
+            if(jsonObj){
+                commentLoad(boardID);
+                history.go(0);
+            }else {
+                alert('좋아요는 한번 만 가능합니다.');
+            }
+
+        },
+        error: function () {
+            alert('댓글 좋아요 비동기 처리오류');
+        }
+
+    });
+}
+function funCommentReport(commentid) {
+    $.ajax({
+
+        type: "post",
+        // type 동적으로 처리하기
+        url: `/board/report/comment?commentid=${commentid}`,
+        dataType: "text",
+        success: function (data) {
+            let jsonObj = JSON.parse(data);
+            if(jsonObj){
+                commentLoad(boardID);
+                alert('신고 접수가 완료되었습니다.');
+                history.go(0);
+            }else {
+                alert('신고는 한번 만 가능합니다.');
+            }
+
+        },
+        error: function () {
+            alert('댓글신고 비동기 처리오류');
+        }
+
+    });
+}
+function funRecommentLike(recommentid) {
+    $.ajax({
+
+        type: "post",
+        // type 동적으로 처리하기
+        url: `/board/likeup/recomment?recommentid=${recommentid}`,
+        dataType: "text",
+        success: function (data) {
+            let jsonObj = JSON.parse(data);
+            if(jsonObj){
+                commentLoad(boardID);
+                history.go(0);
+            }else {
+                alert('좋아요는 한번 만 가능합니다.');
+            }
+
+        },
+        error: function () {
+            alert('대댓글 좋아요 비동기 처리오류');
+        }
+
+    });
+}
+function funRecommentReport(recommentid) {
+    $.ajax({
+
+        type: "post",
+        // type 동적으로 처리하기
+        url: `/board/report/recomment?recommentid=${recommentid}`,
+        dataType: "text",
+        success: function (data) {
+            let jsonObj = JSON.parse(data);
+            if(jsonObj){
+                commentLoad(boardID);
+                alert('신고 접수가 완료되었습니다.');
+                history.go(0);
+            }else {
+                alert('신고는 한번 만 가능합니다.');
+            }
+
+        },
+        error: function () {
+            alert('대댓글신고 비동기 처리오류');
+        }
+
+    });
+}

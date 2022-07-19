@@ -46,8 +46,8 @@
                             </div>
                         </div>
                         <div class="main_board_detail">
-                            <div class="likeCount">좋아요 : ${boardRespDto.likecnt}</div>
-                            <div class="commentCount">댓글 : ${boardRespDto.commentcnt}</div>
+                            <div class="likeCount">좋아요 : <span class="likeCountSpan">${boardRespDto.likecnt}</span></div>
+                            <div class="commentCount">댓글 : <span class="commentCountSpan">${boardRespDto.commentcnt}</span></div>
                             <div class="reportCount">신고</div>
                         </div>
 

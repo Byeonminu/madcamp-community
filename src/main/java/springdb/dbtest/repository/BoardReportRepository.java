@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 public interface BoardReportRepository extends JpaRepository<BoardReport, Long> {
 
 
-    @Modifying
     @Transactional
     @Query("select b from BoardReport b where b.userid = :userid and b.boardid = :boardid")
     BoardReport alreadyexist(Long userid, Long boardid);
@@ -19,7 +18,7 @@ public interface BoardReportRepository extends JpaRepository<BoardReport, Long> 
 
     @Modifying
     @Transactional
-    @Query(value = "insert into BoardReport values(0L, :userid, :boardid)", nativeQuery = true)
+    @Query(value = "insert into boardreport(userid,boardid) values(:userid, :boardid)", nativeQuery = true)
     void insertdata(Long userid, Long boardid);
 
 

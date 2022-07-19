@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 2
                 .anyRequest().authenticated() // 나머지 요청들은 권한의 종류에 상관 없이 권한이 있어야 접근 가능
                 .and()
                 .formLogin() // 7
-                .loginPage("/signup") // 로그인 페이지 링크
+                .loginPage("/login") // 로그인 페이지 링크
                 .loginProcessingUrl("/auth/login")
                 .defaultSuccessUrl("/") // 로그인 성공 후 리다이렉트 주소
                 .and()
@@ -63,8 +63,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 2
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
-
-
 
 }

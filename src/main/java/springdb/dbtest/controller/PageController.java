@@ -100,8 +100,8 @@ public class PageController {
     }
 
     @GetMapping("/myprofile")
-    public String infoForm(@AuthenticationPrincipal User principal, Model model) {
-        model.addAttribute("user", principal);
+    public String infoForm(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("user", user);
         model.addAttribute("viewcnt", viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "user_info/info";
@@ -143,7 +143,9 @@ public class PageController {
     }
 
     @GetMapping("/admin")
-    public String adminMainForm() {
+    public String adminMainForm(Model model) {
+        model.addAttribute("viewcnt", viewCntRepository
+                .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
         return "admin/admin";
     }
 }

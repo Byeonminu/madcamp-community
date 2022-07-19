@@ -42,12 +42,10 @@ public class Comment {
     private String createdate;
 
 
-
     @Builder.Default
     @JsonManagedReference
     @OneToMany(mappedBy = "comment") // 연관관계의 주인은 'comment'를 가지고 있는 Recomment 클래스임
     List<Recomment> recomments = new ArrayList<>();
-    
 
 
 

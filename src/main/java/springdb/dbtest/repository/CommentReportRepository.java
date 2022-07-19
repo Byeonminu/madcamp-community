@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 public interface CommentReportRepository extends JpaRepository<CommentReport, Long> {
 
 
-    @Modifying
     @Transactional
     @Query("select b from CommentReport b where b.userid = :userid and b.commentid = :commentid")
     CommentReport alreadyexist(Long userid, Long commentid);
@@ -19,7 +18,7 @@ public interface CommentReportRepository extends JpaRepository<CommentReport, Lo
 
     @Modifying
     @Transactional
-    @Query(value = "insert into CommentReport values(0L, :userid, :commentid)", nativeQuery = true)
+    @Query(value = "insert into commentreport(userid,commentid) values( :userid, :commentid)", nativeQuery = true)
     void insertdata(Long userid, Long commentid);
 
 

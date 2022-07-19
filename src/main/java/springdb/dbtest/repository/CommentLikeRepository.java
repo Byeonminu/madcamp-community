@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 public interface CommentLikeRepository extends JpaRepository<CommentLike, Long> {
 
 
-    @Modifying
+
     @Transactional
     @Query("select b from CommentLike b where b.userid = :userid and b.commentid = :commentid")
     CommentLike alreadyexist(Long userid, Long commentid);
@@ -19,7 +19,7 @@ public interface CommentLikeRepository extends JpaRepository<CommentLike, Long> 
 
     @Modifying
     @Transactional
-    @Query(value = "insert into CommentLike values(0L, :userid, :commentid)", nativeQuery = true)
+    @Query(value = "insert into commentlike(userid,commentid) values( :userid, :commentid)", nativeQuery = true)
     void insertdata(Long userid, Long commentid);
 
 
