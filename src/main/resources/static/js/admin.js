@@ -75,13 +75,13 @@ setTimeout(() => {
     const ajaxTitle = document.querySelectorAll('.ajaxTitle');
     for(let i =0; i<deleteBtn.length; i++){
         deleteBtn[i].onclick = () => {
-            deleteReq(ajaxid[i].value,category[i].value,ajaxTitle[i].value);
+            deleteReq(ajaxid[i].value,category[i].value);
 
         }
     }
 }, 500);
 // 신고 ///////////////////////////////////////
-function deleteReq(id, category,title) {
+function deleteReq(id, category) {
     $.ajax({
         type: "delete",
         // type 동적으로 처리하기
@@ -89,7 +89,7 @@ function deleteReq(id, category,title) {
         dataType: "text",
         async:false,
         success: function () {
-            alert(title+"(이)가 삭제되었습니다.");
+            alert("삭제 처리가 삭제되었습니다.");
             reportLoad();
         },
         error: function () {
