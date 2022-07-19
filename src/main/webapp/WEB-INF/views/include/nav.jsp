@@ -38,7 +38,7 @@
                     </div>
                             </c:when>
                             <c:otherwise>
-                                <a href="/user/${user.id}" class="login">${principal.nickname}님</a>
+                                <a href="/myprofile" class="login">${principal.nickname}님</a>
                                 <a href="/logout" class="logout">LOG OUT</a>
                 </div>
                 <a href="/myprofile" class="myprofile">내 정보</a>
