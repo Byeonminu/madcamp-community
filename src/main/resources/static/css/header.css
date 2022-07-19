@@ -63,15 +63,16 @@ a {
     margin: 0px 20px 0px 80px;
     border-radius: 30px;
 }
-
+#isAdmin {
+    background-color: white;
+    color: #5429FF;
+}
 .head_role_user {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 40%;
     height: 80%;
-    background-color: white;
-    color: #5429FF;
     border-radius: 30px;
     font-weight: 600;
     font-size: 1.1em;

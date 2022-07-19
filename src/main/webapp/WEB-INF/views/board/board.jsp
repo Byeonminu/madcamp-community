@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/resources/css/board.css">
         <script src="https://kit.fontawesome.com/fab8e6b94b.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
         <title>몰입캠프 게시판</title>
     </head>
 

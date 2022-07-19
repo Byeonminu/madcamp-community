@@ -49,11 +49,7 @@ public class BoardController {
         return boardLIstRespDto;
     }
 
-    // board category 종류 불러오기
-    @RequestMapping(value = "/category", method = RequestMethod.GET)
-    public List<BoardType> getBoardType() {
-        return boardTypeRepository.findAllByOrderByIdAsc();
-    }
+
 
     // 요청을 하면 board id와 매칭되는 comment를 가져옴
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)

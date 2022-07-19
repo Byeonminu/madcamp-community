@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%><!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="kor">
 
@@ -11,6 +12,7 @@
         <script src="https://kit.fontawesome.com/fab8e6b94b.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <title>몰입캠프 게시판</title>
+        <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
     </head>
 
     <body>
@@ -27,8 +29,17 @@
 
         </div>
         <div class="head_role">
-            <div class="head_role_user">User</div>
-            <div class="head_role_Creator">Creator</div>
+            <c:choose>
+                <c:when test="${user.isadmin eq 'ROLE_ADMIN'}">
+                    <div  class="head_role_user">USER</div>
+                    <a href="/admin" id="isAdmin" class="head_role_Creator">ADMIN</a>
+                </c:when>
+                <c:otherwise>
+                    <div id="isAdmin" class="head_role_user">USER</div>
+                    <div  class="head_role_Creator">ADMIN</div>
+                </c:otherwise>
+            </c:choose>
+
         </div>
         <div class="head_bell">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

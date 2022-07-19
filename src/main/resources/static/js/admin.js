@@ -19,7 +19,6 @@ function reportLoad() {
             reportParent.innerHTML = reportItem;
         },
         error: function () {
-            alert('report 비동기 처리오류');
         }
 
     });
@@ -94,7 +93,6 @@ function deleteReq(id, category,title) {
             reportLoad();
         },
         error: function () {
-            alert('delete 비동기 처리오류');
         }
 
     });

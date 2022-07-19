@@ -4,14 +4,13 @@ package springdb.dbtest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springdb.dbtest.dto.BoardReqDto;
 import springdb.dbtest.dto.BoardRespDto;
 import springdb.dbtest.entity.Board;
+import springdb.dbtest.entity.BoardType;
 import springdb.dbtest.entity.Comment;
+import springdb.dbtest.repository.BoardTypeRepository;
 import springdb.dbtest.service.BoardService;
 
 import java.time.LocalDateTime;
@@ -22,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌. (Autowired 역할)
 @RequestMapping("/home") // version1의 API
 public class HomeController {
-
+    private final BoardTypeRepository boardTypeRepository;
     private final BoardService boardService;
 
     // 공지사함 3개 가져오기
@@ -68,6 +67,11 @@ public class HomeController {
 //        BoardReqDto boardReqDto = new BoardReqDto(0L,userId,type,title,description,comment_cnt,like_cnt,report_cnt,now,now);
 //        return boardService.insertBoardInfo(boardReqDto);
 //    }
+// board category 종류 불러오기
+    @RequestMapping(value = "/category", method = RequestMethod.GET)
+    public List<BoardType> getBoardType() {
+        return boardTypeRepository.findAllByOrderByIdAsc();
+    }
 
 
 }

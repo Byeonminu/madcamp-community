@@ -143,9 +143,10 @@ public class PageController {
     }
 
     @GetMapping("/admin")
-    public String adminMainForm(Model model) {
+    public String adminMainForm(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("viewcnt", viewCntRepository
                 .findByDate(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())).getCnt());
+        model.addAttribute("user",user);
         return "admin/admin";
     }
 }

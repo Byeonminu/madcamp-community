@@ -31,7 +31,6 @@ function emailCheck(email) {
             isMadCamp(emailCheckFlag, email);
         },
         error: function () {
-            alert('board 비동기 처리오류');
         }
 
     });
@@ -72,7 +71,6 @@ function SignUpCommit(nickname, email, password, checkNum) {
             }
         },
         error: function () {
-            alert('board 비동기 처리오류');
         }
 
     });

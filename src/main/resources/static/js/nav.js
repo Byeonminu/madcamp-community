@@ -8,7 +8,7 @@ function boardNameLoad() {
     $.ajax({
         type: "get",
         // type 동적으로 처리하기
-        url: `/board/category`,
+        url: `/home/category`,
         dataType: "text",
         success: function (data) {
             let boardList1Obj = JSON.parse(data);
@@ -17,7 +17,6 @@ function boardNameLoad() {
             clickedColor(type);
         },
         error: function () {
-            alert('nav 비동기 처리오류');
         }
     });
 }

@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/fab8e6b94b.js" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>검색 결과</title>
+    <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
 </head>
 
 <body>

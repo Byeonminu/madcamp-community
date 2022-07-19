@@ -18,6 +18,7 @@
         <script src="https://kit.fontawesome.com/fab8e6b94b.js" crossorigin="anonymous"></script>
         <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
         <title>몰입캠프 게시판</title>
+        <link href="/resources/image/mad_logo.png" rel="shortcut icon" type="image/x-icon">
     </head>
 
     <body>
@@ -42,14 +43,14 @@
                 </div>
                 <a href="/myprofile" class="myprofile">내 정보</a>
                             </c:otherwise>
-
                         </c:choose>
 
-                    <div class="nav_board_container">
+                <div class="nav_board_container">
 
 
-                    </div>
                 </div>
+                </div>
+
                 <div class="nav_bottom">
                     <div class="nav_mode">
                         <ul class="nav_mode_ul">

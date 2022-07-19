@@ -36,7 +36,6 @@ function boardLoad(type,pagenum) {
             boardParent.innerHTML = boardItem;
         },
         error: function () {
-            alert('board 비동기 처리오류');
         }
 
     });
