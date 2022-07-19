@@ -35,6 +35,9 @@ public class Comment {
     @Column(columnDefinition = "int(11) default 0")
     private int comlikecnt;
 
+    @Column(columnDefinition = "int(11) default 0")
+    private int reportcnt;
+
     @Column()
     private String createdate;
 
