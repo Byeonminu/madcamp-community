@@ -3,7 +3,6 @@ package springdb.dbtest.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import springdb.dbtest.dto.BoardCommentRespDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,13 +35,17 @@ public class Comment {
     @Column(columnDefinition = "int(11) default 0")
     private int comlikecnt;
 
+    @Column(columnDefinition = "int(11) default 0")
+    private int reportcnt;
+
+    @Column()
+    private String createdate;
 
 
     @Builder.Default
     @JsonManagedReference
     @OneToMany(mappedBy = "comment") // 연관관계의 주인은 'comment'를 가지고 있는 Recomment 클래스임
     List<Recomment> recomments = new ArrayList<>();
-    
 
 
 

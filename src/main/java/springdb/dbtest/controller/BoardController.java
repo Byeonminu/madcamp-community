@@ -70,14 +70,17 @@ public class BoardController {
     //댓글 작성
     @PostMapping("/comment_write")
     public void commentWrite(CommentReqDto commentReqDto) {
-        Comment comment = new Comment(0L,commentReqDto.getPrincipalUserId(),boardRepository.findById(commentReqDto.getBoardid()).get(),commentReqDto.getComment(),0,null);
+        LocalDateTime now = LocalDateTime.now();
+        // 포맷팅
+        String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        Comment comment = new Comment(0L,commentReqDto.getPrincipalUserId(),boardRepository.findById(commentReqDto.getBoardid()).get(),commentReqDto.getComment(),0,0,formatedNow,null);
         boardRepository.plusonecomment(commentReqDto.getBoardid());
         boardCommentRepository.save(comment);
     }
     //대댓글 작성
     @PostMapping("/recomment_write")
     public void recommentWrite(RecommentReqDto recommentReqDto) {
-        Recomment recomment = new Recomment(0L,recommentReqDto.getPrincipalUserId(),boardCommentRepository.findById(recommentReqDto.getCommentid()).get(),recommentReqDto.getRecomment(),0L);
+        Recomment recomment = new Recomment(0L,recommentReqDto.getPrincipalUserId(),boardCommentRepository.findById(recommentReqDto.getCommentid()).get(),recommentReqDto.getRecomment(),0L,0,null);
         boardReCommentRepository.save(recomment);
     }
 

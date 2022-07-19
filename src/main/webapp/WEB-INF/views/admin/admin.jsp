@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+
+
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="kor">
@@ -56,60 +58,19 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>글 제목</th>
+                                        <th>타입</th>
+                                        <th>작성 내용</th>
                                         <th>작성자</th>
                                         <th>게시 날짜</th>
                                         <th>누적 신고 수</th>
                                         <th>게시글 삭제 처리</th>
-                                        <th>신고 처리 보류</th>
+
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="report_list">
                                     <!-- table records -->
-                                    <tr>
-                                        <td>Lorem ipsum dolor</td>
-                                        <td>작성자</td>
-                                        <td>2022/07/13</td>
-                                        <td>61</td>
-                                        <td>
-                                            <a href="#" class="btn btn-danger btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="bi bi-x-octagon"></i>
-                                                        </span>
-                                                <span class="text">삭제</span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-light btn-icon-split">
-                                                        <span class="icon text-gray-600">
-                                                            <i class="bi bi-exclamation-triangle"></i>
-                                                        </span>
-                                                <span class="text">보류</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lorem ipsum dolor</td>
-                                        <td>작성자</td>
-                                        <td>2022/07/19</td>
-                                        <td>90</td>
-                                        <td>
-                                            <a href="#" class="btn btn-danger btn-icon-split">
-                                                        <span class="icon text-white-50">
-                                                            <i class="bi bi-x-octagon"></i>
-                                                        </span>
-                                                <span class="text">삭제</span>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-light btn-icon-split">
-                                                        <span class="icon text-gray-600">
-                                                            <i class="bi bi-exclamation-triangle"></i>
-                                                        </span>
-                                                <span class="text">보류</span>
-                                            </a>
-                                        </td>
-                                    </tr>
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -124,6 +85,7 @@
         </div>
     </main>
 </div>
+<script src="/resources/js/admin.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/js/bootstrap/jquery.min.js"></script>
 <script src="/resources/js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -142,7 +104,7 @@
 <script src="/resources/js/bootstrap/datatables-demo.js"></script>
 
 <!-- Custom scripts my admin.html  -->
-<script src="/resources/js/board.js"></script>
+
 </body>
 
 </html>

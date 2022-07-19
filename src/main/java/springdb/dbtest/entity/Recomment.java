@@ -32,8 +32,13 @@ public class Recomment {
     @Column(columnDefinition = "TEXT")
     private String recomment;
 
+
     @Column(columnDefinition = "int(11) default 0")
     private Long recomlikecnt;
 
+    @Column(columnDefinition = "int(11) default 0")
+    private int reportcnt;
 
+    @Column()
+    private String createdate;
 }

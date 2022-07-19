@@ -49,6 +49,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     void plusonecomment(Long boardid);
 
     List<Board> findByUseridOrderByIdDesc(Long userid);
-
+    List<Board> findByReportcntGreaterThan(int Reportcnt);
 
 }
