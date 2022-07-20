@@ -47,11 +47,42 @@
 - 인증번호를 올바르게 입력하면 회원가입이 가능합니다.
 
 `메인 페이지`
+<div>
+<img src="./src/main/resources/static/image/mainpage_notlogin.png" width="350">
+<img src="./src/main/resources/static/image/mainpage_login.png" width="350">
+</div>
+
+- 오늘의 접속자 수를 확인할 수 있습니다.
+- 전날 대비 접속자 증감율을 확인할 수 있습니다.
+- 로그인이 되어 있지 않으면 로그인, 회원가입, 메인페이지 외에 접속할 수 없습니다.
+- 로그인 유저가 "ADMIN" ADMIN 버튼을 눌러 관리자 페이지에 접속할 수 있습니다.
+
+`게시판 페이지`
+
+<div>
+<img src="./src/main/resources/static/image/boardlistpage.png" width="350">
+<img src="./src/main/resources/static/image/boardmainpage.png" width="350">
+</div>
+
+- 게시글 좋아요, 신고, 댓글 기능이 있습니다.
+- 댓글 또한 좋아요, 신고, 대댓글 기능이 있습니다.
 
 
+`내 정보 페이지`
 
+<div>
+<img src="./src/main/resources/static/image/myprofilepage.png" width="350">
+</div>
 
+- 지금까지 작성한 댓글과 글을 불러옵니다.
 
+`관리자 페이지`
+<div>
+<img src="./src/main/resources/static/image/adminpage.png" width="350">
+</div>
+
+- Spring Security를 이용해 ADMIN권한이 있는 유저만 접근할 수 있습니다.
+- 신고가 5개 넘는 게시글, 댓글, 대댓글을 불러오며 삭제할 수 있습니다.
 
 
 
