@@ -16,6 +16,7 @@ comment_submit_btn.onclick = () => {
         success: function (data) {
             alert("댓글작성이 완료되었습니다.");
             commentLoad(boardID);
+            history.go(0);
         },
         error: function () {
         }
@@ -57,6 +58,7 @@ function commentLoad(boardID) {
             let commentListObj = JSON.parse(data);
             commentItem += getcomments(commentListObj);
             commentParent.innerHTML = commentItem;
+
         },
         error: function () {
         }

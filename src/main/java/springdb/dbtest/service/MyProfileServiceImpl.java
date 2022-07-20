@@ -21,18 +21,19 @@ public class MyProfileServiceImpl implements MyProfileService{
     private final BoardCommentRepository boardCommentRepository;
     @Override
     public MyProfileCommentRespDto getMyComments(Long userid, int pagenum) {
+        System.out.println(userid+"  여기여기 "+pagenum);
         MyProfileCommentRespDto myProfileCommentRespDto = new MyProfileCommentRespDto();
         List<Comment> commentList = boardCommentRepository.findByUseridOrderByIdDesc(userid);
         List<Comment> commentListTemp = new ArrayList<>();
         int startNum = (pagenum-1) * 3;
         int endNum;
         if(commentList.size() % 3 == 0) {
-            endNum = startNum * 3;
+            endNum = (startNum+1) * 3;
         }else {
             if((commentList.size()-startNum) > 3) {
                 endNum = startNum+3;
             }else {
-                endNum = startNum + commentList.size() % 3;
+                endNum = startNum + (commentList.size() % 3);
             }
         }
         System.out.println("start : "+startNum+" end : "+endNum + " total : "+commentList.size());
@@ -54,7 +55,7 @@ public class MyProfileServiceImpl implements MyProfileService{
         int startNum = (pagenum-1) * 3;
         int endNum;
         if(boardList.size() % 3 == 0) {
-            endNum = startNum * 3;
+            endNum = (startNum+1) * 3;
         }else {
             if((boardList.size()-startNum) > 3) {
                 endNum = startNum+3;

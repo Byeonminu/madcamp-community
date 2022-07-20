@@ -16,7 +16,7 @@ function myBoardLoad(pagenum) {
             let myBoardItem = ``;
             myBoardItem += getmyBoards(myBoardListObj.boardList);
             myBoardParent.innerHTML = myBoardItem;
-            totalCount_c = myBoardListObj.cnt;
+            totalCount_b = myBoardListObj.cnt;
         },
         error: function () {
         }
@@ -55,7 +55,7 @@ function getmyBoards(myBoardList) {
     }
     return myBoardHtml;
 }
-// 몰캠14기 게시판 5개 ///////////////////////////////////////
+// 내프로필 댓글 3개 ///////////////////////////////////////
 const myCommentParent = document.querySelector('.mycomments');
 
 
@@ -71,7 +71,7 @@ function myCommentLoad(pagenum) {
             let myCommentListObj = JSON.parse(data);
             myCommentItem += getmyComments(myCommentListObj.commentList);
             myCommentParent.innerHTML = myCommentItem;
-            totalCount_b = myCommentListObj.cnt;
+            totalCount_c = myCommentListObj.cnt;
         },
         error: function () {
         }
@@ -126,8 +126,8 @@ function getNumber_c(count) {
     let numHtml_c = `
          <ul class="numbers_c">
             <li id="clicknum_c" class="numbtn_c">1</li>`;
-    var num = (count / 10) ;
-    for (let i = 0; i < num; i++) {
+    var num = (count / 3) ;
+    for (let i = 0; i < num-1; i++) {
         numHtml_c += `<li class="numbtn_c">${i + 2}</li>`
     }
     numHtml_c += `</ul>`;
@@ -157,8 +157,8 @@ function getNumber(count) {
     let numHtml = `
          <ul class="numbers">
             <li id="clicknum" class="numbtn">1</li>`;
-    var num = (count / 10) ;
-    for (let i = 0; i < num; i++) {
+    var num = (count / 3) ;
+    for (let i = 0; i < num-1; i++) {
         numHtml += `<li class="numbtn">${i + 2}</li>`
     }
     numHtml += `</ul>`;
