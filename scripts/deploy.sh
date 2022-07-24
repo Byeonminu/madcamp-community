@@ -12,4 +12,4 @@ fi
 
 cd /home/ubuntu/app      # 해당 디렉토리로 이동 (Dockerfile 을 해당 디렉토리에 옮겼기 때문에)
 sudo docker build -t madtime ./          # Docker Image 생성
-sudo docker run -d -p 8080:8080 madtime  # Docker Container 생성
+sudo docker run -d -p 80:8080 madtime  # Docker Container 생성
