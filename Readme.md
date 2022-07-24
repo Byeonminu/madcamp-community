@@ -24,7 +24,7 @@
 ***
 - FrontEnd - `HTML` `CSS` `JS` `JSP`
 - BackEnd - `Spring Boot` `JPA` `MySQL`
-- Infra - `AWS EC2` `S3` `CodeDeploy` `Route 53` `CI/CD Github Actions` 
+- Infra - `AWS EC2` `S3` `CodeDeploy` `Route 53` `CI/CD Github Actions` `Docker` 
 
 
 ## ERD
