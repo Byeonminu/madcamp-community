@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import springdb.dbtest.entity.User;
 import springdb.dbtest.service.UserService;
 
 @RequiredArgsConstructor
@@ -28,8 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 2
 
     @Override
     protected void configure(HttpSecurity http) throws Exception { // 5 http 관련 인증 설정이 가능합니다
-        http.csrf().disable();
-        http
+        http.csrf().disable()
                 .authorizeRequests() // 6
                 .antMatchers("/", "/signup.css", "/resources/**", "/signup/**", "/login", "/auth/**", "/home/**").permitAll() // 누구나 접근 허용
                 .antMatchers("/board-main?**", "/myprofile/myComments?**", "/myprofile/myBoards?**").hasRole("USER") // USER, ADMIN만 접근 가능
@@ -43,8 +41,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // 2
                 .and()
                 .logout() // 8
                 .logoutSuccessUrl("/login") // 로그아웃 성공시 리다이렉트 주소
-                .invalidateHttpSession(true) // 세션 날리기
-        ;
+                .invalidateHttpSession(true); // 세션 날리기;
+        http
+                .headers()
+                .xssProtection()
+                .and()
+                .contentSecurityPolicy("form-action 'self'");
+
+
+
     }
 
 

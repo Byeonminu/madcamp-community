@@ -20,6 +20,7 @@ jar {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 	implementation 'mysql:mysql-connector-java'
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -28,6 +29,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+
+	implementation 'com.navercorp.lucy:lucy-xss-servlet:2.0.0'
+	implementation 'com.navercorp.lucy:lucy-xss:1.6.3'
+	implementation 'org.apache.commons:commons-text:1.9'
 	// jsp
 	implementation 'javax.servlet:jstl'
 	implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
